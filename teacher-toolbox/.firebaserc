@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "teacher-toolbox-36b09": {
+      "hosting": {
+        "teacher-toolbox": [
+          "teacher-toolbox-36b09"
+        ]
+      }
+    }
+  }
+}
