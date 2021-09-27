@@ -104,6 +104,10 @@ h3 {
   width: 100%;
 }
 
+.custom{
+  width: 75%;
+}
+
 .halfWidth {
   width: 48.5%;
 }
@@ -146,6 +150,7 @@ h3 {
   color: #ffffff;
   text-decoration: underline;
 }
+
 
 /* * Sidebar */
 .sidebar {
@@ -204,6 +209,8 @@ a:not([href]):not([tabindex]):hover {
   color: #e91e63;
   background: #efefef;
 }
+
+
 
 /* * Content */
 [role="main"] {
@@ -423,4 +430,9 @@ body .table thead th {
 
 .rounded-circle {
   max-width: 150px;
+}
+
+.btn:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
 }

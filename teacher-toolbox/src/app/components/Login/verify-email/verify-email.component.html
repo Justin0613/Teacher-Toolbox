@@ -1,14 +1,14 @@
 <div class="displayTable">
     <div class="displayTableCell">
         <div class="authBlock">
-            <h3>Thank You for Signing up</h3>
+            <h2 class="text-center">Success!</h2>
 
             <div class="formGroup" *ngIf="AuthService.userState as user">
                 <p class="text-center">Confirmation mail has been sent to <strong>{{user.email}}</strong>.</p>
             </div>
 
-            <div class="formGroup">
-                <button type="button" class="btn btn-block btn-success"
+            <div class="formGroup text-center">
+                <button type="button" class="btn btn-block btn-success custom rounded-pill"
                     (click)="AuthService.SendVerificationMail()">
                         Resend Verification Email
                 </button>
