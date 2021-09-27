@@ -295,6 +295,11 @@ i {
   box-shadow: none;
 }
 
+.btn:hover{
+  color:white !important;
+  background-color:rgb(36, 37, 44) !important;
+}
+
 /* Pagination */
 body pagination-template {
   padding: 0;
@@ -432,7 +437,3 @@ body .table thead th {
   max-width: 150px;
 }
 
-.btn:hover {
-  background-color: #4CAF50; /* Green */
-  color: white;
-}
