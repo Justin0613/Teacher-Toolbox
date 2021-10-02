@@ -13,4 +13,24 @@ export class NavigationBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  OnNavigationButtonClick(buttonName: Number) {
+    switch(buttonName)
+    {
+      case 0:
+        console.log("ALPHA BUTTON PRESSED");
+        break;
+      case 1:
+        console.log("BETA BUTTON PRESSED");
+        break;
+      case 2:
+        console.log("GAMMA BUTTON PRESSED");
+        break;
+      case 3:
+        console.log("DELTA BUTTON PRESSED");
+        break;
+      case 4:
+        console.log("EPSILON BUTTON PRESSED");
+        break;
+    }
+  }
 }
