@@ -6,6 +6,8 @@ import { SignUpComponent } from 'src/app/components/Login/sign-up/sign-up.compon
 import { DashboardComponent } from 'src/app/components/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from 'src/app/components/Login/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from 'src/app/components/Login/verify-email/verify-email.component';
+import { ClassesComponent } from './components/classes/classes.component';
+import { StudentsComponent } from './components/students/students.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
@@ -13,7 +15,9 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'email-verification', component: VerifyEmailComponent }
+  { path: 'email-verification', component: VerifyEmailComponent },
+  { path: 'classes', component: ClassesComponent },
+  { path: 'students', component: StudentsComponent }
 ];
 
 @NgModule({
