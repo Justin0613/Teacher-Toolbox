@@ -16,6 +16,9 @@ import { SignUpComponent } from 'src/app/components/Login/sign-up/sign-up.compon
 import { ForgotPasswordComponent } from 'src/app/components/Login/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from 'src/app/components/Login/verify-email/verify-email.component';
 import { AuthService } from '././services/auth.service';
+import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
+import { StudentsComponent } from './components/students/students.component';
+import { ClassesComponent } from './components/classes/classes.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,9 @@ import { AuthService } from '././services/auth.service';
     SignUpComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
+    NavigationBarComponent,
+    StudentsComponent,
+    ClassesComponent,
   ],
   imports: [
     BrowserModule,
