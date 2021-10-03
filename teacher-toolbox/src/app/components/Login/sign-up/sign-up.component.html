@@ -1,8 +1,8 @@
 <div class="displayTable">
     <div class="displayTableCell">
 
-        <div class="authBlock">
-            <h3>Register User</h3>
+        <div class="authBlock rounded">
+            <h2 class="text-center">New User</h2>
 
             <div class="formGroup">
                 <input type="email" class="form-control" placeholder="Email Address" #userEmail required>
@@ -12,15 +12,16 @@
                 <input type="password" class="form-control" placeholder="Password" #userPwd required>
             </div>
 
-            <div class="formGroup">
-                <input type="button" class="btn btn-block btn-primary" value="Sign Up"
+            <div class="formGroup text-center">
+                <input type="button" class="btn btn-outline-dark btn-block custom custom2" value="Sign Up"
                     (click)="AuthService.SignUp(userEmail.value, userPwd.value)">
             </div>
 
-            <div class="formGroup">
-                <button type="button" class="btn btn-block btn-danger" (click)="AuthService.GoogleAuth()">
-                    Continue with Google
-                </button>
+            <div class="formGroup text-center">
+                <a class="btn btn-outline-dark btn-block custom custom2" (click)="AuthService.GoogleAuth()" role="button" >
+                    <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                    Login with Google
+                </a>
             </div>
 
         </div>
