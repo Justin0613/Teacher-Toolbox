@@ -9,7 +9,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse  justify-content-end" id="navbarNavDropdown ">
+    <div class="collapse navbar-collapse  justify-content-end" id="navbarNavDropdown " *ngIf="AuthService.userState as user">
         <ul class="navbar-nav">
             <li class="nav-item active">
                 <a class="nav-link" routerLink="/dashboard">Dashboard</a>
@@ -22,20 +22,16 @@
             </li>
             <li class="nav-item dropdown" >
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                    Account
+                    <img class="rounded-circle profile-pic"
+                        src="{{(user.photoURL) ? user.photoURL : '/assets/dummy.jpg'}}" alt="{{user.displayName}}">
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <div class="dropdown-menu" role="menu" aria-labelledby="imageDropdown">
                     <a class="dropdown-item" href="#">Action</a>
                     <a class="dropdown-item" href="#">Another action</a>
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </li>
-            <div *ngIf="AuthService.userState as user">
-                <li class="nav-item"  >
-                    <img class="rounded-circle profile-pic"
-                        src="{{(user.photoURL) ? user.photoURL : '/assets/dummy.jpg'}}" alt="{{user.displayName}}">
-                </li>
-            </div>
+
         </ul>
     </div>
 
