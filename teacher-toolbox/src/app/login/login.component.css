@@ -1,0 +1,43 @@
+h2 {
+    margin-bottom: .5em;
+}
+
+.btn {
+    width: 75%;
+}
+
+input[type=button] {
+    margin-top: .5em;
+}
+
+.formGroup {
+    margin: .6em 0;
+    float: left;
+    width: 100%;
+}
+
+.authBlock {
+    margin: 0 auto;
+    max-width: 400px;
+    background: white;
+    padding: 30px 40px 10px;
+    overflow: hidden;
+    -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.04);
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.04);
+}
+
+img {
+    width: 1.5em;
+    margin: auto .3em;
+}
+
+.forgotPassword {
+    text-align: center;
+    width: 100%;
+    color: #3c89ef;
+    font-size: 1em;
+    font-weight: 400;
+    cursor: pointer;
+    display: inline-block;
+    padding: .6em 0;
+}

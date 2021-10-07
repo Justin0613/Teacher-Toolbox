@@ -11,13 +11,13 @@
             </div>
 
             <div class="formGroup text-center">
-                <input type="button" class="btn btn-outline-dark btn-block custom " value="Sign in"
+                <input type="button" class="btn btn-outline-dark btn-block" value="Sign in"
                 (click)="AuthService.SignIn(userName.value, userPassword.value)">
             </div>
 
             <div class="formGroup text-center">
-                <a class="btn btn-outline-dark btn-block custom custom2" (click)="AuthService.GoogleAuth()" role="button" >
-                    <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="/assets/img/google_logo.svg.png" />
+                <a class="btn btn-outline-dark btn-block" (click)="AuthService.GoogleAuth()" role="button" >
+                    <img alt="Google sign-in" src="assets/img/google_logo.svg.png" />
                     Login with Google
                 </a>
             </div>

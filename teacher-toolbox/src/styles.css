@@ -82,26 +82,6 @@ h3 {
   margin: 0 0 20px;
 }
 
-.authBlock {
-  margin: 0 auto;
-  max-width: 400px;
-  background: white;
-  padding: 30px 40px 10px;
-  overflow: hidden;
-  -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.04);
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.04);
-}
-
-.formGroup {
-  margin-bottom: 20px;
-  float: left;
-  width: 100%;
-}
-
-.custom{
-  width: 75%;
-}
-
 .halfWidth {
   width: 48.5%;
 }
@@ -112,22 +92,6 @@ h3 {
 
 .right {
   float: right;
-}
-
-.forgotPassword {
-  text-align: center;
-  margin: -12px 0 15px 0;
-  float: left;
-  width: 100%;
-}
-
-a .forgotPassword span {
-  color: #3c89ef;
-  font-size: 14px;
-  font-weight: 400;
-  cursor: pointer;
-  display: inline-block;
-  padding-top: 20px;
 }
 
 .redirectToLogin {
