@@ -5,9 +5,6 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   { path: 'login', loadChildren: './login/login.module#LoginModule' },
   { path: 'navigation', loadChildren: './navigation-bar/navigation-bar.module#NavigationBarModule' }
-  // { path: 'dashboard', component: DashboardComponent },
-  // { path: 'classes', component: ClassesComponent },
-  // { path: 'students', component: StudentsComponent }
 ];
 
 @NgModule({
