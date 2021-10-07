@@ -1,4 +1,3 @@
-import { LoginModule } from './login/login.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -11,19 +10,17 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DashboardComponent } from 'src/app/components/dashboard/dashboard.component';
-import { AuthService } from '././services/auth.service';
-import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
-import { StudentsComponent } from './components/students/students.component';
-import { ClassesComponent } from './components/classes/classes.component';
+
+import { LoginModule } from './login/login.module';
+import { NavigationBarModule } from './navigation-bar/navigation-bar.module';
+import { ClassroomsModule } from './classrooms/classrooms.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { StudentsModule } from './students/students.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-    NavigationBarComponent,
-    StudentsComponent,
-    ClassesComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,9 +29,12 @@ import { ClassesComponent } from './components/classes/classes.component';
     AngularFireAuthModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    LoginModule
+    LoginModule,
+    NavigationBarModule,
+    ClassroomsModule,
+    DashboardModule,
+    StudentsModule
   ],
-  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

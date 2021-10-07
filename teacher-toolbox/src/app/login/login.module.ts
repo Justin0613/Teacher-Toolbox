@@ -16,7 +16,7 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
   ],
   imports: [
     CommonModule,
-    LoginRoutingModule
+    LoginRoutingModule,
   ]
 })
 export class LoginModule { }
