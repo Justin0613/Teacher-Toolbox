@@ -1,11 +1,11 @@
 <app-navigation-bar></app-navigation-bar>
 
-<div class="container mt-5" style="max-width: 600px">
+<div class="container mt-5">
 
     <div class="row" *ngIf="AuthService.userState as user">
         <div class="media">
             <img class="align-self-start mr-5 img-thumbnail rounded-circle"
-                src="{{(user.photoURL) ? user.photoURL : '/assets/dummy.jpg'}}" alt="{{user.displayName}}">
+                src="{{(user.photoURL) ? user.photoURL : 'assets/img/no-user-image.png'}}" alt="{{user.displayName}}">
             <div class="media-body">
                 <h2>Hi: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h2>
                 <p>User ID: <strong>{{user.uid}}</strong></p>
