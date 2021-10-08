@@ -16,12 +16,10 @@ import { NavigationBarModule } from './navigation-bar/navigation-bar.module';
 import { ClassroomsModule } from './classrooms/classrooms.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { StudentsModule } from './students/students.module';
-
+import { AttendanceModule } from './attendance/attendance.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -33,8 +31,9 @@ import { StudentsModule } from './students/students.module';
     NavigationBarModule,
     ClassroomsModule,
     DashboardModule,
-    StudentsModule
+    StudentsModule,
+    AttendanceModule,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
