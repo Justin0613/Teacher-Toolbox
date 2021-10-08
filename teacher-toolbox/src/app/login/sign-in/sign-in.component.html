@@ -1,0 +1,36 @@
+<div class="displayTable">
+    <div class="displayTableCell">
+        <div class="authBlock rounded">
+            <h2 class="text-center">Sign In</h2>
+            <div class="formGroup">
+                <input type="text" class="form-control" placeholder="Email" #userName required>
+            </div>
+
+            <div class="formGroup">
+                <input type="password" class="form-control" placeholder="Password" #userPassword required>
+            </div>
+
+            <div class="formGroup text-center">
+                <input type="button" class="btn btn-outline-dark btn-block" value="Sign in"
+                (click)="AuthService.SignIn(userName.value, userPassword.value)">
+            </div>
+
+            <div class="formGroup text-center">
+                <a class="btn btn-outline-dark btn-block" (click)="AuthService.GoogleAuth()" role="button" >
+                    <img alt="Google sign-in" src="assets/img/google_logo.svg.png" />
+                    Login with Google
+                </a>
+            </div>
+
+
+            <div class="forgotPassword">
+                <a routerLink="/forgot-password">Forgot Password?</a>
+            </div>
+        </div>
+
+        <div class="redirectToLogin">
+            <span>Not registered yet? <span class="redirect" routerLink="/sign-up">Register</span></span>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,19 @@
+.profile-pic {
+    margin: .5em 1em .5em 1em;
+    height: 3.5em;
+    border: solid black 2px;
+}
+
+.toolbox-logo {
+    margin: .5em 1em .5em 1em;
+    height: 2em;
+}
+
+.nav-item {
+    margin: 0 .5em;
+    align-self: center;
+}
+
+.bg-dark {
+    background-color: #3f51b5 !important;
+}
