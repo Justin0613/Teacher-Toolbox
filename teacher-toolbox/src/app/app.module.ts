@@ -1,3 +1,5 @@
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from 'src/app/services/auth.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -33,8 +35,10 @@ import { StudentsModule } from './students/students.module';
     NavigationBarModule,
     ClassroomsModule,
     DashboardModule,
-    StudentsModule
+    StudentsModule,
+    NgbModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [AuthService]
 })
 export class AppModule { }
