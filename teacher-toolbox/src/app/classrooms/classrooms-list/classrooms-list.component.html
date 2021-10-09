@@ -1,0 +1,21 @@
+<div class="list row">
+    <div class="col-md-6">
+        <h4>Classroom List</h4>
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let classroom of classrooms; let i = index"
+                [class.active]="i == currentIndex" (click)="setActiveClassroom(classroom, i)">
+                {{ classroom.name }}
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <div *ngIf="currentClassroom">
+            <app-classrooms-details (refreshList)="refreshList()" [classroom]="currentClassroom"></app-classrooms-details>
+        </div>
+
+        <div *ngIf="!currentClassroom">
+            <br />
+            <p>Please click on a Classroom...</p>
+        </div>
+    </div>
+</div>
