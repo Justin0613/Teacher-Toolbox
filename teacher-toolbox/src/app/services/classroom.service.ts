@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { AuthService } from './auth.service';
 import Classroom from 'src/models/classroom.model';
 
 @Injectable({
@@ -11,8 +12,8 @@ export class ClassroomService {
 
   classroomRef: AngularFirestoreCollection<Classroom> = null;
 
-  constructor(private db: AngularFirestore) {
-    this.classroomRef = db.collection(this.dbPath);
+  constructor(private db: AngularFirestore, public auth: AuthService) {
+    this.classroomRef = db.collection(this.dbPath, classroomRef => classroomRef.where('uid', '==', this.auth.userState.uid));
   }
 
   getAll(): AngularFirestoreCollection<Classroom> {
