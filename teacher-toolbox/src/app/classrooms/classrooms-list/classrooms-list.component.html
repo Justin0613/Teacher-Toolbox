@@ -1,21 +1,18 @@
 <div class="list row list-container">
-    <ul style="padding: 0 0 0 0 ">
+    <div *ngIf="currentClassroom">
+        <app-classrooms-details (refreshList)="refreshList()" [classroom]="currentClassroom"></app-classrooms-details>
+    </div>
+
+    <div *ngIf="!currentClassroom">
+        <br />
+        <p>Please click on a Classroom...</p>
+    </div>
+
+    <ul style="padding: 0 0 0 0;">
         <li class="list-group-item card" *ngFor="let classroom of classrooms; let i = index"
             [class.active]="i == currentIndex" (click)="setActiveClassroom(classroom, i)">
             <h5>{{ classroom.name }}</h5>
             <div>{{ classroom.description }}</div>
         </li>
     </ul>
-    <!--
-    <div class="col-md-6">
-        <div *ngIf="currentClassroom">
-            <app-classrooms-details (refreshList)="refreshList()" [classroom]="currentClassroom"></app-classrooms-details>
-        </div>
-
-        <div *ngIf="!currentClassroom">
-            <br />
-            <p>Please click on a Classroom...</p>
-        </div>
-    </div>
-    -->
 </div>
