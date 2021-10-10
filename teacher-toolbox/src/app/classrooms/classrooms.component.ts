@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { ClassroomService } from '../services/classroom.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -12,7 +13,7 @@ export class ClassroomsComponent implements OnInit {
   classroom: Classroom = new Classroom();
   submitted: Boolean = false;
 
-  constructor(private classroomService: ClassroomService, private modal: NgbModal) { }
+  constructor(private classroomService: ClassroomService, private modal: NgbModal, private auth: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -26,6 +27,7 @@ export class ClassroomsComponent implements OnInit {
       window.alert("The name and description must not be blank.");
     }
     else {
+      this.classroom.uid = this.auth.userState.uid;
       this.classroomService.create(this.classroom).then(() => {
         this.modal.dismissAll();
 
