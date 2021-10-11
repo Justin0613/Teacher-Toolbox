@@ -2,7 +2,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { GoogleAuthProvider } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
-import { User } from './user.model';
+import { User } from '../../models/user.model';
 import { Router } from "@angular/router";
 
 @Injectable({
@@ -27,7 +27,7 @@ export class AuthService {
         localStorage.setItem('user', null);
         JSON.parse(localStorage.getItem('user'));
       }
-    })
+    });
   }
 
   async SignIn(email, password) {
@@ -55,10 +55,11 @@ export class AuthService {
   async SendVerificationMail() {
     return this.afAuth.currentUser.then(u => u.sendEmailVerification())
       .then(() => {
-        this.router.navigate(['email-verification']);
-      })
+        this.router.navigate(['verify-email']);
+      }
+    )
   }
-  
+
   async ForgotPassword(passwordResetEmail) {
     try {
       await this.afAuth.sendPasswordResetEmail(passwordResetEmail);
@@ -101,7 +102,7 @@ export class AuthService {
 
     return userRef.set(userState, {
       merge: true
-    })
+    });
   }
 
   async SignOut() {

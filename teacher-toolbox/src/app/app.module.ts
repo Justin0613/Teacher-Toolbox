@@ -1,3 +1,5 @@
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from 'src/app/services/auth.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -10,27 +12,17 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DashboardComponent } from 'src/app/components/dashboard/dashboard.component';
-import { SignInComponent } from 'src/app/components/Login/sign-in/sign-in.component';
-import { SignUpComponent } from 'src/app/components/Login/sign-up/sign-up.component';
-import { ForgotPasswordComponent } from 'src/app/components/Login/forgot-password/forgot-password.component';
-import { VerifyEmailComponent } from 'src/app/components/Login/verify-email/verify-email.component';
-import { AuthService } from '././services/auth.service';
-import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
-import { StudentsComponent } from './components/students/students.component';
-import { ClassesComponent } from './components/classes/classes.component';
+
+import { LoginModule } from './login/login.module';
+import { NavigationBarModule } from './navigation-bar/navigation-bar.module';
+import { ClassroomsModule } from './classrooms/classrooms.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { StudentsModule } from './students/students.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-    SignInComponent,
-    SignUpComponent,
-    ForgotPasswordComponent,
-    VerifyEmailComponent,
-    NavigationBarComponent,
-    StudentsComponent,
-    ClassesComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,9 +30,15 @@ import { ClassesComponent } from './components/classes/classes.component';
     AngularFirestoreModule,
     AngularFireAuthModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    LoginModule,
+    NavigationBarModule,
+    ClassroomsModule,
+    DashboardModule,
+    StudentsModule,
+    NgbModule
   ],
-  providers: [AuthService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [AuthService]
 })
 export class AppModule { }
