@@ -1,8 +1,11 @@
 <app-navigation-bar></app-navigation-bar>
 
-<app-classrooms-list></app-classrooms-list>
+<div class="row" style="margin: 10 15 10 15">
+    <h4 class="col">Classroom List</h4>
+    <button class="btn btn-primary col newClassroom-button" (click)="triggerModal(modalData)">Add New Classroom</button>
+</div>
 
-<button class="btn btn-primary newClassroom-button" (click)="triggerModal(modalData)">Add New Classroom</button>
+<app-classrooms-list></app-classrooms-list>
 
 <ng-template #modalData let-modal class="modal">
     <div class="modal-header">

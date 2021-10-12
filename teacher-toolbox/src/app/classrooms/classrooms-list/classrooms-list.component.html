@@ -8,33 +8,11 @@
                     </div>
                     <div class="card-body">
                         <p class="card-text">{{ classroom.description }}</p>
-                        <a (click)="setActiveClassroom(classroom, i)" class="btn btn-primary">Class Details</a>
+                        <a (click)="setActiveClassroom(classroom, i)" class="btn btn-primary" routerLink="/classrooms-details/{{classroom.id}}">Class Details</a>
                         <a href="#" class="btn btn-secondary">Edit</a>
                     </div>
                 </div>
             </ul>
-        </div>
-    </div>
-</div>
-
-<div class="list row">
-    <div class="col-md-6">
-        <h4>Classroom List</h4>
-        <ul class="list-group">
-            <li class="list-group-item" *ngFor="let classroom of classrooms; let i = index"
-                [class.active]="i == currentIndex" (click)="setActiveClassroom(classroom, i)">
-                {{ classroom.name }}
-            </li>
-        </ul>
-    </div>
-    <div class="col-md-6">
-        <div *ngIf="currentClassroom">
-            <app-classrooms-details (refreshList)="refreshList()" [classroom]="currentClassroom"></app-classrooms-details>
-        </div>
-
-        <div *ngIf="!currentClassroom">
-            <br />
-            <p>Please click on a Classroom...</p>
         </div>
     </div>
 </div>

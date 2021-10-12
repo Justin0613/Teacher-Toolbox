@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, OnChanges, EventEmitter } from '@angular/core';
 import { ClassroomService } from 'src/app/services/classroom.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import Classroom from 'src/models/classroom.model';
 
 @Component({
@@ -13,11 +14,17 @@ export class ClassroomsDetailsComponent implements OnInit {
   @Output() refreshList: EventEmitter<any> = new EventEmitter();
   currentClassroom: Classroom = null;
   message = '';
+  classId: string = "";
 
-  constructor(private classroomService: ClassroomService) { }
+  constructor(private classroomService: ClassroomService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.message = '';
+
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.classId = params.get('class_id');
+      console.log(this.classId);
+    });
   }
 
   ngOnChanges(): void {
