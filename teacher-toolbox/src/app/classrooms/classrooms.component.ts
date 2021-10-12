@@ -30,7 +30,7 @@ export class ClassroomsComponent implements OnInit {
       window.alert("The name and description must not be blank.");
     }
     else {
-      this.classroom.uid = this.auth.userState.uid;
+      this.classroom.teacherID = this.auth.userState.uid;
       this.classroomService.create(this.classroom).then(() => {
         this.modal.dismissAll();
 
