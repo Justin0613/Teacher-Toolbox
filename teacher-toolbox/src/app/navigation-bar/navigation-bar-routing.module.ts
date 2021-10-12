@@ -6,9 +6,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { DataResolverService } from '../services/data-resolver.service';
 
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent, resolve: { userdata: DataResolverService } },
   { path: 'classrooms', component: ClassroomsComponent, resolve: { userdata: DataResolverService } },
-  { path: 'students', component: StudentsComponent }
+  { path: 'students', component: StudentsComponent, resolve: { userdata: DataResolverService} }
 ];
 
 @NgModule({

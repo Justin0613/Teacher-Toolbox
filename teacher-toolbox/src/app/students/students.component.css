@@ -1,0 +1,11 @@
+.newStudent-button {
+    display: block;
+}
+
+.form-group {
+    margin: 1em;
+}
+
+.form-group label {
+    margin: .4em 0;
+}

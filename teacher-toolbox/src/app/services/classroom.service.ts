@@ -13,7 +13,7 @@ export class ClassroomService {
   classroomRef: AngularFirestoreCollection<Classroom> = null;
 
   constructor(private db: AngularFirestore, public auth: AuthService) {
-    this.classroomRef = db.collection(this.dbPath, classroomRef => classroomRef.where('uid', '==', this.auth.userState.uid));
+    this.classroomRef = db.collection(this.dbPath, classroomRef => classroomRef.where('teacherID', '==', this.auth.userState.uid));
   }
 
   getAll(): AngularFirestoreCollection<Classroom> {
