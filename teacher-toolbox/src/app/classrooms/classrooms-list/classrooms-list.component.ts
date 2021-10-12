@@ -37,8 +37,8 @@ export class ClassroomsListComponent implements OnInit {
     });
   }
 
-  setActiveClassroom(classroom, index): void {
-    this.currentClassroom = classroom;
-    this.currentIndex = index;
+  setActiveClassroom(classroom: any, index: number): void {
+      this.currentClassroom = classroom;
+      this.currentIndex = index;
   }
 }
