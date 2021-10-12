@@ -35,7 +35,7 @@ export class AuthService {
     return new Observable(o => {
       setTimeout(() => {
         o.next(this.userState);
-      }, 1000)
+      }, 300)
     });
   }
 
