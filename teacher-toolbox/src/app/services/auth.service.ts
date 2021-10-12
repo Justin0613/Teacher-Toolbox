@@ -4,6 +4,7 @@ import { GoogleAuthProvider } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { User } from '../../models/user.model';
 import { Router } from "@angular/router";
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,14 @@ export class AuthService {
         localStorage.setItem('user', null);
         JSON.parse(localStorage.getItem('user'));
       }
+    });
+  }
+
+  getData(): Observable<User> {
+    return new Observable(o => {
+      setTimeout(() => {
+        o.next(this.userState);
+      }, 300)
     });
   }
 
