@@ -2,10 +2,13 @@
     <div class="row justify-content-md-center">
         <div class="list row">
             <ul class="list-group">
-                <div class="card mb-3" *ngFor="let classroom of classrooms; let i = index" [class.active]="i == currentIndex">
-                    <div class="card-header card-title">
+                <div class="card mb-3" *ngFor="let classroom of classrooms; let i = index"
+                    [class.active]="i == currentIndex">
+
+                    <h5 class="card-header card-title">
                         {{ classroom.name }}
-                    </div>
+                    </h5>
+
                     <div class="card-body">
                         <p class="card-text">{{ classroom.description }}</p>
                         <a (click)="setActiveClassroom(classroom, i)" class="btn btn-primary">Class Details</a>
@@ -17,7 +20,8 @@
     </div>
 </div>
 
-<div class="list row">
+
+<!-- <div class="list row">
     <div class="col-md-6">
         <h4>Classroom List</h4>
         <ul class="list-group">
@@ -37,4 +41,4 @@
             <p>Please click on a Classroom...</p>
         </div>
     </div>
-</div>
+</div> -->
