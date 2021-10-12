@@ -8,37 +8,11 @@
                     </div>
                     <div class="card-body">
                         <p class="card-text">{{ classroom.description }}</p>
-                        <a (click)="setActiveClassroom(classroom, i)" class="btn btn-primary">Class Details</a>
+                        <a (click)="setActiveClassroom(classroom, i)" class="btn btn-primary" routerLink="/classrooms-details/{{classroom.id}}">Class Details</a>
                         <a href="#" class="btn btn-secondary">Edit</a>
                     </div>
                 </div>
             </ul>
         </div>
     </div>
-</div>
-
-<div class="list row">
-    <div class="col-md-6">
-        <h4>Classroom List</h4>
-        <ul class="list-group">
-            <li class="list-group-item" *ngFor="let classroom of classrooms; let i = index"
-                [class.active]="i == currentIndex" (click)="setActiveClassroom(classroom, i)">
-                {{ classroom.name }}
-            </li>
-        </ul>
-    </div>
-
-    <div *ngIf="!currentClassroom">
-        <br />
-        <p>Please click on a Classroom...</p>
-    </div>
-
-    <ul style="padding: 0 0 0 0;">
-        <li class="list-group-item card" *ngFor="let classroom of classrooms; let i = index"
-            [class.active]="i == currentIndex" (click)="setActiveClassroom(classroom, i)">
-            <h5>{{ classroom.name }}</h5>
-            <div>{{ classroom.description }}</div>
-            <a class="nav-link" routerLink="/classrooms-details/{{classroom.id}}">Open Classroom</a>
-        </li>
-    </ul>
 </div>
