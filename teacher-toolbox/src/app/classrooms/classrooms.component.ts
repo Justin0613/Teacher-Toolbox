@@ -2,6 +2,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { ClassroomService } from '../services/classroom.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute } from '@angular/router';
 import Classroom from 'src/models/classroom.model';
 
 @Component({
@@ -10,12 +11,14 @@ import Classroom from 'src/models/classroom.model';
   styleUrls: ['./classrooms.component.css']
 })
 export class ClassroomsComponent implements OnInit {
+  userData: any;
   classroom: Classroom = new Classroom();
   submitted: Boolean = false;
 
-  constructor(private classroomService: ClassroomService, private modal: NgbModal, private auth: AuthService) { }
+  constructor(private classroomService: ClassroomService, private modal: NgbModal, private auth: AuthService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.userData = this.route.snapshot.data.userdata;
   }
 
   triggerModal(content) {
