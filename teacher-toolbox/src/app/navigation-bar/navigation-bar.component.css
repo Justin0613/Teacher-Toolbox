@@ -68,13 +68,14 @@
     transition: none !important;
 }
 
-#navbar .active {
-    content: '';
-    display: block;
-    width: 0px;
-    height: 2px;
-    background: white;
-    transition: 0.4s
-}
+a.current {
+    background:red;
+    color:black;
+  }
+
+nav a.current {
+    background:darkblue;
+    color:black;
+  }
 
 
