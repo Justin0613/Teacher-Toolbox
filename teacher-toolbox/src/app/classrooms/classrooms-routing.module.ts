@@ -4,7 +4,7 @@ import { ClassroomsDetailsComponent } from './classrooms-details/classrooms-deta
 
 
 const routes: Routes = [
-  { path: 'classrooms-details/:class_id', component: ClassroomsDetailsComponent },
+  { path: 'classrooms/:class_id', component: ClassroomsDetailsComponent },
 ];
 
 @NgModule({
