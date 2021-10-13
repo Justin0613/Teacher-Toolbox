@@ -13,13 +13,11 @@ export class ClassroomsDetailsComponent implements OnInit {
   @Input() classroom: Classroom;
   @Output() refreshList: EventEmitter<any> = new EventEmitter();
   currentClassroom: Classroom = null;
-  message = '';
   classId: string = "";
 
   constructor(private classroomService: ClassroomService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.message = '';
 
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.classId = params.get('class_id');
@@ -28,7 +26,6 @@ export class ClassroomsDetailsComponent implements OnInit {
   }
 
   ngOnChanges(): void {
-    this.message = '';
     this.currentClassroom = { ...this.classroom };
   }
 
@@ -39,7 +36,6 @@ export class ClassroomsDetailsComponent implements OnInit {
     };
 
     this.classroomService.update(this.currentClassroom.id, data)
-      .then(() => this.message = 'The classroom was updated successfully!')
       .catch(error => window.alert(error));
   }
 
@@ -47,7 +43,6 @@ export class ClassroomsDetailsComponent implements OnInit {
     this.classroomService.delete(this.currentClassroom.id)
       .then(() => {
         this.refreshList.emit();
-        this.message = 'The classroom was deleted successfully!';
       })
       .catch(error => window.alert(error));
   }
