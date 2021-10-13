@@ -13,7 +13,10 @@ export class ClassroomsDetailsComponent implements OnInit {
   @Input() classroom: Classroom;
   @Output() refreshList: EventEmitter<any> = new EventEmitter();
   currentClassroom: Classroom = null;
+
   classId: string = "";
+  className: string = "";
+  classDescription: string = "";
 
   constructor(private classroomService: ClassroomService, private route: ActivatedRoute) { }
 
@@ -21,7 +24,13 @@ export class ClassroomsDetailsComponent implements OnInit {
 
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.classId = params.get('class_id');
-      console.log(this.classId);
+      
+      this.classroomService.getSingle(this.classId, ((data: Classroom) => {
+        if (data == null) return;
+
+        this.className = data.name;
+        this.classDescription = data.description;
+      }));
     });
   }
 
