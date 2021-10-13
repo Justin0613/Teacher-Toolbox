@@ -1,40 +1,71 @@
-.container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 10px;
+* {
+  padding: 0;
+  margin: 0;
 }
 
-h1 {
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  height: 80vh;
+}
+
+h3 {
   align-self: center;
+  margin-bottom: 0.5em;
+}
+
+.column {
+  border: 1px solid #333;
+  padding: 5px;
+  background-color: white;
+}
+
+.row {
+  margin-bottom: 0.6em;
+  align-items: center;
 }
 
 .flex-container {
   width: 80%;
+  height: inherit;
   display: flex;
   justify-content: space-around;
   border: 1px solid #333;
+  padding: 5px;
 }
 
 .flex-item {
-  padding: 10px;
-  margin: 20px;
-  width: 200px;
   text-align: center;
-  border: none;
-  text-decoration: none;
+  background-color: white;
+  padding: 5px;
+  border: 1px solid #333;
 }
 
-.present {
-  background-color: green;
-}
-
-.submit {
-  margin: 10px;
+.student-item {
   display: flex;
-  width: 80%;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.submit button {
-  margin-left: 30px;
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.name {
+  display: flex;
+  font-size: 24;
+}
+
+.buttons button {
+  padding: 0.5em;
 }
