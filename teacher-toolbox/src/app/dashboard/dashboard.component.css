@@ -16,3 +16,25 @@
     margin-bottom: 10px;
     font-weight: 600;
 }
+
+/* Move down content because we have a fixed navbar that is 3.5rem tall */
+body {
+    padding-top: 3.5rem;
+  }
+
+.jumbotron{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color:rgb(116, 116, 116);
+}
+
+.dashboardContent{
+    padding-top: 5%;
+    background-color:rgb(221, 221, 221);
+
+}
+
+*{
+    font-family: 'Roboto', sans-serif;
+}
+

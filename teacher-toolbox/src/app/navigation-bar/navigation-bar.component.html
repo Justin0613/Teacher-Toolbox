@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-    <a class="navbar-brand" routerLink="/dashboard">
-        <img src="assets/img/toolbox_logo.png" class="d-inline-block align-center toolbox-logo" alt="">
+    <a class="navbar-brand teachertoolbox" routerLink="/dashboard">
+        <img src="assets/img/toolbox_logo.png" class="d-inline-block align-center toolbox-logo teachertoolbox" alt="">
         Teacher Toolbox
     </a>
 
@@ -11,8 +11,8 @@
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
         <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" routerLink="/dashboard">Dashboard</a>
+            <li class="nav-item active hoveritem">
+                <a class="nav-link text-white navtext" routerLink="/dashboard">Dashboard</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" routerLink="/classrooms">Classrooms</a>
@@ -31,10 +31,18 @@
                 </div>
             </li>
             <div *ngIf="AuthService.userState as user">
-                <li class="nav-item"  >
-                    <img class="rounded-circle profile-pic"
-                        src="{{(user.photoURL) ? user.photoURL : 'assets/img/no-user-image.png'}}" alt="{{user.displayName}}">
-                </li>
+                <div class="dropdown">
+                    <li class="nav-item dropdown profiledropdown" ngbDropdown>
+                        <a class="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+                            <img class="rounded-circle profile-pic"
+                            src="{{(user.photoURL) ? user.photoURL : 'assets/img/no-user-image.png'}}" alt="{{user.displayName}}">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right"  >
+                            <a class="dropdown-item" href="#">Account Settings</a>
+                            <a class="dropdown-item" (click)="AuthService.SignOut()">Log Out</a>
+                        </div>
+                    </li>
+                </div>
             </div>
         </ul>
     </div>
