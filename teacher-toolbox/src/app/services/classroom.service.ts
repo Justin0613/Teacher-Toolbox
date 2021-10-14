@@ -23,8 +23,7 @@ export class ClassroomService {
   getSingle(uid: string, cb: Function): void {
     this.classroomRef.doc(uid).ref.get().then(doc => {
       if (doc.exists) cb(doc.data());
-      else cb(null);
-    });
+    }).catch(error => window.alert(error));
   }
 
   create(classroom: Classroom): any {
