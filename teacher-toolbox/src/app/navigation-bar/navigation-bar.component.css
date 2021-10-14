@@ -1,5 +1,8 @@
+.navbar-toggler {
+    margin: .5em 1em .5em 1em;
+}
+
 .navbar {
-    height: 5em;
     border-bottom: 1px solid black;
 }
 
