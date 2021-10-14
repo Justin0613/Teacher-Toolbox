@@ -1,3 +1,7 @@
+.navbar {
+    border-bottom: 2px solid black;
+}
+
 .profile-pic {
     margin: .5em 1em .5em 1em;
     height: 3.5em;
@@ -15,24 +19,28 @@
 }
 
 .bg-dark {
-    background-color: #3f51b5 !important;
     background: linear-gradient(
       to right,
       #3f51b5,
-      rgb(49, 170, 211)
+      rgb(46, 161, 199)
     );
 }
 
-.dropdown-menu-right {
-    right: 0;
-    left: -15%;
-  }
+.dropdown-item {
+    cursor: pointer;
+}
 
-.teachertoolbox{
+.dropdown-menu-right {
+    left: -50%;
+    right: 0;
+    top: 90%
+}
+
+.teachertoolbox {
     font-family: 'Lobster', cursive;
 }
 
-.navtext{
+.navtext {
     font-family: 'Roboto', sans-serif;
     color:white;
 }
@@ -63,7 +71,7 @@
     transition: 0.2s
 }
 
-.profiledropdown:hover{
+.profiledropdown:hover {
     text-decoration: none !important;
     transition: none !important;
 }
