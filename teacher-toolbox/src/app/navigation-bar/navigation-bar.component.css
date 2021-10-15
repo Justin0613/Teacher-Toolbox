@@ -6,6 +6,10 @@
     border-bottom: 1px solid black;
 }
 
+.account-dropdown-text {
+    text-align: center;
+}
+
 .profile-pic {
     margin: .5em 1em .5em 1em;
     height: 3.5em;
@@ -18,7 +22,7 @@
 }
 
 .nav-item {
-    margin: 0 .5em;
+    margin: 0;
     align-self: center;
 }
 
@@ -32,6 +36,7 @@
 
 .dropdown-item {
     cursor: pointer;
+    color: white;
 }
 
 .dropdown-menu-right {
@@ -89,4 +94,13 @@
     transition: 0.4s
 }
 
+#account-dropdown-menu {
+    width: 40vw;
+    background-color: rgb(9, 21, 26);
+    text-align: center;
+    margin-bottom: 4% !important;
+}
 
+.dropdown-item-account {
+    background-color: inherit;
+}
