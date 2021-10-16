@@ -1,86 +1,99 @@
 <div>
-  <div class="container">
-    <h1>Attendance</h1>
+  <div class="container card card-body">
+    <h1 class="card-header">Attendance</h1>
 
-    <div class="flex-container">
-      <div class="col-md-4 column">
-        <h3>Students</h3>
-        <ng-container *ngFor="let student of students">
-          <div
-            *ngIf="!student.present && !student.absent"
-            class="row flex-item"
-          >
-            <div class="col-2 icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="teal"
-                class="bi bi-person-circle"
-                viewBox="0 0 16 16"
-              >
-                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                <path
-                  fill-rule="evenodd"
-                  d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
-                />
-              </svg>
+    <div class="flex-container d-flex">
+      <div
+        class="
+          col-md-4
+          column
+          d-flex
+          flex-column
+          justify-content-between
+          align-items-center
+        "
+      >
+        <div class="students">
+          <h3>Students</h3>
+          <ng-container *ngFor="let student of students" class="list-group">
+            <div class="row list-group-item">
+              <div class="col name">
+                <h3 class="card-title">{{ student.name }}</h3>
+              </div>
+              <div class="col buttons">
+                <button class="btn btn-success" (click)="setPresent(student)">
+                  Present
+                </button>
+                <button class="btn btn-danger" (click)="setAbsent(student)">
+                  Absent
+                </button>
+              </div>
             </div>
-
-            <div class="col name">
-              {{ student.name }}
-            </div>
-            <div class="col buttons">
-              <button class="btn btn-success" (click)="togglePresent(student)">
-                Present
-              </button>
-              <button class="btn btn-danger" (click)="toggleAbsent(student)">
-                Absent
-              </button>
-            </div>
-          </div>
-        </ng-container>
+          </ng-container>
+        </div>
+        <div class="counter">
+          <h2>Students: {{ students.length }}</h2>
+        </div>
       </div>
-      <div class="col-md-4 column">
-        <h3>Present</h3>
-        <ng-container *ngFor="let student of students">
-          <div *ngIf="student.present" class="row flex-item">
-            <div class="col icon">
-              <i class="bi bi-person-circle"></i>
+      <div
+        class="
+          col-md-4
+          column
+          d-flex
+          flex-column
+          justify-content-between
+          align-items-center
+        "
+      >
+        <div class="present">
+          <h3>Present</h3>
+          <ng-container *ngFor="let student of present" class="list-group">
+            <div class="row d-flex list-group-item">
+              <div class="col name">
+                <h3 class="card-title">{{ student.name }}</h3>
+              </div>
+              <div class="col buttons">
+                <button class="btn btn-danger" (click)="unsetPresent(student)">
+                  <i class="bi bi-x absent"></i>
+                </button>
+              </div>
             </div>
-
-            <div class="col name">
-              {{ student.name }}
-            </div>
-            <div class="col buttons">
-              <button class="btn btn-danger" (click)="togglePresent(student)">
-                <i class="bi bi-x absent"></i>
-              </button>
-            </div>
-          </div>
-        </ng-container>
+          </ng-container>
+        </div>
+        <div class="counter">
+          <h2>Present: {{ present.length }}</h2>
+        </div>
       </div>
-      <div class="col-md-4 column">
-        <h3>Absent</h3>
-        <ng-container *ngFor="let student of students">
-          <div *ngIf="student.absent" class="row flex-item">
-            <div class="col icon">
-              <i class="bi bi-person-circle"></i>
+      <div
+        class="
+          col-md-4
+          column
+          d-flex
+          flex-column
+          justify-content-between
+          align-items-center
+        "
+      >
+        <div class="absent">
+          <h3>Absent</h3>
+          <ng-container *ngFor="let student of absent" class="list-group">
+            <div class="row d-flex list-group-item">
+              <div class="col name">
+                <h3 class="card-title">{{ student.name }}</h3>
+              </div>
+              <div class="col buttons">
+                <button class="btn btn-danger" (click)="unsetAbsent(student)">
+                  <i class="bi bi-x absent"></i>
+                </button>
+              </div>
             </div>
-
-            <div class="col name">
-              {{ student.name }}
-            </div>
-            <div class="col buttons">
-              <button class="btn btn-danger" (click)="toggleAbsent(student)">
-                <i class="bi bi-x absent"></i>
-              </button>
-            </div>
-          </div>
-        </ng-container>
+          </ng-container>
+        </div>
+        <div class="counter">
+          <h2>Absent: {{ absent.length }}</h2>
+        </div>
       </div>
     </div>
-
     <div class="submit">
       <button (click)="sendAttendance()" class="btn btn-primary">Submit</button>
     </div>

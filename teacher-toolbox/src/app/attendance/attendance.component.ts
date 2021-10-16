@@ -7,9 +7,9 @@ import { Student } from './student.model';
   styleUrls: ['./attendance.component.css'],
 })
 export class AttendanceComponent implements OnInit {
-  students: Student[];
-  present: Student[];
-  absent: Student[];
+  students: Student[] = [];
+  present: Student[] = [];
+  absent: Student[] = [];
 
   constructor() {}
 
@@ -33,19 +33,26 @@ export class AttendanceComponent implements OnInit {
     ];
   }
 
-  togglePresent(student: Student) {
-    student.present = !student.present;
+  setPresent(student: Student) {
+    this.present.push(student);
+    this.students.splice(this.students.indexOf(student), 1);
   }
-  toggleAbsent(student: Student) {
-    student.absent = !student.absent;
+  unsetPresent(student: Student) {
+    this.students.push(student);
+    this.present.splice(this.present.indexOf(student), 1);
+  }
+  setAbsent(student: Student) {
+    this.absent.push(student);
+    this.students.splice(this.students.indexOf(student), 1);
+  }
+  unsetAbsent(student: Student) {
+    this.students.push(student);
+    this.absent.splice(this.absent.indexOf(student), 1);
   }
 
   sendAttendance() {
     const buttons = document.getElementsByClassName('student present');
-    let attendance = [];
-    for (let i = 0; i < buttons.length; i++) {
-      attendance.push(buttons[i].textContent);
-    }
+    let attendance = { presentList: this.present, absentList: this.absent };
     console.log(attendance);
   }
 }
