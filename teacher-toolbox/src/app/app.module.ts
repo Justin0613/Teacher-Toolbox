@@ -13,17 +13,17 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { AttendanceComponent } from './attendance/attendance.component';
+
 import { LoginModule } from './login/login.module';
 import { NavigationBarModule } from './navigation-bar/navigation-bar.module';
 import { ClassroomsModule } from './classrooms/classrooms.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { StudentsModule } from './students/students.module';
-
+import { AttendanceModule } from './attendance/attendance.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent, AttendanceComponent],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -36,9 +36,11 @@ import { StudentsModule } from './students/students.module';
     ClassroomsModule,
     DashboardModule,
     StudentsModule,
+    AttendanceModule,
     NgbModule
   ],
   bootstrap: [AppComponent],
   providers: [AuthService]
+
 })
-export class AppModule { }
+export class AppModule {}

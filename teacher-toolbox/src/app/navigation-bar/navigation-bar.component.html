@@ -5,25 +5,40 @@
         Teacher Toolbox
     </a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="d-xs-block d-lg-none navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
         <ul class="navbar-nav">
-            <li class="nav-item active hoveritem">
+            <li class="nav-item-main nav-item active hoveritem">
                 <a class="nav-link text-white navtext" routerLink="/dashboard">Dashboard</a>
             </li>
-            <li class="nav-item hoveritem">
+            <li class="nav-item-main nav-item hoveritem">
                 <a class="nav-link text-white navtext" routerLink="/classrooms">Classrooms</a>
             </li>
-            <li class="nav-item hoveritem">
+            <li class="nav-item-main nav-item hoveritem">
                 <a class="nav-link text-white navtext" routerLink="/students">Students</a>
+            </li>
+            <li class="d-xs-block d-lg-none nav-item">
+
+                <div class="dropdown">
+                    <li class="nav-item dropdown">
+
+                        <a class="nav-link text-white navtext dropdown-toggle account-dropdown-text" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+                            Account
+                        </a>
+                        <div class="dropdown-menu dropdown-menu shadow-lg p-3 mb-5" id="account-dropdown-menu"  >
+                            <a class="dropdown-item-account nav-link nav-item text-white navtext dropdown-item" href="#">Account Settings</a>
+                            <a class="dropdown-item-account dropdown-item nav-item " (click)="AuthService.SignOut()">Log Out</a>
+                        </div>
+                    </li>
+                </div>
             </li>
             <div *ngIf="AuthService.userState as user">
                 <div class="dropdown">
-                    <li class="nav-item dropdown profiledropdown" ngbDropdown>
-                        <a class="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+                    <li class="nav-item dropdown profiledropdown">
+                        <a class="d-none d-lg-block nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
                             <img class="rounded-circle profile-pic"
                             src="{{(user.photoURL) ? user.photoURL : 'assets/img/no-user-image.png'}}" alt="{{user.displayName}}">
                         </a>

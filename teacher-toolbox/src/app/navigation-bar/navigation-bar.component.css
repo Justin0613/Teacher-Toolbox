@@ -1,6 +1,13 @@
+.navbar-toggler {
+    margin: .5em 1em .5em 1em;
+}
+
 .navbar {
-    height: 5em;
     border-bottom: 1px solid black;
+}
+
+.account-dropdown-text {
+    text-align: center;
 }
 
 .profile-pic {
@@ -15,8 +22,12 @@
 }
 
 .nav-item {
-    margin: 0 .5em;
+    margin: 0;
     align-self: center;
+}
+
+.nav-item-main {
+    margin: 0 .5em;
 }
 
 .bg-dark {
@@ -43,20 +54,6 @@
 
 .navtext {
     font-family: 'Roboto', sans-serif;
-    color:white;
-}
-
-.hoveritem::after {
-    content: '';
-    display: block;
-    width: 0px;
-    height: 2px;
-    background: white;
-    transition: 0.4s
-}
-
-.hoveritem:hover::after {
-    width: 100%
 }
 
 .navbar-dark .navbar-nav .active>.nav-link,
@@ -70,6 +67,10 @@
 
 .nav-link {
     transition: 0.2s
+}
+
+.profiledropdown {
+    margin-right: 1em;
 }
 
 .profiledropdown:hover {
@@ -86,4 +87,41 @@
     transition: 0.4s
 }
 
+@media screen and (min-width: 993px) {
+    .hoveritem::after {
+        content: '';
+        display: block;
+        width: 0px;
+        height: 2px;
+        background: white;
+        transition: 0.4s
+    }
 
+    .hoveritem:hover::after {
+        width: 100%
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .nav-link:hover {
+        color: rgb(16, 56, 70) !important;
+    }
+
+    .dropdown-item-account:hover {
+        color: grey !important;
+    }
+
+    #account-dropdown-menu {
+        background-color: rgb(9, 21, 26);
+        text-align: center;
+        margin-bottom: 4% !important;
+    }
+
+    .dropdown-item-account {
+        background-color: inherit;
+    }
+
+    .dropdown-item {
+        color: white;
+    }
+}
