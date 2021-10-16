@@ -17,6 +17,8 @@ export class ClassroomsDetailsComponent implements OnInit {
   classId: string = "";
   classroom: Classroom = null;
 
+  viewDate: Date = new Date();
+
   constructor(private classroomService: ClassroomService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
