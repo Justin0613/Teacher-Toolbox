@@ -20,6 +20,12 @@ export class ClassroomService {
     return this.classroomRef;
   }
 
+  getSingle(uid: string, cb: Function): void {
+    this.classroomRef.doc(uid).ref.get().then(doc => {
+      if (doc.exists) cb(doc.data());
+    }).catch(error => window.alert(error));
+  }
+
   create(classroom: Classroom): any {
     return this.classroomRef.add({ ...classroom });
   }
