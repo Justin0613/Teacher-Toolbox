@@ -1,8 +1,15 @@
 .calendarContainer {
-    padding: 10 10 10 10;
+    padding: 10 5 10 10;
 }
 
 .studentsContainer {
     height: 50%;
+    padding: 10 10 10 5;
+    overflow: hidden;
+}
+
+.titleContainer {
     padding: 10 10 10 10;
+    margin-left: 10;
+    margin-right: 10;
 }

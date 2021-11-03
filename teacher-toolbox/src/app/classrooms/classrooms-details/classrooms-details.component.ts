@@ -13,27 +13,23 @@ export class ClassroomsDetailsComponent implements OnInit {
   //@Input() classroom: Classroom;
   @Output() refreshList: EventEmitter<any> = new EventEmitter();
   currentClassroom: Classroom = null;
-
   classId: string = "";
-  classroom: Classroom = null;
-
   viewDate: Date = new Date();
 
   constructor(private classroomService: ClassroomService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.classId = params.get('class_id');
 
       this.classroomService.getSingle(this.classId, ((data: Classroom) => {
-        this.classroom = data;
+        this.currentClassroom = data;
       }));
     });
   }
 
   ngOnChanges(): void {
-    this.currentClassroom = { ...this.classroom };
+    
   }
 
   updateClassroom(): void {
