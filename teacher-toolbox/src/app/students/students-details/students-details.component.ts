@@ -3,6 +3,7 @@ import { StudentsService } from 'src/app/services/students.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import Student from 'src/models/student.model';
 //import Student from 'src/models/student.model';
+//push this plz
 
 @Component({
   selector: 'app-students-details',
