@@ -6,16 +6,21 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-classrooms-list',
   templateUrl: './classrooms-list.component.html',
-  styleUrls: ['./classrooms-list.component.css']
+  styleUrls: ['./classrooms-list.component.css'],
 })
 export class ClassroomsListComponent implements OnInit {
   classrooms: any;
   currentClassroom = null;
   name = '';
+  queryString: String;
 
-  constructor(private classroomService: ClassroomService, private modal: NgbModal) { }
+  constructor(
+    private classroomService: ClassroomService,
+    private modal: NgbModal
+  ) {}
 
   ngOnInit(): void {
+    this.queryString = '';
     this.retrieveClassrooms();
   }
 
@@ -25,15 +30,20 @@ export class ClassroomsListComponent implements OnInit {
   }
 
   retrieveClassrooms(): void {
-    this.classroomService.getAll().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+    this.classroomService
+      .getAll()
+      .snapshotChanges()
+      .pipe(
+        map((changes) =>
+          changes.map((c) => ({
+            id: c.payload.doc.id,
+            ...c.payload.doc.data(),
+          }))
         )
       )
-    ).subscribe(data => {
-      this.classrooms = data;
-    });
+      .subscribe((data) => {
+        this.classrooms = data;
+      });
   }
 
   triggerModal(content, classroom) {

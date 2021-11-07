@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-students-list',
   templateUrl: './students-list.component.html',
-  styleUrls: ['./students-list.component.css']
+  styleUrls: ['./students-list.component.css'],
 })
 export class StudentsListComponent implements OnInit {
   students: Student[];
@@ -22,6 +22,11 @@ export class StudentsListComponent implements OnInit {
   ngOnInit(): void {
     this.retrieveStudent();
     this.userData = this.route.snapshot.data.userdata;
+  queryString: String;
+
+  ngOnInit(): void {
+    this.retrieveStudent();
+    this.queryString = '';
   }
 
   refreshList(): void {
@@ -29,15 +34,20 @@ export class StudentsListComponent implements OnInit {
   }
 
   retrieveStudent(): void {
-    this.studentService.getAll().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+    this.studentService
+      .getAll()
+      .snapshotChanges()
+      .pipe(
+        map((changes) =>
+          changes.map((c) => ({
+            id: c.payload.doc.id,
+            ...c.payload.doc.data(),
+          }))
         )
       )
-    ).subscribe(data => {
-      this.students = data;
-    });
+      .subscribe((data) => {
+        this.students = data;
+      });
   }
 
   onFileChange(event: any) {
