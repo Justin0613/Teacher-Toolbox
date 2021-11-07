@@ -1,96 +1,121 @@
-<div>
-  <div class="container card card-body">
-    <h1 class="card-header">Attendance</h1>
+<app-navigation-bar></app-navigation-bar>
 
-    <div class="flex-container d-flex">
+<div class="container vh-70">
+  <div class="card card-body">
+    <h1 class="card-header bg-primary text-white">Attendance</h1>
+
+    <div class="row">
       <div
         class="
-          col-md-4
-          column
           d-flex
           flex-column
           justify-content-between
           align-items-center
+          col
         "
       >
-        <div class="students">
-          <h3>Students</h3>
-          <ng-container *ngFor="let student of students" class="list-group">
-            <div class="row list-group-item">
-              <div class="col name">
-                <h3 class="card-title">{{ student.name }}</h3>
+        <div class="students card my-2 w-100 h-100">
+          <h3 class="card-header">Students</h3>
+          <div class="row card-body">
+            <ng-container
+              *ngFor="let student of students"
+              class="list-group mb-2"
+            >
+              <div class="list-group-item card">
+                <h3 class="card-header">{{ student.name }}</h3>
+                <div class="buttons card-body d-flex justify-content-around">
+                  <button class="btn btn-primary" (click)="setPresent(student)">
+                    Present
+                  </button>
+                  <button class="btn btn-danger" (click)="setAbsent(student)">
+                    Absent
+                  </button>
+                </div>
               </div>
-              <div class="col buttons">
-                <button class="btn btn-success" (click)="setPresent(student)">
-                  Present
-                </button>
-                <button class="btn btn-danger" (click)="setAbsent(student)">
-                  Absent
-                </button>
-              </div>
-            </div>
-          </ng-container>
+            </ng-container>
+          </div>
         </div>
-        <div class="counter">
+        <div class="counter row card-body">
           <h2>Students: {{ students.length }}</h2>
         </div>
       </div>
       <div
         class="
-          col-md-4
-          column
           d-flex
           flex-column
           justify-content-between
           align-items-center
+          col
         "
       >
-        <div class="present">
-          <h3>Present</h3>
-          <ng-container *ngFor="let student of present" class="list-group">
-            <div class="row d-flex list-group-item">
-              <div class="col name">
-                <h3 class="card-title">{{ student.name }}</h3>
+        <div class="present card my-2 w-100 h-100">
+          <h3 class="card-header">Present</h3>
+          <div class="row card-body">
+            <ng-container
+              *ngFor="let student of present"
+              class="list-group mb-2"
+            >
+              <div class="list-group-item card">
+                <div
+                  class="
+                    card-title
+                    d-flex
+                    justify-content-between
+                    align-items-center
+                  "
+                >
+                  <h3>{{ student.name }}</h3>
+                  <button
+                    class="btn btn-danger"
+                    (click)="unsetPresent(student)"
+                  >
+                    <i class="bi bi-x absent"></i>
+                  </button>
+                </div>
               </div>
-              <div class="col buttons">
-                <button class="btn btn-danger" (click)="unsetPresent(student)">
-                  <i class="bi bi-x absent"></i>
-                </button>
-              </div>
-            </div>
-          </ng-container>
+            </ng-container>
+          </div>
         </div>
-        <div class="counter">
+        <div class="counter row card-body">
           <h2>Present: {{ present.length }}</h2>
         </div>
       </div>
       <div
         class="
-          col-md-4
-          column
           d-flex
           flex-column
           justify-content-between
           align-items-center
+          col
         "
       >
-        <div class="absent">
-          <h3>Absent</h3>
-          <ng-container *ngFor="let student of absent" class="list-group">
-            <div class="row d-flex list-group-item">
-              <div class="col name">
-                <h3 class="card-title">{{ student.name }}</h3>
+        <div class="present card my-2 w-100 h-100">
+          <h3 class="card-header">Absent</h3>
+          <div class="row card-body">
+            <ng-container
+              *ngFor="let student of absent"
+              class="list-group mb-2"
+            >
+              <div class="list-group-item card">
+                <div
+                  class="
+                    card-title
+                    d-flex
+                    justify-content-between
+                    align-items-center
+                  "
+                >
+                  <h3>{{ student.name }}</h3>
+                  <button class="btn btn-danger" (click)="unsetAbsent(student)">
+                    <i class="bi bi-x absent"></i>
+                  </button>
+                </div>
               </div>
-              <div class="col buttons">
-                <button class="btn btn-danger" (click)="unsetAbsent(student)">
-                  <i class="bi bi-x absent"></i>
-                </button>
-              </div>
-            </div>
-          </ng-container>
+            </ng-container>
+          </div>
         </div>
-        <div class="counter">
-          <h2>Absent: {{ absent.length }}</h2>
+        <div class="counter row card-body">
+          <h2>Present: {{ present.length }}</h2>
         </div>
       </div>
     </div>
