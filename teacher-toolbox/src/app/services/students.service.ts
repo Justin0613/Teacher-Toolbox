@@ -16,6 +16,12 @@ export class StudentsService {
     this.studentRef = db.collection(this.dbPath, studentRef => studentRef.where('teacherID', '==', this.auth.userState.uid));
   }
 
+  getSingle(uid: string, cb: Function): void {
+    this.studentRef.doc(uid).ref.get().then(doc => {
+      if (doc.exists) cb(doc.data());
+    }).catch(error => window.alert(error));
+  }
+
   getAll(): AngularFirestoreCollection<Student> {
     return this.studentRef;
   }
