@@ -2,7 +2,7 @@
     <div class="row justify-content-md-center">
         <div class="list row">
             <ul class="list-group">
-                <div class="card mb-3" *ngFor="let classroom of classrooms">
+                <li class="card mb-3" *ngFor="let classroom of classrooms">
                     <div class="card-header card-title">
                         {{ classroom.name }}
                     </div>
@@ -11,7 +11,7 @@
                         <a class="btn btn-primary" routerLink="/classrooms/{{classroom.id}}">Class Details</a>
                         <a (click)="triggerModal(modalData, classroom)" class="btn btn-secondary">Edit</a>
                     </div>
-                </div>
+                </li>
             </ul>
         </div>
     </div>

@@ -3,7 +3,8 @@ import { StudentsService } from '../services/students.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute } from '@angular/router';
-import Student from 'src/models/student.model';
+import { Student } from 'src/models/student.model';
+
 
 @Component({
   selector: 'app-students',
@@ -25,8 +26,14 @@ export class StudentsComponent implements OnInit {
     this.modal.open(content).result;
   }
 
-  saveStudent(studentName: string, studentDescription: string): void {
-    if (studentName == "" || studentDescription == "") {
+  saveStudent(studentFirstName: string, studentLastName: string,
+    parentFirstName: string, parentLastName: string,
+    parentPhone: string, parentEmail: string
+  ): void {
+    if (studentFirstName == "" || studentLastName == "" ||
+      parentFirstName == "" || parentLastName == "" ||
+      parentPhone == "" || parentEmail == ""
+    ) {
       window.alert("The name and description must not be blank.");
     }
     else {
@@ -37,6 +44,10 @@ export class StudentsComponent implements OnInit {
         // Clear modal input values
         this.student.firstName = "";
         this.student.lastName = "";
+        this.student.parentFirstName = "";
+        this.student.parentLastName = "";
+        this.student.parentPhone = "";
+        this.student.parentEmail = "";
       }).catch(() => window.alert("Unable to add new student"));
     }
   }
