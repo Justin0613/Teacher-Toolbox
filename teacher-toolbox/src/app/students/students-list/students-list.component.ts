@@ -5,18 +5,19 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-students-list',
   templateUrl: './students-list.component.html',
-  styleUrls: ['./students-list.component.css']
+  styleUrls: ['./students-list.component.css'],
 })
 export class StudentsListComponent implements OnInit {
   students: any;
   currentStudent = null;
   currentIndex = -1;
   name = '';
-
-  constructor(private studentService: StudentsService) { }
+  queryString: String;
+  constructor(private studentService: StudentsService) {}
 
   ngOnInit(): void {
     this.retrieveStudent();
+    this.queryString = '';
   }
 
   refreshList(): void {
@@ -26,19 +27,24 @@ export class StudentsListComponent implements OnInit {
   }
 
   retrieveStudent(): void {
-    this.studentService.getAll().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+    this.studentService
+      .getAll()
+      .snapshotChanges()
+      .pipe(
+        map((changes) =>
+          changes.map((c) => ({
+            id: c.payload.doc.id,
+            ...c.payload.doc.data(),
+          }))
         )
       )
-    ).subscribe(data => {
-      this.students = data;
-    });
+      .subscribe((data) => {
+        this.students = data;
+      });
   }
 
   setActiveStudent(student: any, index: number): void {
-      this.currentStudent = student;
-      this.currentIndex = index;
+    this.currentStudent = student;
+    this.currentIndex = index;
   }
 }

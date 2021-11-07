@@ -1,12 +1,36 @@
 <div class="container">
-    <div class="row justify-content-md-center">
-        <div class="list row">
-            <ul class="list-group" *ngFor="let student of students; let i = index" [class.active]="i == currentIndex">
-                <a routerLink='/students/{{student.id}}' class="card list-group-item list-group-item-action">
-                    <h5 class="card-title ">{{ student.firstName + ' ' + student.lastName }}</h5>
-                    <p class="card-text">Enrolled in: (class 1, class 2, etc.)</p>
-                </a>
-            </ul>
-        </div>
-    </div>
+  <div class="input-group rounded mb-3">
+    <input
+      [(ngModel)]="queryString"
+      type="search"
+      class="form-control rounded"
+      name="search"
+      placeholder="Search"
+    />
+  </div>
+  <div class="row justify-content-md-center">
+    <ul
+      class=""
+      *ngFor="let student of students; let i = index"
+      [class.active]="i == currentIndex"
+    >
+      <div
+        *ngIf="
+          student.firstName.toLowerCase().includes(queryString.toLowerCase())
+        "
+      >
+        <a
+          routerLink="/students/{{ student.id }}"
+          class="card col text-decoration-none"
+        >
+          <h5 class="card-header text-center text-capitalize">
+            {{ student.firstName + " " + student.lastName }}
+          </h5>
+          <div class="card-body">
+            <p class="card-text">Enrolled in: (class 1, class 2, etc.)</p>
+          </div>
+        </a>
+      </div>
+    </ul>
+  </div>
 </div>
