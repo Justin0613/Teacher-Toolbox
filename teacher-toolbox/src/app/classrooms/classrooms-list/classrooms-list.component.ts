@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClassroomService } from 'src/app/services/classroom.service';
 import { map } from 'rxjs/operators';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-classrooms-list',
@@ -10,10 +11,9 @@ import { map } from 'rxjs/operators';
 export class ClassroomsListComponent implements OnInit {
   classrooms: any;
   currentClassroom = null;
-  currentIndex = -1;
   name = '';
 
-  constructor(private classroomService: ClassroomService) { }
+  constructor(private classroomService: ClassroomService, private modal: NgbModal) { }
 
   ngOnInit(): void {
     this.retrieveClassrooms();
@@ -21,7 +21,6 @@ export class ClassroomsListComponent implements OnInit {
 
   refreshList(): void {
     this.currentClassroom = null;
-    this.currentIndex = -1;
     this.retrieveClassrooms();
   }
 
@@ -37,8 +36,16 @@ export class ClassroomsListComponent implements OnInit {
     });
   }
 
-  setActiveClassroom(classroom: any, index: number): void {
-      this.currentClassroom = classroom;
-      this.currentIndex = index;
+  triggerModal(content, classroom) {
+    this.currentClassroom = classroom;
+    this.modal.open(content).result;
+  }
+
+  saveClassroom(classroom) {
+    this.classroomService.update(classroom.id, classroom);
+  }
+
+  deleteClassroom(classroom) {
+    this.classroomService.delete(classroom.id);
   }
 }

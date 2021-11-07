@@ -1,5 +1,9 @@
 <app-navigation-bar></app-navigation-bar>
 
+<div class="row titleContainer">
+    <div><strong>{{ currentClassroom.name }}</strong> - {{ currentClassroom.description }}</div>
+</div>
+
 <div class="row">
     <div class="col">
         <div class="calendarContainer">
@@ -7,22 +11,16 @@
         </div>
     </div>
 
-    <div class="col">
+    <div class="col" style="overflow:hidden">
         <div class="studentsContainer">
             <div class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light" style="max-height: 100%">
-                BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT 
-                BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT 
-                BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT 
-                BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT 
-                BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT 
-                BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT 
-                BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT 
-                BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT 
-                BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT 
-                BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT 
-                BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT 
-                BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT 
-                BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT BLANK TEXT 
+                <ngb-accordion activeIds="static-0">
+                    <ngb-panel  *ngFor=" let student of currentClassroom.studentIDs; let index = index" id="static-{{index}}" title="{{student}}">
+                      <ng-template ngbPanelContent>
+                          <strong>{{ student }}</strong> - student description
+                      </ng-template>
+                    </ngb-panel>
+                  </ngb-accordion>
             </div>
         </div>
 

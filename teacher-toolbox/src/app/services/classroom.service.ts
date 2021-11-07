@@ -27,6 +27,7 @@ export class ClassroomService {
   }
 
   create(classroom: Classroom): any {
+    classroom.studentIDs = [];
     return this.classroomRef.add({ ...classroom });
   }
 
