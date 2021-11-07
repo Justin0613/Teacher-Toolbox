@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, OnChanges, EventEmitter } from '@angular/core';
 import { ClassroomService } from 'src/app/services/classroom.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Classroom from 'src/models/classroom.model';
 
 @Component({
@@ -15,8 +16,9 @@ export class ClassroomsDetailsComponent implements OnInit {
   currentClassroom: Classroom = null;
   classId: string = "";
   viewDate: Date = new Date();
+  selectedDate: Date = this.viewDate;
 
-  constructor(private classroomService: ClassroomService, private route: ActivatedRoute) { }
+  constructor(private classroomService: ClassroomService,  private modal: NgbModal, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -30,6 +32,10 @@ export class ClassroomsDetailsComponent implements OnInit {
 
   ngOnChanges(): void {
     
+  }
+
+  triggerModal(content) {
+    this.modal.open(content).result;
   }
 
   updateClassroom(): void {
@@ -48,5 +54,9 @@ export class ClassroomsDetailsComponent implements OnInit {
         this.refreshList.emit();
       })
       .catch(error => window.alert(error));
+  }
+
+  onDayClicked(event): void {
+    this.selectedDate = event.day.date;
   }
 }

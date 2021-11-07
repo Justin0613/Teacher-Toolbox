@@ -7,25 +7,39 @@
 <div class="row">
     <div class="col">
         <div class="calendarContainer">
-            <mwl-calendar-month-view [viewDate]="viewDate"></mwl-calendar-month-view>
+            <mwl-calendar-month-view [viewDate]="viewDate"
+                (dayClicked)="onDayClicked($event)"></mwl-calendar-month-view>
         </div>
     </div>
 
     <div class="col" style="overflow:hidden">
         <div class="studentsContainer">
-            <div class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light" style="max-height: 100%">
+            <div class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light" style="max-height: 80%">
                 <ngb-accordion activeIds="static-0">
                     <ngb-panel  *ngFor=" let student of currentClassroom.studentIDs; let index = index" id="static-{{index}}" title="{{student}}">
                       <ng-template ngbPanelContent>
                           <strong>{{ student }}</strong> - student description
                       </ng-template>
                     </ngb-panel>
-                  </ngb-accordion>
+                </ngb-accordion>
             </div>
+            <a class="btn btn-primary" (click)="triggerModal(modalData)">Add Students</a>
         </div>
 
         <div class="">
-            Other Section
+            {{ selectedDate }}
         </div>
     </div>
 </div>
+
+<ng-template #modalData let-modal class="modal">
+    <div class="modal-header">
+        <h5 class="modal-title">Add Student(s):</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss()"></button>
+    </div>
+
+    <div class="modal-body">
+        <div class="form-group">
+        </div>
+    </div>
+</ng-template>
