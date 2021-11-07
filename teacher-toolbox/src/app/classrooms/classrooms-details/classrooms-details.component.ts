@@ -31,7 +31,6 @@ export class ClassroomsDetailsComponent implements OnInit {
   }
 
   ngOnChanges(): void {
-    
   }
 
   triggerModal(content) {
