@@ -7,8 +7,11 @@
 <div class="row">
     <div class="col">
         <div class="calendarContainer">
-            <mwl-calendar-month-view [viewDate]="viewDate"
-                (dayClicked)="onDayClicked($event)"></mwl-calendar-month-view>
+            <mwl-calendar-month-view 
+                [viewDate]="viewDate"
+                [events]="calendarEvents"
+                (dayClicked)="onDayClicked($event)">
+            </mwl-calendar-month-view>
         </div>
     </div>
 
@@ -28,6 +31,9 @@
 
         <div class="">
             {{ selectedDate }}
+        </div>
+        <div class="">
+            {{ selectedEvent }}
         </div>
     </div>
 </div>

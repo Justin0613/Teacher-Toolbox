@@ -3,6 +3,7 @@ import { ClassroomService } from 'src/app/services/classroom.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Classroom from 'src/models/classroom.model';
+import { CalendarEvent } from 'angular-calendar';
 
 @Component({
   selector: 'app-classrooms-details',
@@ -13,10 +14,13 @@ export class ClassroomsDetailsComponent implements OnInit {
 
   //@Input() classroom: Classroom;
   @Output() refreshList: EventEmitter<any> = new EventEmitter();
-  currentClassroom: Classroom = null;
+  currentClassroom: Classroom = new Classroom;
   classId: string = "";
+
   viewDate: Date = new Date();
   selectedDate: Date = this.viewDate;
+  calendarEvents: CalendarEvent[] = [];
+  selectedEvent: any;
 
   constructor(private classroomService: ClassroomService,  private modal: NgbModal, private route: ActivatedRoute) { }
 
@@ -28,6 +32,11 @@ export class ClassroomsDetailsComponent implements OnInit {
         this.currentClassroom = data;
       }));
     });
+
+    var newEvent: any = new Object;
+    newEvent.start = new Date();
+    newEvent.title = "New Event";
+    this.calendarEvents.push(newEvent);
   }
 
   ngOnChanges(): void {
