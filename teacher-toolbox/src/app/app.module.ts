@@ -21,9 +21,10 @@ import { ClassroomsModule } from './classrooms/classrooms.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { StudentsModule } from './students/students.module';
 import { AttendanceModule } from './attendance/attendance.module';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 @NgModule({
-  declarations: [AppComponent, AttendanceComponent],
+  declarations: [AppComponent, AttendanceComponent, AccountSettingsComponent],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
