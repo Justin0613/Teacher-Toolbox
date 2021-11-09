@@ -16,16 +16,13 @@ export class StudentsListComponent implements OnInit {
   students: Student[];
   name = '';
   userData: any;
+  queryString: String;
 
   constructor(private auth: AuthService, private studentService: StudentsService, private excel: ExcelService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.retrieveStudent();
     this.userData = this.route.snapshot.data.userdata;
-  queryString: String;
-
-  ngOnInit(): void {
-    this.retrieveStudent();
     this.queryString = '';
   }
 

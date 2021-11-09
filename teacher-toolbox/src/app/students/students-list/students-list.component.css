@@ -23,3 +23,8 @@
     cursor: pointer !important;
     border: 0;
 }
+
+.search {
+    width: 98.5%;
+    margin-top: 3em;
+}

@@ -6,5 +6,10 @@
 .btn {
     float: right;
     width: 7.5em;
-    margin: 0 .5em;
+    margin: 0 .5em 1em 0;
+}
+
+.search {
+    width: 98.5%;
+    margin-top: 3em;
 }
