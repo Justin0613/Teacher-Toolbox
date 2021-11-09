@@ -6,3 +6,25 @@
 .card {
     margin: .5em 0;
 }
+
+#exportStudents {
+    display: none;
+}
+
+.excelFunctions {
+    text-align: center;
+}
+
+.excelFunctions > button {
+    margin: 0 .5em;
+}
+
+.pointer {
+    cursor: pointer !important;
+    border: 0;
+}
+
+.search {
+    width: 98.5%;
+    margin-top: 3em;
+}

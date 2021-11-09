@@ -20,9 +20,11 @@ export class ClassroomsDetailsComponent implements OnInit {
   viewDate: Date = new Date();
   selectedDate: Date = this.viewDate;
   calendarEvents: CalendarEvent[] = [];
-  selectedEvent: any;
 
-  constructor(private classroomService: ClassroomService,  private modal: NgbModal, private route: ActivatedRoute) { }
+  @Output() refresh = new EventEmitter<any>();
+  newEventInput: any = { title: "", date: "" };
+
+  constructor(private classroomService: ClassroomService, private modal: NgbModal, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -66,5 +68,15 @@ export class ClassroomsDetailsComponent implements OnInit {
 
   onDayClicked(event): void {
     this.selectedDate = event.day.date;
+  }
+
+  addNewEvent(): void {
+    var newEvent: any = new Object;
+    newEvent.start = new Date(this.newEventInput.date);
+    newEvent.title = this.newEventInput.title;
+    this.calendarEvents.push(newEvent);
+
+    this.newEventInput = { title: "", date: "" };
+    this.refresh.emit(null);
   }
 }

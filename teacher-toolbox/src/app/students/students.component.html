@@ -15,19 +15,42 @@
     </div>
     <div class="modal-body">
         <div class="form-group">
-            <label for="name">First Name</label>
-            <input type="text" class="form-control" id="name" required [(ngModel)]="student.firstName" name="name" #studentFirstName />
+            <label for="name">Student First Name</label>
+            <input type="text" class="form-control" id="name" required [(ngModel)]="student.firstName" #studentFirstName />
         </div>
 
         <div class="form-group">
-            <label for="description">Last Name</label>
+            <label for="description">Student Last Name</label>
             <input type="text" class="form-control" id="description" required [(ngModel)]="student.lastName" #studentLastName />
+        </div>
+
+        <div class="form-group">
+            <label for="name">Parent First Name</label>
+            <input type="text" class="form-control" id="name" required [(ngModel)]="student.parentFirstName" #parentFirstName />
+        </div>
+
+        <div class="form-group">
+            <label for="description">Parent Last Name</label>
+            <input type="text" class="form-control" id="description" required [(ngModel)]="student.parentLastName" #parentLastName />
+        </div>
+
+        <div class="form-group">
+            <label for="description">Parent Phone Number</label>
+            <input type="text" class="form-control" id="description" required [(ngModel)]="student.parentPhone" #parentPhone />
+        </div>
+
+        <div class="form-group">
+            <label for="description">Parent Email</label>
+            <input type="text" class="form-control" id="description" required [(ngModel)]="student.parentEmail" #parentEmail />
         </div>
     </div>
 
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="modal.close()">Close</button>
-        <button type="button" class="btn btn-primary" (click)="saveStudent(studentFirstName.value, studentLastName.value)">Save changes</button>
+        <button type="button" class="btn btn-primary"
+        (click)="saveStudent(studentFirstName.value, studentLastName.value, parentFirstName.value, parentLastName.value, parentPhone.value, parentEmail.value)">
+            Save changes
+        </button>
     </div>
 </ng-template>
 
