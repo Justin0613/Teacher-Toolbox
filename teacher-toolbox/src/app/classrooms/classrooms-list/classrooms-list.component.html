@@ -1,56 +1,43 @@
 <div class="container">
-  <div class="input-group rounded mb-3 search">
-    <input [(ngModel)]="queryString" type="search" class="form-control rounded" name="search" placeholder="Search" />
-  </div>
-  <div class="row justify-content-md-center">
-    <div class="list row">
-      <ul class="list-group">
-        <div class="card mb-3" *ngFor="let classroom of classrooms">
-          <div *ngIf="
-              classroom.name.toLowerCase().includes(queryString.toLowerCase())
-            ">
-            <div class="card-header card-title">
-              {{ classroom.name }}
-            </div>
-            <div class="card-body">
-              <p class="card-text">{{ classroom.description }}</p>
-              <a class="btn btn-primary" routerLink="/classrooms/{{ classroom.id }}">Class Details</a>
-              <a (click)="triggerModal(modalData, classroom)" class="btn btn-secondary">Edit</a>
-            </div>
-          </div>
+    <div class="row justify-content-md-center">
+        <div class="list row">
+            <ul class="list-group">
+                <div class="card mb-3" *ngFor="let classroom of classrooms">
+                    <div class="card-header card-title">
+                        {{ classroom.name }}
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{ classroom.description }}</p>
+                        <a class="btn btn-primary" routerLink="/classrooms/{{classroom.id}}">Class Details</a>
+                        <a (click)="triggerModal(modalData, classroom)" class="btn btn-secondary">Edit</a>
+                    </div>
+                </div>
+            </ul>
         </div>
-      </ul>
-    </div>
-  </div>
-
-  <ng-template #modalData let-modal class="modal">
-    <div class="modal-header">
-      <h5 class="modal-title">Edit Classroom: {{ currentClassroom.name }}</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-        (click)="modal.dismiss()"></button>
     </div>
 
-    <div class="modal-body">
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" required [(ngModel)]="currentClassroom.name" name="name"
-          #classroomName />
-      </div>
+    <ng-template #modalData let-modal class="modal">
+        <div class="modal-header">
+            <h5 class="modal-title">Edit Classroom: {{ currentClassroom.name }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                (click)="modal.dismiss()"></button>
+        </div>
 
-      <div class="form-group">
-        <label for="description">Description</label>
-        <input type="text" class="form-control" id="description" required [(ngModel)]="currentClassroom.description"
-          #classroomDescription />
-      </div>
-    </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" required [(ngModel)]="currentClassroom.name" name="name" #classroomName />
+            </div>
 
-    <div class="modal-footer">
-      <button type="button" class="btn btn-danger" (click)="deleteClassroom(currentClassroom); modal.close()">
-        Delete
-      </button>
-      <button type="button" class="btn btn-primary" (click)="saveClassroom(currentClassroom); modal.close()">
-        Save
-      </button>
-    </div>
-  </ng-template>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" class="form-control" id="description" required [(ngModel)]="currentClassroom.description" #classroomDescription />
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="deleteClassroom(currentClassroom); modal.close();">Delete</button>
+            <button type="button" class="btn btn-primary" (click)="saveClassroom(currentClassroom); modal.close();">Save</button>
+        </div>
+    </ng-template>
 </div>

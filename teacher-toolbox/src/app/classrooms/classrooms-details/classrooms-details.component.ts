@@ -1,7 +1,9 @@
 import { Component, OnInit, Input, Output, OnChanges, EventEmitter } from '@angular/core';
 import { ClassroomService } from 'src/app/services/classroom.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Classroom from 'src/models/classroom.model';
+import { CalendarEvent } from 'angular-calendar';
 
 @Component({
   selector: 'app-classrooms-details',
@@ -12,11 +14,15 @@ export class ClassroomsDetailsComponent implements OnInit {
 
   //@Input() classroom: Classroom;
   @Output() refreshList: EventEmitter<any> = new EventEmitter();
-  currentClassroom: Classroom = null;
+  currentClassroom: Classroom = new Classroom;
   classId: string = "";
-  viewDate: Date = new Date();
 
-  constructor(private classroomService: ClassroomService, private route: ActivatedRoute) { }
+  viewDate: Date = new Date();
+  selectedDate: Date = this.viewDate;
+  calendarEvents: CalendarEvent[] = [];
+  selectedEvent: any;
+
+  constructor(private classroomService: ClassroomService,  private modal: NgbModal, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -26,9 +32,18 @@ export class ClassroomsDetailsComponent implements OnInit {
         this.currentClassroom = data;
       }));
     });
+
+    var newEvent: any = new Object;
+    newEvent.start = new Date();
+    newEvent.title = "New Event";
+    this.calendarEvents.push(newEvent);
   }
 
   ngOnChanges(): void {
+  }
+
+  triggerModal(content) {
+    this.modal.open(content).result;
   }
 
   updateClassroom(): void {
@@ -47,5 +62,9 @@ export class ClassroomsDetailsComponent implements OnInit {
         this.refreshList.emit();
       })
       .catch(error => window.alert(error));
+  }
+
+  onDayClicked(event): void {
+    this.selectedDate = event.day.date;
   }
 }
