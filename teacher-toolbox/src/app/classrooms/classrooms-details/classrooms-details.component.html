@@ -10,6 +10,7 @@
             <mwl-calendar-month-view 
                 [viewDate]="viewDate"
                 [events]="calendarEvents"
+                [refresh]="refresh"
                 (dayClicked)="onDayClicked($event)">
             </mwl-calendar-month-view>
         </div>
@@ -26,19 +27,22 @@
                     </ngb-panel>
                 </ngb-accordion>
             </div>
-            <a class="btn btn-primary" (click)="triggerModal(modalData)">Add Students</a>
+            <a class="btn btn-primary" (click)="triggerModal(modalAddStudent)">Add Students</a>
+            <a class="btn btn-primary" (click)="triggerModal(modalAddEvent)">Add Event</a>
         </div>
 
         <div class="">
             {{ selectedDate }}
         </div>
-        <div class="">
-            {{ selectedEvent }}
+        <div class="" *ngFor="let event of calendarEvents">
+            <div *ngIf="event.start.getDate() == selectedDate.getDate()">
+                {{ event.title }} - {{ event.start }}
+            </div>
         </div>
     </div>
 </div>
 
-<ng-template #modalData let-modal class="modal">
+<ng-template #modalAddStudent let-modal class="modal">
     <div class="modal-header">
         <h5 class="modal-title">Add Student(s):</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss()"></button>
@@ -47,5 +51,27 @@
     <div class="modal-body">
         <div class="form-group">
         </div>
+    </div>
+</ng-template>
+
+<ng-template #modalAddEvent let-modal class="modal">
+    <div class="modal-header"><h5>Add Event:</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss()"></button>
+    </div>
+
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="name">Title</label>
+            <input type="text" class="form-control" id="name" required [(ngModel)]="newEventInput.title" name="name" #eventTitle />
+        </div>
+
+        <div class="form-group">
+            <label for="description">Date</label>
+            <input type="date" class="form-control" id="description" required [(ngModel)]="newEventInput.date" #eventDate />
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="addNewEvent(); modal.close();">Save</button>
     </div>
 </ng-template>
