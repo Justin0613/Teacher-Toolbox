@@ -20,21 +20,19 @@
 /* Move down content because we have a fixed navbar that is 3.5rem tall */
 body {
     padding-top: 3.5rem;
-  }
+}
 
-.jumbotron{
+.jumbotron {
     padding-top: 5%;
     padding-bottom: 5%;
-    background-color:rgb(116, 116, 116);
+    background-color: rgb(116, 116, 116);
 }
 
-.dashboardContent{
+.dashboardContent {
     padding-top: 5%;
-    background-color:rgb(221, 221, 221);
-
+    background-color: rgb(221, 221, 221);
 }
 
-*{
-    font-family: 'Roboto', sans-serif;
+* {
+    font-family: "Roboto", sans-serif;
 }
-

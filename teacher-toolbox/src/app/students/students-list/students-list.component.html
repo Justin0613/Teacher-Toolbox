@@ -1,51 +1,58 @@
 <div class="container">
-  <div class="input-group rounded mb-3 search">
-    <input [(ngModel)]="queryString" type="search" class="form-control rounded" name="search" placeholder="Search" />
-  </div>
-  <div class="row justify-content-md-center">
-
-
-    <div class="list row" >
-      <ul class="list-group" *ngFor="let student of students;">
-        <a routerLink='/students/{{student.id}}' class="card list-group-item list-group-item-action" *ngIf="
-        student.firstName.toLowerCase().includes(queryString.toLowerCase())
-      ">
-          <h5 class="card-title ">{{ student.firstName + ' ' + student.lastName }}</h5>
-          <p class="card-text">Enrolled in: (class 1, class 2, etc.)</p>
-        </a>
-      </ul>
+    <div class="input-group rounded mb-3 search">
+        <input
+            [(ngModel)]="queryString"
+            type="search"
+            class="form-control rounded"
+            name="search"
+            placeholder="Search"
+        />
+    </div>
+    <div class="row justify-content-md-center">
+        <div class="list row">
+            <ul class="list-group" *ngFor="let student of students">
+                <a
+                    routerLink="/students/{{ student.id }}"
+                    class="card list-group-item list-group-item-action"
+                    *ngIf="student.firstName.toLowerCase().includes(queryString.toLowerCase())"
+                >
+                    <h5 class="card-title">
+                        {{ student.firstName + " " + student.lastName }}
+                    </h5>
+                    <p class="card-text">Enrolled in: (class 1, class 2, etc.)</p>
+                </a>
+            </ul>
+        </div>
     </div>
 
+    <table id="exportStudents">
+        <tr class="thead">
+            <th>Student Name</th>
+            <th>Parent Name</th>
+            <th>Parent Phone Number</th>
+            <th>Parent Email</th>
+        </tr>
 
-  </div>
-
-
-  <table id="exportStudents">
-    <tr class="thead">
-      <th>Student Name</th>
-      <th>Parent Name</th>
-      <th>Parent Phone Number</th>
-      <th>Parent Email</th>
-    </tr>
-
-    <tr class="tbody" *ngFor="let student of students; let odd = odd" [ngClass]="{'odd': odd}">
-      <td>{{ student?.firstName + ' ' + student?.lastName }}</td>
-      <td>{{ student?.parentFirstName + ' ' + student?.parentLastName }}</td>
-      <td>{{ student?.parentPhone }}</td>
-      <td>{{ student?.parentEmail }}</td>
-    </tr>
-  </table>
+        <tr class="tbody" *ngFor="let student of students; let odd = odd" [ngClass]="{ odd: odd }">
+            <td>{{ student?.firstName + " " + student?.lastName }}</td>
+            <td>
+                {{ student?.parentFirstName + " " + student?.parentLastName }}
+            </td>
+            <td>{{ student?.parentPhone }}</td>
+            <td>{{ student?.parentEmail }}</td>
+        </tr>
+    </table>
 </div>
 
 <div class="excelFunctions container">
-  <button (click)="exportData('exportStudents')" class="btn btn-info shadow p-3 mb-5 rounded">
-    Export Student Information
-  </button>
+    <button (click)="exportData('exportStudents')" class="btn btn-info shadow p-3 mb-5 rounded">
+        Export Student Information
+    </button>
 
-  <button class="btn btn-info shadow p-3 mb-5 rounded float-right">
-    <label>
-      <input hidden type="file" (change)="onFileChange($event)" multiple="false">
-      <span class="pointer">Import Student Information</span>
-    </label>
-  </button>
+    <button class="btn btn-info shadow p-3 mb-5 rounded float-right">
+        <label>
+            <input hidden type="file" (change)="onFileChange($event)" multiple="false" />
+            <span class="pointer">Import Student Information</span>
+        </label>
+    </button>
 </div>

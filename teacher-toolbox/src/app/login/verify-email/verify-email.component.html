@@ -4,13 +4,20 @@
             <h2 class="text-center">Success!</h2>
 
             <div class="formGroup" *ngIf="AuthService.userState as user">
-                <p class="text-center">Confirmation mail has been sent to <strong>{{user.email}}</strong>.</p>
+                <p class="text-center">
+                    Confirmation mail has been sent to
+                    <strong>{{ user.email }}</strong
+                    >.
+                </p>
             </div>
 
             <div class="formGroup text-center">
-                <button type="button" class="btn btn-outline-dark btn-block"
-                    (click)="AuthService.SendVerificationMail()">
-                        Resend Verification Email
+                <button
+                    type="button"
+                    class="btn btn-outline-dark btn-block"
+                    (click)="AuthService.SendVerificationMail()"
+                >
+                    Resend Verification Email
                 </button>
             </div>
         </div>

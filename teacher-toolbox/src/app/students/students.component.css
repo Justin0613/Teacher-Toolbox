@@ -4,47 +4,47 @@
     margin: auto;
     background-color: white;
     padding: 10px;
-  }
-  .container .title {
+}
+.container .title {
     font-size: 22px;
     text-align: center;
     padding: 15px;
-  }
-  .container .sub-title {
+}
+.container .sub-title {
     font-size: 15px;
     text-align: center;
     color: gray;
-  }
-  .container .tools button {
+}
+.container .tools button {
     background-color: transparent;
     border: 1px solid lightgray;
     border-radius: 2px;
     margin: 0 5px;
-  }
-  .container .tools button label {
+}
+.container .tools button label {
     cursor: pointer;
-  }
-  .container .tools button span {
+}
+.container .tools button span {
     display: inline-block;
     font-size: 18px;
-    color: #1D6741;
-  }
-  .container .tools button small {
+    color: #1d6741;
+}
+.container .tools button small {
     vertical-align: 4px;
-  }
-  .container .table-contact {
+}
+.container .table-contact {
     width: 100%;
     padding: 10px;
-  }
-  .container .table-contact .thead th {
+}
+.container .table-contact .thead th {
     text-align: left;
     border-bottom: 2px solid lightgray;
-  }
-  .container .table-contact .tbody td {
+}
+.container .table-contact .tbody td {
     font-size: 12px;
     border-bottom: 1px solid whitesmoke;
     padding: 8px 5px;
-  }
-  .container .table-contact .tbody.odd {
+}
+.container .table-contact .tbody.odd {
     background-color: whitesmoke;
-  }
+}
