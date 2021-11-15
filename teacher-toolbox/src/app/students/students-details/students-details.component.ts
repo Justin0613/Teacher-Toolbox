@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, OnChanges, EventEmitter } from "@angu
 import { StudentsService } from "src/app/services/students.service";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { Student } from "src/models/student.model";
+
 // import Student from 'src/models/student.model';
 // push this plz
 
@@ -11,6 +12,7 @@ import { Student } from "src/models/student.model";
     styleUrls: ["./students-details.component.css"]
 })
 export class StudentsDetailsComponent implements OnInit {
+    userData : any;
     // @Input() student: Student;
     @Output() refreshList: EventEmitter<any> = new EventEmitter();
     currentStudent: Student = null;
@@ -23,6 +25,7 @@ export class StudentsDetailsComponent implements OnInit {
     constructor(private studentService: StudentsService, private route: ActivatedRoute) {}
 
     ngOnInit(): void {
+        this.userData = this.route.snapshot.data.userdata;
         this.route.paramMap.subscribe((params: ParamMap) => {
             this.StudentId = params.get("students_id");
 
