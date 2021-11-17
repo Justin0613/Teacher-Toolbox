@@ -1,0 +1,51 @@
+.toggle {
+    display: none;
+  }
+  
+  .toggle-label {
+    position: relative;
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .sun,
+  .moon {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: auto;
+    transition: top 0.3s;
+    user-select: none;
+  }
+  
+  .sun {
+    top: 0;
+  }
+  
+  .moon {
+    top: -150%;
+  }
+  
+  .toggle:checked + .toggle-label .sun {
+    top: 150%;
+  }
+  
+  .toggle:checked + .toggle-label .moon {
+    top: 0;
+  }
+  html.dark-mode {
+    background-color: #2d3436;
+    color: #dfe6e9;
+  }
+  
+  html.light-mode {
+    background-color: #dfe6e9;
+    color: #2d3436;
+  }
+
+  html{
+    background-color: blue; 
+  }

@@ -43,7 +43,7 @@
                             src="{{(user.photoURL) ? user.photoURL : 'assets/img/no-user-image.png'}}" alt="{{user.displayName}}">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right"  >
-                            <a class="dropdown-item" routerLink="/account-settings">Account Settings</a>
+                            <a class="dropdown-item" routerLink="/dark-mode-toggle">Account Settings</a>
                             <a class="dropdown-item" (click)="AuthService.SignOut()">Log Out</a>
                         </div>
                     </li>

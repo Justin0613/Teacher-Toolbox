@@ -22,9 +22,10 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { StudentsModule } from './students/students.module';
 import { AttendanceModule } from './attendance/attendance.module';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { DarkModeToggleComponent } from './dark-mode-toggle/dark-mode-toggle.component';
 
 @NgModule({
-  declarations: [AppComponent, AttendanceComponent, AccountSettingsComponent],
+  declarations: [AppComponent, AttendanceComponent, AccountSettingsComponent, DarkModeToggleComponent],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
