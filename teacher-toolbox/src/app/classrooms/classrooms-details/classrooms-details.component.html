@@ -35,7 +35,7 @@
                     </ngb-panel>
                 </ngb-accordion>
             </div>
-            <a class="btn btn-primary" (click)="triggerModal(modalAddStudent)">Add Students</a>
+            <a class="btn btn-primary" (click)="initTempStudentList(); triggerModal(modalAddStudent)">Edit Student(s)</a>
             <a class="btn btn-primary" (click)="triggerModal(modalAddEvent)">Add Event</a>
         </div>
 
@@ -52,7 +52,7 @@
 
 <ng-template #modalAddStudent let-modal class="modal">
     <div class="modal-header">
-        <h5 class="modal-title">Add Student(s):</h5>
+        <h5 class="modal-title">Edit Student(s):</h5>
         <button
             type="button"
             class="btn-close"
@@ -63,7 +63,23 @@
     </div>
 
     <div class="modal-body">
-        <div class="form-group"></div>
+        <div *ngFor="let student of allStudents">
+            <div *ngIf="tempStudentsList.includes(student.id); then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock>
+                <input type="checkbox" checked data-toggle="toggle" (click)="removeStudent(student)">
+                {{ student.firstName }} {{ student.lastName }}
+            </ng-template>
+            <ng-template #elseBlock>
+                <input type="checkbox" unchecked data-toggle="toggle" (click)="addStudent(student)">
+                {{ student.firstName }} {{ student.lastName }}
+            </ng-template>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="saveStudentsList(); modal.close()">
+            Save
+        </button>
     </div>
 </ng-template>
 

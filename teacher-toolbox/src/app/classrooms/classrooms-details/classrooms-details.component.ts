@@ -1,8 +1,11 @@
 import { Component, OnInit, Input, Output, OnChanges, EventEmitter } from "@angular/core";
 import { ClassroomService } from "src/app/services/classroom.service";
+import { StudentsService } from "src/app/services/students.service";
+import { map } from "rxjs/operators";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import Classroom from "src/models/classroom.model";
+import { Student } from "src/models/student.model";
 import { CalendarEvent } from "angular-calendar";
 
 @Component({
@@ -14,6 +17,8 @@ export class ClassroomsDetailsComponent implements OnInit {
     // @Input() classroom: Classroom;
     @Output() refreshList: EventEmitter<any> = new EventEmitter();
     currentClassroom: Classroom = new Classroom();
+    allStudents: Student[]; 
+    tempStudentsList: string[];
     classId: string = "";
 
     viewDate: Date = new Date();
@@ -25,6 +30,7 @@ export class ClassroomsDetailsComponent implements OnInit {
 
     constructor(
         private classroomService: ClassroomService,
+        private studentService: StudentsService,
         private modal: NgbModal,
         private route: ActivatedRoute
     ) {}
@@ -35,6 +41,21 @@ export class ClassroomsDetailsComponent implements OnInit {
 
             this.classroomService.getSingle(this.classId, (data: Classroom) => {
                 this.currentClassroom = data;
+            });
+
+            this.studentService
+            .getAll()
+            .snapshotChanges()
+            .pipe(
+                map((changes) =>
+                    changes.map((c) => ({
+                        id: c.payload.doc.id,
+                        ...c.payload.doc.data()
+                    }))
+                )
+            )
+            .subscribe((data) => {
+                this.allStudents = data;
             });
         });
 
@@ -82,5 +103,24 @@ export class ClassroomsDetailsComponent implements OnInit {
 
         this.newEventInput = { title: "", date: "" };
         this.refresh.emit(null);
+    }
+
+    addStudent(student: Student): void {
+        this.tempStudentsList.push(student.id);
+    }
+
+    removeStudent(student: Student): void {
+        this.tempStudentsList.forEach((value, index)=>{
+            if(value == student.id) this.tempStudentsList.splice(index, 1);
+        });
+    }
+
+    initTempStudentList(): void {
+        this.tempStudentsList = this.currentClassroom.studentIDs.slice();
+    }
+
+    saveStudentsList(): void {
+        this.currentClassroom.studentIDs = this.tempStudentsList.slice();
+        this.classroomService.update(this.classId, this.currentClassroom);
     }
 }
