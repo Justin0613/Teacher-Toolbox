@@ -35,7 +35,11 @@
                     </ngb-panel>
                 </ngb-accordion>
             </div>
-            <a class="btn btn-primary" (click)="initTempStudentList(); triggerModal(modalAddStudent)">Edit Student(s)</a>
+            <a
+                class="btn btn-primary"
+                (click)="initTempStudentList(); triggerModal(modalAddStudent)"
+                >Edit Student(s)</a
+            >
             <a class="btn btn-primary" (click)="triggerModal(modalAddEvent)">Add Event</a>
         </div>
 
@@ -64,13 +68,25 @@
 
     <div class="modal-body">
         <div *ngFor="let student of allStudents">
-            <div *ngIf="tempStudentsList.includes(student.id); then thenBlock else elseBlock"></div>
+            <div
+                *ngIf="tempStudentsList.includes(student.id); then thenBlock; else elseBlock"
+            ></div>
             <ng-template #thenBlock>
-                <input type="checkbox" checked data-toggle="toggle" (click)="removeStudent(student)">
+                <input
+                    type="checkbox"
+                    checked
+                    data-toggle="toggle"
+                    (click)="removeStudent(student)"
+                />
                 {{ student.firstName }} {{ student.lastName }}
             </ng-template>
             <ng-template #elseBlock>
-                <input type="checkbox" unchecked data-toggle="toggle" (click)="addStudent(student)">
+                <input
+                    type="checkbox"
+                    unchecked
+                    data-toggle="toggle"
+                    (click)="addStudent(student)"
+                />
                 {{ student.firstName }} {{ student.lastName }}
             </ng-template>
         </div>

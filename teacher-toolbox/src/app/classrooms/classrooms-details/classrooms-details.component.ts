@@ -17,7 +17,7 @@ export class ClassroomsDetailsComponent implements OnInit {
     // @Input() classroom: Classroom;
     @Output() refreshList: EventEmitter<any> = new EventEmitter();
     currentClassroom: Classroom = new Classroom();
-    allStudents: Student[]; 
+    allStudents: Student[];
     tempStudentsList: string[];
     classId: string = "";
 
@@ -44,19 +44,19 @@ export class ClassroomsDetailsComponent implements OnInit {
             });
 
             this.studentService
-            .getAll()
-            .snapshotChanges()
-            .pipe(
-                map((changes) =>
-                    changes.map((c) => ({
-                        id: c.payload.doc.id,
-                        ...c.payload.doc.data()
-                    }))
+                .getAll()
+                .snapshotChanges()
+                .pipe(
+                    map((changes) =>
+                        changes.map((c) => ({
+                            id: c.payload.doc.id,
+                            ...c.payload.doc.data()
+                        }))
+                    )
                 )
-            )
-            .subscribe((data) => {
-                this.allStudents = data;
-            });
+                .subscribe((data) => {
+                    this.allStudents = data;
+                });
         });
 
         let newEvent: any = new Object();
@@ -110,8 +110,8 @@ export class ClassroomsDetailsComponent implements OnInit {
     }
 
     removeStudent(student: Student): void {
-        this.tempStudentsList.forEach((value, index)=>{
-            if(value == student.id) this.tempStudentsList.splice(index, 1);
+        this.tempStudentsList.forEach((value, index) => {
+            if (value == student.id) this.tempStudentsList.splice(index, 1);
         });
     }
 
