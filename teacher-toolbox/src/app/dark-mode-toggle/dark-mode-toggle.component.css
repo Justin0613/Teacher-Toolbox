@@ -36,16 +36,21 @@
   .toggle:checked + .toggle-label .moon {
     top: 0;
   }
-  html.dark-mode {
+  body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  body:not(.dark-mode-preloading) {
+    transition: all 0.3s linear;
+  }
+  
+  body.dark-mode {
     background-color: #2d3436;
     color: #dfe6e9;
   }
   
-  html.light-mode {
-    background-color: #dfe6e9;
+  body.light-mode {
+    background-color: rgb(221, 221, 221);
     color: #2d3436;
-  }
-
-  html{
-    background-color: blue; 
   }

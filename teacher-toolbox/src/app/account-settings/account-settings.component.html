@@ -2,7 +2,7 @@
 <div class="displayTable">
     <div class="displayTableCell">
    
-        <div class="authBlock rounded">
+        <div class="authBlock light-mode rounded" id="authBlock">
             <h2 class="text-center text-black loginText underlineOne">Account</h2>  
             <form>
             <div class="form-group row">
@@ -36,18 +36,8 @@
                 <div class="row">
                 <legend class="col-form-label titleFont text-black ">Themes</legend>
                 <div class="col-sm-10">
-                    <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                    <label class="form-check-label" for="gridRadios1">
-                        Dark
-                    </label>
-                    </div>
-                    <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-                    <label class="form-check-label" for="gridRadios2">
-                        Light
-                    </label>
-                    </div>
+                    <app-dark-mode-toggle></app-dark-mode-toggle>
+
 
                 </div>
                 </div>
@@ -61,10 +51,7 @@
             </form>
 
         </div>
-        <h1>angular-dark-mode</h1>
-        <p>Toggle to see magic happens!</p>
-        <app-dark-mode-toggle></app-dark-mode-toggle>
-
+        
 
 
     </div>
