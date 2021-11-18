@@ -23,6 +23,7 @@ export class ClassroomsDetailsComponent implements OnInit {
 
     viewDate: Date = new Date();
     selectedDate: Date = this.viewDate;
+    selectedEventIndex: number;
     calendarEvents: CalendarEvent[] = [];
 
     @Output() refresh = new EventEmitter<any>();
@@ -41,6 +42,10 @@ export class ClassroomsDetailsComponent implements OnInit {
 
             this.classroomService.getSingle(this.classId, (data: Classroom) => {
                 this.currentClassroom = data;
+                this.currentClassroom.events.forEach((event) => {
+                    this.calendarEvents.push({ start: new Date(event.start), title: event.title });
+                });
+                this.refresh.emit(null);
             });
 
             this.studentService
@@ -58,11 +63,6 @@ export class ClassroomsDetailsComponent implements OnInit {
                     this.allStudents = data;
                 });
         });
-
-        let newEvent: any = new Object();
-        newEvent.start = new Date();
-        newEvent.title = "New Event";
-        this.calendarEvents.push(newEvent);
     }
 
     ngOnChanges(): void {}
@@ -95,14 +95,59 @@ export class ClassroomsDetailsComponent implements OnInit {
         this.selectedDate = event.day.date;
     }
 
+    onEventClicked(event): void {
+        this.selectedEventIndex = this.calendarEvents.findIndex((e) => e == event.event);
+        this.newEventInput.title = this.calendarEvents[this.selectedEventIndex].title;
+        this.newEventInput.date = this.calendarEvents[this.selectedEventIndex].start
+            .toISOString()
+            .split("T")[0];
+    }
+
     addNewEvent(): void {
         let newEvent: any = new Object();
         newEvent.start = new Date(this.newEventInput.date);
+        newEvent.start.setDate(newEvent.start.getDate() + 1);
         newEvent.title = this.newEventInput.title;
         this.calendarEvents.push(newEvent);
 
+        this.currentClassroom.events.push({
+            start: newEvent.start.toDateString(),
+            title: newEvent.title
+        });
+        this.classroomService.update(this.classId, this.currentClassroom);
+
         this.newEventInput = { title: "", date: "" };
         this.refresh.emit(null);
+    }
+
+    saveSelectedEvent(): void {
+        this.calendarEvents[this.selectedEventIndex].start = new Date(this.newEventInput.date);
+        this.calendarEvents[this.selectedEventIndex].start.setDate(
+            this.calendarEvents[this.selectedEventIndex].start.getDate() + 1
+        );
+        this.calendarEvents[this.selectedEventIndex].title = this.newEventInput.title;
+        this.refresh.emit(null);
+
+        this.currentClassroom.events[this.selectedEventIndex].title =
+            this.calendarEvents[this.selectedEventIndex].title;
+        this.currentClassroom.events[this.selectedEventIndex].start =
+            this.calendarEvents[this.selectedEventIndex].start.toDateString();
+        this.classroomService.update(this.classId, this.currentClassroom);
+
+        this.newEventInput = { title: "", date: "" };
+    }
+
+    deleteSelectedEvent(): void {
+        this.calendarEvents.splice(this.selectedEventIndex, 1);
+        this.currentClassroom.events.splice(this.selectedEventIndex, 1);
+        this.classroomService.update(this.classId, this.currentClassroom);
+        this.refresh.emit(null);
+
+        this.newEventInput = { title: "", date: "" };
+    }
+
+    getEventsByDay(date: number): any[] {
+        return this.calendarEvents.filter((event) => event.start.getDate() == date);
     }
 
     addStudent(student: Student): void {
