@@ -31,13 +31,6 @@ input[type=button] {
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.04);
 }
 
-.authBlock.dark-mode{
-    background: grey !important;
-}
-
-.authBlock.light-mode{
-    background: white !important;
-}
 
 img {
     width: 1.5em;
@@ -139,12 +132,6 @@ img {
 }
 
 
-#authblock.light-mode{
-    background-color:purple;
-  }
-#authblock.dark-mode{
-    background-color:green;
-  }
 
 
 
