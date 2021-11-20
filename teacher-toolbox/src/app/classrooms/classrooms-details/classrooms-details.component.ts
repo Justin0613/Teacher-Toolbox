@@ -152,11 +152,18 @@ export class ClassroomsDetailsComponent implements OnInit {
 
     addStudent(student: Student): void {
         this.tempStudentsList.push(student.id);
+        this.allStudents.find((s) => s.id == student.id).classIDs.push(this.classId);
     }
 
     removeStudent(student: Student): void {
         this.tempStudentsList.forEach((value, index) => {
             if (value == student.id) this.tempStudentsList.splice(index, 1);
+        });
+
+        this.allStudents.find(s => s.id == student.id).classIDs.forEach((value, index) => {
+            if (value == this.classId) {
+                this.allStudents.find(s => s.id == student.id).classIDs.splice(index, 1);
+            }
         });
     }
 
@@ -167,5 +174,8 @@ export class ClassroomsDetailsComponent implements OnInit {
     saveStudentsList(): void {
         this.currentClassroom.studentIDs = this.tempStudentsList.slice();
         this.classroomService.update(this.classId, this.currentClassroom);
+        this.allStudents.forEach((s) => {
+            this.studentService.update(s.id, s);
+        });
     }
 }
