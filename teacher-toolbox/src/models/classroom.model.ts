@@ -4,4 +4,5 @@ export default class Classroom {
     description: string;
     teacherID: string;
     studentIDs: string[];
+    events: any[];
 }

@@ -12,9 +12,7 @@ export class StudentsService {
     studentRef: AngularFirestoreCollection<Student> = null;
 
     constructor(private db: AngularFirestore, public auth: AuthService) {
-        this.studentRef = db.collection(this.dbPath, (studentRef) =>
-            studentRef.where("teacherID", "==", this.auth.userState.uid)
-        );
+        this.studentRef = db.collection(this.dbPath, (studentRef) => studentRef);
     }
 
     getSingle(uid: string, cb: Function): void {

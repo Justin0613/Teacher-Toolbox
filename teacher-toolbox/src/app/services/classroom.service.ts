@@ -33,6 +33,7 @@ export class ClassroomService {
 
     create(classroom: Classroom): any {
         classroom.studentIDs = [];
+        classroom.events = [];
         return this.classroomRef.add({ ...classroom });
     }
 

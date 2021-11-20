@@ -15,6 +15,7 @@
                 [events]="calendarEvents"
                 [refresh]="refresh"
                 (dayClicked)="onDayClicked($event)"
+                (eventClicked)="onEventClicked($event); triggerModal(modalEditEvent)"
             >
             </mwl-calendar-month-view>
         </div>
@@ -23,28 +24,49 @@
     <div class="col" style="overflow: hidden">
         <div class="studentsContainer">
             <div class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light" style="max-height: 80%">
-                <ngb-accordion activeIds="static-0">
+                <ngb-accordion
+                    activeIds="static-0"
+                    *ngFor="let student of allStudents; let index = index"
+                >
                     <ngb-panel
-                        *ngFor="let student of currentClassroom.studentIDs; let index = index"
+                        *ngIf="
+                            currentClassroom.studentIDs != undefined &&
+                            currentClassroom.studentIDs.includes(student.id)
+                        "
                         id="static-{{ index }}"
-                        title="{{ student }}"
+                        title="{{ student.firstName }} {{ student.lastName }}"
                     >
                         <ng-template ngbPanelContent>
-                            <strong>{{ student }}</strong> - student description
+                            Student ID: {{ student.id }}<br />
+                            Parent Name: {{ student.parentFirstName }} {{ student.parentLastName
+                            }}<br />
+                            Parent Phone: {{ student.parentPhone }}
                         </ng-template>
                     </ngb-panel>
                 </ngb-accordion>
             </div>
-            <a class="btn btn-primary" (click)="triggerModal(modalAddStudent)">Add Students</a>
+            <a
+                class="btn btn-primary"
+                (click)="initTempStudentList(); triggerModal(modalAddStudent)"
+                >Edit Student(s)</a
+            >
             <a class="btn btn-primary" (click)="triggerModal(modalAddEvent)">Add Event</a>
         </div>
 
         <div class="">
             {{ selectedDate }}
         </div>
-        <div class="" *ngFor="let event of calendarEvents">
-            <div *ngIf="event.start.getDate() == selectedDate.getDate()">
-                {{ event.title }} - {{ event.start }}
+
+        <div class="col" style="overflow: hidden">
+            <div class="studentsContainer">
+                <div
+                    class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light"
+                    style="max-height: 80%"
+                >
+                    <div *ngFor="let event of getEventsByDay(selectedDate.getDate())">
+                        {{ event.title }} - {{ event.start }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -52,7 +74,7 @@
 
 <ng-template #modalAddStudent let-modal class="modal">
     <div class="modal-header">
-        <h5 class="modal-title">Add Student(s):</h5>
+        <h5 class="modal-title">Edit Student(s):</h5>
         <button
             type="button"
             class="btn-close"
@@ -63,7 +85,35 @@
     </div>
 
     <div class="modal-body">
-        <div class="form-group"></div>
+        <div *ngFor="let student of allStudents">
+            <div
+                *ngIf="tempStudentsList.includes(student.id); then thenBlock; else elseBlock"
+            ></div>
+            <ng-template #thenBlock>
+                <input
+                    type="checkbox"
+                    checked
+                    data-toggle="toggle"
+                    (click)="removeStudent(student)"
+                />
+                {{ student.firstName }} {{ student.lastName }}
+            </ng-template>
+            <ng-template #elseBlock>
+                <input
+                    type="checkbox"
+                    unchecked
+                    data-toggle="toggle"
+                    (click)="addStudent(student)"
+                />
+                {{ student.firstName }} {{ student.lastName }}
+            </ng-template>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="saveStudentsList(); modal.close()">
+            Save
+        </button>
     </div>
 </ng-template>
 
@@ -109,6 +159,55 @@
     <div class="modal-footer">
         <button type="button" class="btn btn-primary" (click)="addNewEvent(); modal.close()">
             Save
+        </button>
+    </div>
+</ng-template>
+
+<ng-template #modalEditEvent let-modal class="modal">
+    <div class="modal-header">
+        <h5>Edit Event:</h5>
+        <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            (click)="modal.dismiss()"
+        ></button>
+    </div>
+
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="name">Title</label>
+            <input
+                type="text"
+                class="form-control"
+                id="name"
+                required
+                [(ngModel)]="newEventInput.title"
+                name="name"
+                #eventTitle
+            />
+        </div>
+
+        <div class="form-group">
+            <label for="description">Date</label>
+            <input
+                type="date"
+                class="form-control"
+                id="description"
+                required
+                [(ngModel)]="newEventInput.date"
+                #eventDate
+            />
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="saveSelectedEvent(); modal.close()">
+            Save
+        </button>
+        <button type="button" class="btn btn-danger" (click)="deleteSelectedEvent(); modal.close()">
+            Delete
         </button>
     </div>
 </ng-template>
