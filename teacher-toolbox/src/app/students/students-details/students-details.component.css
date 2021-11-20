@@ -1,0 +1,17 @@
+.titleContainer {
+    size: 10vw;
+    padding: 10 10 10 10;
+    margin-left: 10;
+    margin-right: 10;
+}
+
+.detailsContainer {
+    height: 50%;
+    padding: 10 5 10 5;
+    overflow: hidden;
+    display: flex;
+}
+
+.h3{
+    text-align: left;
+}
