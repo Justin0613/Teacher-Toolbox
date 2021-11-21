@@ -1,14 +1,9 @@
 <app-navigation-bar></app-navigation-bar>
+<p>students-details works!</p>
 
 <div class="row titleContainer">
     <div>
-        <h1>{{currentStudent.firstName}} {{ currentStudent.lastName }}</h1> -
-    </div>
-</div>
-
-<div class ="row detailsContainer">
-    <div>
-        <h3> Parent Name </h3>
-        {{currentStudent.parentFirstName}} {{currentStudent.parentLastName}}
+        <strong>{{ currentStudent.firstName }}</strong> -
+        {{ currentStudent.lastName }}
     </div>
 </div>
