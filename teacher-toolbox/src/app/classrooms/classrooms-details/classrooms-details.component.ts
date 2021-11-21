@@ -160,11 +160,13 @@ export class ClassroomsDetailsComponent implements OnInit {
             if (value == student.id) this.tempStudentsList.splice(index, 1);
         });
 
-        this.allStudents.find(s => s.id == student.id).classIDs.forEach((value, index) => {
-            if (value == this.classId) {
-                this.allStudents.find(s => s.id == student.id).classIDs.splice(index, 1);
-            }
-        });
+        this.allStudents
+            .find((s) => s.id == student.id)
+            .classIDs.forEach((value, index) => {
+                if (value == this.classId) {
+                    this.allStudents.find((s) => s.id == student.id).classIDs.splice(index, 1);
+                }
+            });
     }
 
     initTempStudentList(): void {

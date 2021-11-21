@@ -12,7 +12,7 @@ import { Student } from "src/models/student.model";
     styleUrls: ["./students-details.component.css"]
 })
 export class StudentsDetailsComponent implements OnInit {
-    userData : any;
+    userData: any;
     // @Input() student: Student;
     @Output() refreshList: EventEmitter<any> = new EventEmitter();
     currentStudent: Student = null;
