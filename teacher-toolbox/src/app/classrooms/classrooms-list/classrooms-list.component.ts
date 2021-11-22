@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { ClassroomService } from "src/app/services/classroom.service";
+import Classroom from "src/models/classroom.model";
+import { Student } from "src/models/student.model";
+import { StudentsService } from "src/app/services/students.service";
 import { map } from "rxjs/operators";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
@@ -10,11 +13,16 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 })
 export class ClassroomsListComponent implements OnInit {
     classrooms: any;
+    allStudents: Student[];
     currentClassroom = null;
     name = "";
     queryString: String;
 
-    constructor(private classroomService: ClassroomService, private modal: NgbModal) {}
+    constructor(
+        private classroomService: ClassroomService,
+        private studentService: StudentsService,
+        private modal: NgbModal
+    ) {}
 
     ngOnInit(): void {
         this.queryString = "";
@@ -41,6 +49,21 @@ export class ClassroomsListComponent implements OnInit {
             .subscribe((data) => {
                 this.classrooms = data;
             });
+
+        this.studentService
+            .getAll()
+            .snapshotChanges()
+            .pipe(
+                map((changes) =>
+                    changes.map((c) => ({
+                        id: c.payload.doc.id,
+                        ...c.payload.doc.data()
+                    }))
+                )
+            )
+            .subscribe((data) => {
+                this.allStudents = data;
+            });
     }
 
     triggerModal(content, classroom) {
@@ -52,7 +75,21 @@ export class ClassroomsListComponent implements OnInit {
         this.classroomService.update(classroom.id, classroom);
     }
 
-    deleteClassroom(classroom) {
+    deleteClassroom(classroom: Classroom) {
+        classroom.studentIDs.forEach((student) => {
+            this.allStudents
+                .find((s) => s.id == student)
+                .classIDs.forEach((value, index) => {
+                    if (value == classroom.id) {
+                        this.allStudents.find((s) => s.id == student).classIDs.splice(index, 1);
+                    }
+                });
+        });
+
+        this.allStudents.forEach((s) => {
+            this.studentService.update(s.id, s);
+        });
+
         this.classroomService.delete(classroom.id);
     }
 }

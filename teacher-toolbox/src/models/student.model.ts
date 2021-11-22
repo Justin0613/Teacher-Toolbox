@@ -3,6 +3,7 @@ export class Student {
     firstName: string;
     lastName: string;
     teacherID: string;
+    classIDs: string[];
     parentFirstName: string;
     parentLastName: string;
     parentPhone: string;

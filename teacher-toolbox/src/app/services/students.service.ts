@@ -30,6 +30,7 @@ export class StudentsService {
     }
 
     create(student: Student): any {
+        student.classIDs = [];
         return this.studentRef.add({ ...student });
     }
 
