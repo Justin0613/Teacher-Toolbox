@@ -4,7 +4,7 @@ import { ActivatedRoute, ParamMap } from "@angular/router";
 import { Student } from "src/models/student.model";
 
 // import Student from 'src/models/student.model';
-// push 
+// push again 
 
 @Component({
     selector: "app-students-details",
