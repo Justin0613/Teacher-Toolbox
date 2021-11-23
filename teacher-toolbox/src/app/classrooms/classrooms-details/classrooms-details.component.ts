@@ -22,6 +22,8 @@ export class ClassroomsDetailsComponent implements OnInit {
     classId: string = "";
 
     viewDate: Date = new Date();
+    currentDate: Date = new Date();
+    currentDateString: string = this.currentDate.toISOString().split("T")[0];
     selectedDate: Date = this.viewDate;
     selectedEventIndex: number;
     calendarEvents: CalendarEvent[] = [];
@@ -69,6 +71,27 @@ export class ClassroomsDetailsComponent implements OnInit {
 
     triggerModal(content) {
         this.modal.open(content).result;
+    }
+
+    getViewMonth(): string {
+        var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        return months[this.viewDate.getMonth()] + " - " + this.viewDate.getFullYear();
+    }
+
+    switchViewMonth(step: number): void {
+        var newMonth: number = this.viewDate.getMonth() + step;
+
+        if (newMonth >= 12) {
+            this.viewDate.setMonth(0);
+            this.viewDate.setFullYear(this.viewDate.getFullYear() + 1);
+        }
+        else if (newMonth < 0) {
+            this.viewDate.setMonth(11);
+            this.viewDate.setFullYear(this.viewDate.getFullYear() - 1);
+        }
+        else this.viewDate.setMonth(newMonth);
+
+        this.refresh.emit(null);
     }
 
     updateClassroom(): void {
@@ -160,13 +183,11 @@ export class ClassroomsDetailsComponent implements OnInit {
             if (value == student.id) this.tempStudentsList.splice(index, 1);
         });
 
-        this.allStudents
-            .find((s) => s.id == student.id)
-            .classIDs.forEach((value, index) => {
-                if (value == this.classId) {
-                    this.allStudents.find((s) => s.id == student.id).classIDs.splice(index, 1);
-                }
-            });
+        this.allStudents.find(s => s.id == student.id).classIDs.forEach((value, index) => {
+            if (value == this.classId) {
+                this.allStudents.find(s => s.id == student.id).classIDs.splice(index, 1);
+            }
+        });
     }
 
     initTempStudentList(): void {
