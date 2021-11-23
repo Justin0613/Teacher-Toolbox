@@ -12,8 +12,7 @@
     text-align: left;
 }
 
-
-.student-name{
+.student-name {
     font-size: 5vw;
 }
 
@@ -23,7 +22,7 @@
     display: inline;
 }
 
-.detail-text{
+.detail-text {
     text-align: center;
     padding: 10 10 10 10;
     font-size: 25px;

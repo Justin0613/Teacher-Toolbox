@@ -2,32 +2,32 @@
 
 <div class="row-titleContainer">
     <div>
-        <h1 class = "student-name">{{currentStudent.firstName}} {{ currentStudent.lastName }}</h1>
+        <h1 class="student-name">{{ currentStudent.firstName }} {{ currentStudent.lastName }}</h1>
     </div>
 </div>
 
-<section class = "container">    
-    <div class ="row">
-        <figure class = "col-sm-4">
-            <h3 class = "detail-title"> Parent Name </h3>
-            <p class = "detail-text"> {{currentStudent.parentFirstName}} {{currentStudent.parentLastName}} </p>
+<section class="container">
+    <div class="row">
+        <figure class="col-sm-4">
+            <h3 class="detail-title">Parent Name</h3>
+            <p class="detail-text">
+                {{ currentStudent.parentFirstName }} {{ currentStudent.parentLastName }}
+            </p>
         </figure>
-        <figure class = "col-sm-4">
-            <h3 class = " detail-title"> Parent Email </h3>
-            <p class = "detail-text"> {{currentStudent.parentEmail}}</p>
+        <figure class="col-sm-4">
+            <h3 class="detail-title">Parent Email</h3>
+            <p class="detail-text">{{ currentStudent.parentEmail }}</p>
         </figure>
-        <figure class = "col-sm-4">
-            <h3 class = "detail-title"> Parent Phone</h3>
-            <p class = "detail-text"> {{currentStudent.parentPhone}} </p>
+        <figure class="col-sm-4">
+            <h3 class="detail-title">Parent Phone</h3>
+            <p class="detail-text">{{ currentStudent.parentPhone }}</p>
         </figure>
     </div>
-        
+
     <button class="btn btn-primary col editstudent-button" (click)="triggerModal(modalData)">
         Edit student
     </button>
 </section>
-
-
 
 <ng-template #modalData let-modal class="modal">
     <div class="modal-header">
@@ -123,13 +123,7 @@
         >
             Close
         </button>
-        <button
-            type="button"
-            class="btn btn-primary"
-            (click)="
-                updateStudent()
-            "
-        >
+        <button type="button" class="btn btn-primary" (click)="updateStudent()">
             Save changes
         </button>
     </div>

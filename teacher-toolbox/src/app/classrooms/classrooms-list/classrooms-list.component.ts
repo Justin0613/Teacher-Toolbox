@@ -18,7 +18,11 @@ export class ClassroomsListComponent implements OnInit {
     name = "";
     queryString: String;
 
-    constructor(private classroomService: ClassroomService, private studentService: StudentsService, private modal: NgbModal) {}
+    constructor(
+        private classroomService: ClassroomService,
+        private studentService: StudentsService,
+        private modal: NgbModal
+    ) {}
 
     ngOnInit(): void {
         this.queryString = "";
@@ -72,12 +76,14 @@ export class ClassroomsListComponent implements OnInit {
     }
 
     deleteClassroom(classroom: Classroom) {
-        classroom.studentIDs.forEach(student => {
-            this.allStudents.find(s => s.id == student).classIDs.forEach((value, index) => {
-                if (value == classroom.id) {
-                    this.allStudents.find(s => s.id == student).classIDs.splice(index, 1);
-                }
-            });
+        classroom.studentIDs.forEach((student) => {
+            this.allStudents
+                .find((s) => s.id == student)
+                .classIDs.forEach((value, index) => {
+                    if (value == classroom.id) {
+                        this.allStudents.find((s) => s.id == student).classIDs.splice(index, 1);
+                    }
+                });
         });
 
         this.allStudents.forEach((s) => {
