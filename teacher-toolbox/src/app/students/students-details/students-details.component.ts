@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, OnChanges, EventEmitter } from "@angu
 import { StudentsService } from "src/app/services/students.service";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { Student } from "src/models/student.model";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 // import Student from 'src/models/student.model';
 // push again 
@@ -23,6 +24,7 @@ export class StudentsDetailsComponent implements OnInit {
     //viewDate: Date = new Date();
 
     constructor(
+        private modal: NgbModal,
         private studentService: StudentsService, 
         private route: ActivatedRoute
         ) {}
@@ -43,6 +45,10 @@ export class StudentsDetailsComponent implements OnInit {
         this.currentStudent = { ... this.student };
     }
 
+    triggerModal(content) {
+      this.modal.open(content).result;
+  }
+
     updateStudent(): void {
       const data = {
         firstName: this.currentStudent.firstName,
@@ -57,11 +63,11 @@ export class StudentsDetailsComponent implements OnInit {
         .catch(error => window.alert(error));
     }
 
-     deleteStudent(): void {
-       this.studentService.delete(this.currentStudent.id)
-         .then(() => {
-           this.refreshList.emit();
-         })
-         .catch(error => window.alert(error));
-     }
+    //  deleteStudent(): void {
+    //    this.studentService.delete(this.currentStudent.id)
+    //      .then(() => {
+    //        this.refreshList.emit();
+    //      })
+    //      .catch(error => window.alert(error));
+    //  }
 }
