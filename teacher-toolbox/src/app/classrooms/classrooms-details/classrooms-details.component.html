@@ -58,7 +58,7 @@
             <a
                 class="btn btn-primary"
                 (click)="triggerModal(modalStudentAttendance)"
-                >Student Attendance</a
+                >Attendance/Behaviour/Role</a
             >
             <a class="btn btn-primary" (click)="triggerModal(modalAddEvent)">Add Event</a>
         </div>
@@ -141,12 +141,18 @@
 
     <div class="modal-body">
         <div *ngFor="let id of currentClassroom.studentIDs">
+            {{ getStudentFromID(id).firstName }} {{ getStudentFromID(id).lastName }}
             <input
                 type="checkbox"
                 checked
                 data-toggle="toggle"
             />
-            {{ getStudentFromID(id).firstName }} {{ getStudentFromID(id).lastName }}
+            <select id="behaviour" name="behaviour">
+                <option value="good">Good</option>
+                <option value="bad">Bad</option>
+                <option value="horrible">Horrible</option>
+            </select>
+            <input type="text">
         </div>
     </div>
 
