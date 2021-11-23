@@ -5,7 +5,7 @@ import { Student } from "src/models/student.model";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 // import Student from 'src/models/student.model';
-// push again 
+// push again
 
 @Component({
     selector: "app-students-details",
@@ -13,7 +13,7 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
     styleUrls: ["./students-details.component.css"]
 })
 export class StudentsDetailsComponent implements OnInit {
-    userData : any;
+    userData: any = null;
     // @Input() student: Student;
     @Output() refreshList: EventEmitter<any> = new EventEmitter();
     currentStudent: Student = new Student();
@@ -25,9 +25,9 @@ export class StudentsDetailsComponent implements OnInit {
 
     constructor(
         private modal: NgbModal,
-        private studentService: StudentsService, 
+        private studentService: StudentsService,
         private route: ActivatedRoute
-        ) {}
+    ) {}
 
     ngOnInit(): void {
         this.userData = this.route.snapshot.data.userdata;
@@ -42,25 +42,26 @@ export class StudentsDetailsComponent implements OnInit {
     }
 
     ngOnChanges(): void {
-        this.currentStudent = { ... this.student };
+        this.currentStudent = { ...this.student };
     }
 
     triggerModal(content) {
-      this.modal.open(content).result;
-  }
+        this.modal.open(content).result;
+    }
 
     updateStudent(): void {
-      const data = {
-        firstName: this.currentStudent.firstName,
-        lastName: this.currentStudent.lastName,
-        parentEmail: this.currentStudent.parentEmail,
-        parentFirstName: this.currentStudent.parentFirstName,
-        parentLastName: this.currentStudent.parentLastName,
-        parentPhone: this.currentStudent.parentPhone
-      };
+        const data = {
+            firstName: this.currentStudent.firstName,
+            lastName: this.currentStudent.lastName,
+            parentEmail: this.currentStudent.parentEmail,
+            parentFirstName: this.currentStudent.parentFirstName,
+            parentLastName: this.currentStudent.parentLastName,
+            parentPhone: this.currentStudent.parentPhone
+        };
 
-      this.studentService.update(this.currentStudent.id, data)
-        .catch(error => window.alert(error));
+        this.studentService
+            .update(this.currentStudent.id, data)
+            .catch((error) => window.alert(error));
     }
 
     //  deleteStudent(): void {

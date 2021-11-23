@@ -9,10 +9,14 @@
 
 <div class="row">
     <div class="col">
-        <div style="text-align: center;">
-            <button class="btn btn-primary" style="margin-left: 0%;" (click)="switchViewMonth(-1)"><i class="bi bi-arrow-left"></i></button>
+        <div style="text-align: center">
+            <button class="btn btn-primary" style="margin-left: 0%" (click)="switchViewMonth(-1)">
+                <i class="bi bi-arrow-left"></i>
+            </button>
             {{ getViewMonth() }}
-            <button class="btn btn-primary" style="margin-right: 0%;" (click)="switchViewMonth(1)"><i class="bi bi-arrow-right"></i></button>
+            <button class="btn btn-primary" style="margin-right: 0%" (click)="switchViewMonth(1)">
+                <i class="bi bi-arrow-right"></i>
+            </button>
         </div>
         <div class="calendarContainer">
             <mwl-calendar-month-view
