@@ -29,6 +29,10 @@ export class ClassroomsDetailsComponent implements OnInit {
     @Output() refresh = new EventEmitter<any>();
     newEventInput: any = { title: "", date: "" };
 
+    present: Student[] = [];
+    absent: Student[] = [];
+    unassigned: Student[] = [];
+
     constructor(
         private classroomService: ClassroomService,
         private studentService: StudentsService,
@@ -179,5 +183,29 @@ export class ClassroomsDetailsComponent implements OnInit {
         this.allStudents.forEach((s) => {
             this.studentService.update(s.id, s);
         });
+    }
+    setPresent(student: Student) {
+        this.present.push(student);
+        this.unassigned.splice(this.unassigned.indexOf(student), 1);
+    }
+    setAbsent(student: Student) {
+        this.absent.push(student);
+        this.unassigned.splice(this.unassigned.indexOf(student), 1);
+    }
+    addNewAttendance(): void {
+        let newAttendance: any = new Object();
+        newAttendance.start = new Date(this.newEventInput.date);
+        newAttendance.start.setDate(newAttendance.start.getDate() + 1);
+        newAttendance.title = "Attendance";
+        this.calendarEvents.push(newAttendance);
+
+        this.currentClassroom.events.push({
+            start: newAttendance.start.toDateString(),
+            title: newAttendance.title
+        });
+        this.classroomService.update(this.classId, this.currentClassroom);
+
+        this.newEventInput = { title: "", date: "" };
+        this.refresh.emit(null);
     }
 }
