@@ -1,4 +1,4 @@
-.titleContainer {
+.row-titleContainer {
     size: 5vw;
     padding: 10 10 10 10;
     margin-left: 10;
@@ -6,7 +6,7 @@
     text-align: center;
 }
 
-.detailsContainer {
+.row-detailsContainer {
     height: 50%;
     padding: 10 5 10 5;
     text-align: left;
@@ -18,6 +18,19 @@
 }
 
 .detail-title {
-    size: 4vw;
-    text-align: left;
+    text-align: center;
+    font-size: 3vw;
+    display: inline;
+}
+
+.detail-text{
+    text-align: center;
+    padding: 10 10 10 10;
+    font-size: 25px;
+}
+
+.editstudent-button {
+    margin: auto auto;
+    display: block;
+    letter-spacing: 5px;
 }
