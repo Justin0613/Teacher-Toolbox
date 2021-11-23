@@ -55,6 +55,11 @@
                 (click)="initTempStudentList(); triggerModal(modalAddStudent)"
                 >Edit Student(s)</a
             >
+            <a
+                class="btn btn-primary"
+                (click)="triggerModal(modalStudentAttendance)"
+                >Student Attendance</a
+            >
             <a class="btn btn-primary" (click)="triggerModal(modalAddEvent)">Add Event</a>
         </div>
 
@@ -117,6 +122,36 @@
 
     <div class="modal-footer">
         <button type="button" class="btn btn-primary" (click)="saveStudentsList(); modal.close()">
+            Save
+        </button>
+    </div>
+</ng-template>
+
+<ng-template #modalStudentAttendance let-modal class="modal">
+    <div class="modal-header">
+        <h5 class="modal-title">Student Attendance:</h5>
+        <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            (click)="modal.dismiss()"
+        ></button>
+    </div>
+
+    <div class="modal-body">
+        <div *ngFor="let id of currentClassroom.studentIDs">
+            <input
+                type="checkbox"
+                checked
+                data-toggle="toggle"
+            />
+            {{ getStudentFromID(id).firstName }} {{ getStudentFromID(id).lastName }}
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modal.close()">
             Save
         </button>
     </div>

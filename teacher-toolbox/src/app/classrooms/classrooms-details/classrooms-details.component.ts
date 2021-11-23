@@ -194,6 +194,10 @@ export class ClassroomsDetailsComponent implements OnInit {
         this.tempStudentsList = this.currentClassroom.studentIDs.slice();
     }
 
+    getStudentFromID(id: string): Student {
+        return this.allStudents.filter((s) => s.id == id)[0];
+    }
+
     saveStudentsList(): void {
         this.currentClassroom.studentIDs = this.tempStudentsList.slice();
         this.classroomService.update(this.classId, this.currentClassroom);
