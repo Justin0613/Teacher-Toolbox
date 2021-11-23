@@ -17,10 +17,14 @@
     font-size: 5vw;
 }
 
+h3 {
+    text-align:center;
+}
+
 .detail-title {
     text-align: center;
+    padding: 10 10 10 10;
     font-size: 3vw;
-    display: inline;
 }
 
 .detail-text{
@@ -32,5 +36,4 @@
 .editstudent-button {
     margin: auto auto;
     display: block;
-    letter-spacing: 5px;
 }
