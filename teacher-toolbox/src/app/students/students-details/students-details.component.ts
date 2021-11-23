@@ -1,59 +1,67 @@
-import { Component, OnInit, Input, Output, OnChanges, EventEmitter } from '@angular/core';
-import { StudentsService } from 'src/app/services/students.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import Student from 'src/models/student.model';
-//import Student from 'src/models/student.model';
-//push this plz
+import { Component, OnInit, Input, Output, OnChanges, EventEmitter } from "@angular/core";
+import { StudentsService } from "src/app/services/students.service";
+import { ActivatedRoute, ParamMap } from "@angular/router";
+import { Student } from "src/models/student.model";
+
+// import Student from 'src/models/student.model';
+// push again 
 
 @Component({
-  selector: 'app-students-details',
-  templateUrl: './students-details.component.html',
-  styleUrls: ['./students-details.component.css']
+    selector: "app-students-details",
+    templateUrl: "./students-details.component.html",
+    styleUrls: ["./students-details.component.css"]
 })
 export class StudentsDetailsComponent implements OnInit {
+    userData : any;
+    // @Input() student: Student;
+    @Output() refreshList: EventEmitter<any> = new EventEmitter();
+    currentStudent: Student = new Student();
 
-  //@Input() student: Student;
-  @Output() refreshList: EventEmitter<any> = new EventEmitter();
-  currentStudent: Student = null;
+    StudentId: string = "";
+    student: Student = null;
 
-  StudentId: string = "";
-  student: Student = null;
+    //viewDate: Date = new Date();
 
-  viewDate: Date = new Date();
+    constructor(
+        private studentService: StudentsService, 
+        private route: ActivatedRoute
+        ) {}
 
-  constructor(private studentService: StudentsService, private route: ActivatedRoute) { }
+    ngOnInit(): void {
+        this.userData = this.route.snapshot.data.userdata;
+        this.route.paramMap.subscribe((params: ParamMap) => {
+            this.StudentId = params.get("student_id");
+            console.log(this.StudentId);
 
-  ngOnInit(): void {
+            this.studentService.getSingle(this.StudentId, (data: Student) => {
+                this.currentStudent = data;
+            });
+        });
+    }
 
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      this.StudentId = params.get('students_id');
+    ngOnChanges(): void {
+        this.currentStudent = { ... this.student };
+    }
 
-      this.studentService.getSingle(this.StudentId, ((data: Student) => {
-        this.student = data;
-      }));
-    });
-  }
+    updateStudent(): void {
+      const data = {
+        firstName: this.currentStudent.firstName,
+        lastName: this.currentStudent.lastName,
+        parentEmail: this.currentStudent.parentEmail,
+        parentFirstName: this.currentStudent.parentFirstName,
+        parentLastName: this.currentStudent.parentLastName,
+        parentPhone: this.currentStudent.parentPhone
+      };
 
-  ngOnChanges(): void {
-    this.currentStudent = { ...this.student };
-  }
+      this.studentService.update(this.currentStudent.id, data)
+        .catch(error => window.alert(error));
+    }
 
-  // updateStudent(): void {
-  //   const data = {
-  //     firstName: this.currentStudent.firstName,
-  //     lastName: this.currentStudent.lastName,
-      
-  //   };
-
-  //   this.studentService.update(this.currentStudent.id, data)
-  //     .catch(error => window.alert(error));
-  // }
-
-  // deleteClassroom(): void {
-  //   this.studentService.delete(this.currentStudent.id)
-  //     .then(() => {
-  //       this.refreshList.emit();
-  //     })
-  //     .catch(error => window.alert(error));
-  // }
+     deleteStudent(): void {
+       this.studentService.delete(this.currentStudent.id)
+         .then(() => {
+           this.refreshList.emit();
+         })
+         .catch(error => window.alert(error));
+     }
 }

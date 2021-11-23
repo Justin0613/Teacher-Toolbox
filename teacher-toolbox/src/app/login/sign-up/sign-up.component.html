@@ -1,34 +1,48 @@
 <div class="displayTable">
     <div class="displayTableCell">
-
         <div class="authBlock rounded">
             <h2 class="text-center">New User</h2>
 
             <div class="formGroup">
-                <input type="email" class="form-control" placeholder="Email" #userEmail required>
+                <input type="email" class="form-control" placeholder="Email" #userEmail required />
             </div>
 
             <div class="formGroup">
-                <input type="password" class="form-control" placeholder="Password" #userPwd required>
+                <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Password"
+                    #userPwd
+                    required
+                />
             </div>
 
             <div class="formGroup text-center">
-                <input type="button" class="btn btn-outline-dark btn-block" value="Sign Up"
-                    (click)="AuthService.SignUp(userEmail.value, userPwd.value)">
+                <input
+                    type="button"
+                    class="btn btn-outline-dark btn-block"
+                    value="Sign Up"
+                    (click)="AuthService.SignUp(userEmail.value, userPwd.value)"
+                />
             </div>
 
             <div class="formGroup text-center">
-                <a class="btn btn-outline-dark btn-block" (click)="AuthService.GoogleAuth()" role="button" >
+                <a
+                    class="btn btn-outline-dark btn-block"
+                    (click)="AuthService.GoogleAuth()"
+                    role="button"
+                >
                     <img alt="Google sign-in" src="assets/img/google_logo.svg.png" />
                     Sign Up with Google
                 </a>
             </div>
-
         </div>
 
         <div class="redirectToLogin">
-            <span>Already have an account? <span class="redirect" routerLink="/sign-in">Log In</span></span>
+            <span
+                >Already have an account?
+                <span class="redirect" routerLink="/sign-in">Log In</span></span
+            >
         </div>
-
     </div>
 </div>
