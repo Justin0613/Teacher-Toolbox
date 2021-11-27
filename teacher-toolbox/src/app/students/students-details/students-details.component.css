@@ -17,7 +17,7 @@
 }
 
 h3 {
-    text-align:center;
+    text-align: center;
 }
 
 .detail-title {
@@ -35,4 +35,15 @@ h3 {
 .editstudent-button {
     margin: auto auto;
     display: block;
+}
+
+.container {
+    width: 50%;
+    margin-top: 2em;
+}
+
+.btn {
+    float: right;
+    width: 7.5em;
+    margin: 0 0.5em 1em 0;
 }

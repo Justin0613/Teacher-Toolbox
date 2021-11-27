@@ -1,9 +1,9 @@
 <app-navigation-bar></app-navigation-bar>
 
-<div class="row" style="margin: 10 15 10 15">
-    <h4 class="col">Student List</h4>
-    <button class="btn btn-primary col newstudent-button" (click)="triggerModal(modalData)">
-        Add New student
+<div class="container">
+    <h1 class="title col">All Students</h1>
+    <button class="btn btn-primary col" (click)="triggerModal(modalData)">
+        <i class="bi bi-plus-lg"><span> Add a New Student</span></i>
     </button>
 </div>
 
@@ -92,6 +92,18 @@
                 #parentEmail
             />
         </div>
+
+        <div class="form-group">
+            <label for="description">Grade</label>
+            <input
+                type="text"
+                class="form-control"
+                id="description"
+                required
+                [(ngModel)]="student.grade"
+                #grade
+            />
+        </div>
     </div>
 
     <div class="modal-footer">
@@ -113,7 +125,8 @@
                     parentFirstName.value,
                     parentLastName.value,
                     parentPhone.value,
-                    parentEmail.value
+                    parentEmail.value,
+                    grade.value
                 )
             "
         >
