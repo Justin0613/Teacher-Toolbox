@@ -132,6 +132,7 @@ export class StudentsListComponent implements OnInit {
                 data.forEach((c, i) => {
                     if (c.studentIDs.includes(student.id)) {
                         c.studentIDs.splice(i, 1);
+                        c.studentData.splice(i, 1);
                         this.classroomService.update(c.id, c);
                     }
                 });
