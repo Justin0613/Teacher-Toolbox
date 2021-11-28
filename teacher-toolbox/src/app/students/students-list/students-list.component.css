@@ -4,5 +4,47 @@
 }
 
 .card {
-    margin: .5em 0;
+    margin: 0.5em 0;
+}
+
+#exportStudents {
+    display: none;
+}
+
+.excelFunctions {
+    text-align: center;
+    margin: 1em 0 -3em 0;
+}
+
+.excelFunctions > button {
+    margin: 2em 0.5em -5em 0.5em;
+}
+
+.pointer {
+    cursor: pointer !important;
+    border: 0;
+}
+
+.search {
+    width: 98.5%;
+    margin-top: 3em;
+}
+
+h5,
+p {
+    display: inline-block;
+}
+
+.studentDetail {
+    display: inline;
+}
+
+.removeStudent {
+    display: inline;
+    float: right;
+    margin: -1em 1em;
+}
+
+.title {
+    display: block;
 }

@@ -1,17 +1,17 @@
 h2 {
-    margin-bottom: .5em;
+    margin-bottom: 0.5em;
 }
 
 .btn {
     width: 75%;
 }
 
-input[type=button] {
-    margin-top: .5em;
+input[type="button"] {
+    margin-top: 0.5em;
 }
 
 .formGroup {
-    margin: .6em 0;
+    margin: 0.6em 0;
     float: left;
     width: 100%;
 }
@@ -28,7 +28,7 @@ input[type=button] {
 
 img {
     width: 1.5em;
-    margin: auto .3em;
+    margin: auto 0.3em;
 }
 
 .forgotPassword {
@@ -39,19 +39,15 @@ img {
     font-weight: 400;
     cursor: pointer;
     display: inline-block;
-    padding: .6em 0;
+    padding: 0.6em 0;
 }
 
 .displayTable {
     display: table;
     width: 100%;
     height: 100%;
-    background: #3f51b5 ; /* fallback for old browsers */
-    background: linear-gradient(
-        to right,
-        #3f51b5,
-        rgb(46, 161, 199)
-      );
+    background: #3f51b5; /* fallback for old browsers */
+    background: linear-gradient(to right, #3f51b5, rgb(46, 161, 199));
 }
 
 .displayTableCell {
@@ -76,20 +72,18 @@ img {
     text-decoration: underline;
 }
 
-.toolbox-logoP{
-    margin: .5em 1em .5em 1em;
-    height:200%;
+.toolbox-logoP {
+    margin: 0.5em 1em 0.5em 1em;
+    height: 200%;
     height: 2em;
 }
 
-.teachertoolbox{
-    font-size:40px;
-    margin-top:-5%;
-    font-family: 'Lobster', cursive;
+.teachertoolbox {
+    font-size: 40px;
+    margin-top: -5%;
+    font-family: "Lobster", cursive;
 }
 
-.loginText{
-    font-family: 'Roboto', sans-serif;
+.loginText {
+    font-family: "Roboto", sans-serif;
 }
-
-

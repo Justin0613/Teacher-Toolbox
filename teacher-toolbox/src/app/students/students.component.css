@@ -1,11 +1,15 @@
-.newStudent-button {
-    display: block;
-}
-
 .form-group {
     margin: 1em;
 }
 
 .form-group label {
-    margin: .4em 0;
+    margin: 0.4em 0;
+}
+
+.title {
+    margin: 1em 0 0.5em 0;
+}
+
+.bi-plus-lg {
+    font-size: 1.2em;
 }

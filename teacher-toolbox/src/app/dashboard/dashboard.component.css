@@ -20,56 +20,19 @@
 /* Move down content because we have a fixed navbar that is 3.5rem tall */
 body {
     padding-top: 3.5rem;
-    overflow-x:hidden !important;
-    overflow-y:hidden !important;
-  }
-
-.jumbotron{
-    padding-top: 3%;
-    padding-bottom: 1%;
-    background-color:rgb(116, 116, 116);
 }
 
-.dashboardContent{
+.jumbotron {
     padding-top: 5%;
-    background-color:rgb(221, 221, 221);
-
+    padding-bottom: 5%;
+    background-color: rgb(116, 116, 116);
 }
 
-*{
-    font-family: 'Roboto', sans-serif;
+.dashboardContent {
+    padding-top: 5%;
+    background-color: rgb(221, 221, 221);
 }
 
-.intro{
-padding-top:4%;
-padding-bottom:3%;
-
+* {
+    font-family: "Roboto", sans-serif;
 }
-
-img{
-    text-shadow:
-    1px 1px white,
-    1px -1px white,
-    -1px 1px white,
-    -1px -1px white;
-
-}
-
-img { 
-	transition: all .2s ease-in-out; 
-}
-img:hover { 
-    	transform: scale(1.05); 
-    }
-h2{
-    font-family: 'Hind Siliguri', sans-serif;
-}
-
-h1{
-    padding-top:5%;
-    padding-bottom:4%;
-    font-size:50px;
-}
-
-
-

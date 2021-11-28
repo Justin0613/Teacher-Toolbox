@@ -1,15 +1,66 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, OnChanges, EventEmitter } from "@angular/core";
+import { StudentsService } from "src/app/services/students.service";
+import { ActivatedRoute, ParamMap } from "@angular/router";
+import { Student } from "src/models/student.model";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+
+// import Student from 'src/models/student.model';
+// push again
 
 @Component({
-  selector: 'app-students-details',
-  templateUrl: './students-details.component.html',
-  styleUrls: ['./students-details.component.css']
+    selector: "app-students-details",
+    templateUrl: "./students-details.component.html",
+    styleUrls: ["./students-details.component.css"]
 })
 export class StudentsDetailsComponent implements OnInit {
+    userData: any = null;
+    // @Input() student: Student;
+    @Output() refreshList: EventEmitter<any> = new EventEmitter();
+    currentStudent: Student = new Student();
 
-  constructor() { }
+    StudentId: string = "";
+    student: Student = null;
 
-  ngOnInit(): void {
-  }
+    //viewDate: Date = new Date();
 
+    constructor(
+        private modal: NgbModal,
+        private studentService: StudentsService,
+        private route: ActivatedRoute
+    ) {}
+
+    ngOnInit(): void {
+        this.userData = this.route.snapshot.data.userdata;
+        this.route.paramMap.subscribe((params: ParamMap) => {
+            this.StudentId = params.get("student_id");
+            console.log(this.StudentId);
+
+            this.studentService.getSingle(this.StudentId, (data: Student) => {
+                this.currentStudent = data;
+            });
+        });
+    }
+
+    ngOnChanges(): void {
+        this.currentStudent = { ...this.student };
+    }
+
+    triggerModal(content) {
+        this.modal.open(content).result;
+    }
+
+    updateStudent(): void {
+        const data = {
+            firstName: this.currentStudent.firstName,
+            lastName: this.currentStudent.lastName,
+            parentEmail: this.currentStudent.parentEmail,
+            parentFirstName: this.currentStudent.parentFirstName,
+            parentLastName: this.currentStudent.parentLastName,
+            parentPhone: this.currentStudent.parentPhone
+        };
+
+        this.studentService
+            .update(this.currentStudent.id, data)
+            .catch((error) => window.alert(error));
+    }
 }
