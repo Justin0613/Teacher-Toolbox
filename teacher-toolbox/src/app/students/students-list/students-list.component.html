@@ -1,6 +1,7 @@
 <div class="container">
     <div class="input-group rounded mb-3 search">
         <input
+            *ngIf="numStudents != 0"
             [(ngModel)]="queryString"
             type="search"
             class="form-control rounded"
@@ -40,7 +41,7 @@
             <th>Parent Email</th>
         </tr>
 
-        <tr class="tbody" *ngFor="let student of students; let odd = odd" [ngClass]="{ odd: odd }">
+        <tr class="tbody" *ngFor="let student of students;">
             <td>{{ student?.firstName + " " + student?.lastName }}</td>
             <td>
                 {{ student?.parentFirstName + " " + student?.parentLastName }}
