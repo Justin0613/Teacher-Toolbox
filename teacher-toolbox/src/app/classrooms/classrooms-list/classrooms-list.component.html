@@ -1,5 +1,4 @@
 <div class="container">
-
     <div class="input-group rounded mb-3 search">
         <input
             *ngIf="numClassrooms != 0"
@@ -16,17 +15,18 @@
             <ul class="list-group">
                 <div class="card mb-3" *ngFor="let classroom of classrooms">
                     <div *ngIf="classroom.name.toLowerCase().includes(queryString.toLowerCase())">
-
-                        <div class="card-header card-title" >
+                        <div class="card-header card-title">
                             {{ classroom.name }}
                         </div>
                         <div class="card-body">
                             <p class="card-text">{{ classroom.description }}</p>
                             <a class="btn btn-primary" routerLink="/classrooms/{{ classroom.id }}"
-                            >Class Details</a
+                                >Class Details</a
                             >
-                            <a (click)="triggerModal(modalData, classroom)" class="btn btn-secondary"
-                            >Edit</a
+                            <a
+                                (click)="triggerModal(modalData, classroom)"
+                                class="btn btn-secondary"
+                                >Edit</a
                             >
                         </div>
                     </div>

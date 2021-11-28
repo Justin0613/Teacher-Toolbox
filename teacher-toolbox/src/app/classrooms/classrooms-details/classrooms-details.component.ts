@@ -194,7 +194,7 @@ export class ClassroomsDetailsComponent implements OnInit {
             name: stu.firstName + " " + stu.lastName,
             seat: -1,
             role: "Unassigned"
-        })
+        });
         this.allStudents.find((s) => s.id == student.id).classIDs.push(this.classId);
     }
 
@@ -230,7 +230,7 @@ export class ClassroomsDetailsComponent implements OnInit {
     }
 
     getStudentData(student: Student): any {
-        var index: number = this.currentClassroom.studentIDs.findIndex(s => s == student.id);
+        var index: number = this.currentClassroom.studentIDs.findIndex((s) => s == student.id);
         var data: any = this.currentClassroom.studentData[index];
         return data;
     }

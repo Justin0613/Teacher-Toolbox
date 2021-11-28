@@ -40,14 +40,14 @@ export class DashboardComponent implements OnInit {
                     className: c.name,
                     eventName: e.title,
                     eventDate: new Date(e.start)
-                }
+                };
             });
         });
         allEvents = [].concat.apply([], allEvents);
         allEvents.sort((a, b) => {
             if (a.eventDate < b.eventDate) return -1;
             else return 1;
-        })
+        });
 
         num = Math.min(num, allEvents.length);
         return allEvents.slice(0, num);

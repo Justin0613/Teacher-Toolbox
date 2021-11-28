@@ -25,7 +25,15 @@
                     <br />
 
                     <p class="card-text">Grade: {{ student.grade }} Grade</p>
-                    <button (click)="deleteStudent(student); $event.stopImmediatePropagation(); $event.stopPropagation(); $event.preventDefault()" class="btn btn-danger removeStudent">
+                    <button
+                        (click)="
+                            deleteStudent(student);
+                            $event.stopImmediatePropagation();
+                            $event.stopPropagation();
+                            $event.preventDefault()
+                        "
+                        class="btn btn-danger removeStudent"
+                    >
                         <i class="bi bi-x-lg"> Remove Student</i>
                     </button>
                 </a>
@@ -41,7 +49,7 @@
             <th>Parent Email</th>
         </tr>
 
-        <tr class="tbody" *ngFor="let student of students;">
+        <tr class="tbody" *ngFor="let student of students">
             <td>{{ student?.firstName + " " + student?.lastName }}</td>
             <td>
                 {{ student?.parentFirstName + " " + student?.parentLastName }}

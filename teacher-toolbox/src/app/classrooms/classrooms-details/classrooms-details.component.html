@@ -58,7 +58,11 @@
                 (click)="initTempStudentList(); triggerModal(modalAddStudent)"
                 >Edit Student(s)</a
             >
-            <a class="btn btn-primary" (click)="initTempStudentList(); triggerModal(modalEditStudent)">Edit Seat/Role</a>
+            <a
+                class="btn btn-primary"
+                (click)="initTempStudentList(); triggerModal(modalEditStudent)"
+                >Edit Seat/Role</a
+            >
             <a class="btn btn-primary" (click)="triggerModal(modalAddEvent)">Add Event</a>
         </div>
 
@@ -140,9 +144,9 @@
 
     <div class="modal-body">
         <div *ngFor="let data of tempStudentDataList">
-            {{ data.name }}<br>
-            ____Assigned Seat: <input type="number" [(ngModel)]="data.seat"><br>
-            ____Student Role: <input type="text" [(ngModel)]="data.role"><br>
+            {{ data.name }}<br />
+            ____Assigned Seat: <input type="number" [(ngModel)]="data.seat" /><br />
+            ____Student Role: <input type="text" [(ngModel)]="data.role" /><br />
         </div>
     </div>
 

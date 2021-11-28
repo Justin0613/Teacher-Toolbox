@@ -1,56 +1,56 @@
 .toggle {
     display: none;
-  }
-  
-  .toggle-label {
+}
+
+.toggle-label {
     position: relative;
     display: inline-block;
     width: 3rem;
     height: 3rem;
     overflow: hidden;
     cursor: pointer;
-  }
-  
-  .sun,
-  .moon {
+}
+
+.sun,
+.moon {
     position: absolute;
     left: 0;
     width: 100%;
     height: auto;
     transition: top 0.3s;
     user-select: none;
-  }
-  
-  .sun {
+}
+
+.sun {
     top: 0;
-  }
-  
-  .moon {
+}
+
+.moon {
     top: -150%;
-  }
-  
-  .toggle:checked + .toggle-label .sun {
+}
+
+.toggle:checked + .toggle-label .sun {
     top: 150%;
-  }
-  
-  .toggle:checked + .toggle-label .moon {
+}
+
+.toggle:checked + .toggle-label .moon {
     top: 0;
-  }
-  body {
+}
+body {
     margin: 0;
-    font-family: 'Roboto', sans-serif;
-  }
-  
-  body:not(.dark-mode-preloading) {
+    font-family: "Roboto", sans-serif;
+}
+
+body:not(.dark-mode-preloading) {
     transition: all 0.3s linear;
-  }
-  
-  body.dark-mode {
+}
+
+body.dark-mode {
     background-color: #2d3436;
     color: white;
-  }
-  
-  body.light-mode {
+}
+
+body.light-mode {
     background-color: rgb(221, 221, 221);
     color: #2d3436;
-  }
+}
