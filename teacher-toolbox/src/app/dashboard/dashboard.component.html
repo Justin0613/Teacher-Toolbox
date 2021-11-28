@@ -4,7 +4,7 @@
     <div class="container text-white">
         <h2 class="display-3">Notifications</h2>
         <div *ngFor="let event of getLatestEvents(5)">
-            - {{ event.eventName }} {{ event.className }} {{ event.eventDate.toISOString().split("T")[0] }}
+            - {{ event.eventName }} - {{ event.className }} - {{ event.eventDate.toISOString().split("T")[0] }}
         </div>
     </div>
 </div>
