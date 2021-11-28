@@ -9,4 +9,5 @@ export class Student {
     parentPhone: string;
     parentEmail: string;
     grade: string;
+    currentBehavior: string;
 }
