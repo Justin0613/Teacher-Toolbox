@@ -1,11 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { StudentsService } from "src/app/services/students.service";
 import { map } from "rxjs/operators";
-import { ExcelService } from "src/app/services/excel.service";
 import * as XLSX from "xlsx";
 import { Student } from "src/models/student.model";
 import { AuthService } from "src/app/services/auth.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
     selector: "app-students-list",
@@ -17,16 +16,18 @@ export class StudentsListComponent implements OnInit {
     name = "";
     userData: any;
     queryString: String;
+    numStudents: number = 0;
 
     constructor(
         private auth: AuthService,
         private studentService: StudentsService,
-        private excel: ExcelService,
+        private router: Router,
         private route: ActivatedRoute
     ) {}
 
     ngOnInit(): void {
         this.retrieveStudent();
+
         this.userData = this.route.snapshot.data.userdata;
         this.queryString = "";
     }
@@ -49,6 +50,7 @@ export class StudentsListComponent implements OnInit {
             )
             .subscribe((data) => {
                 this.students = data;
+                this.numStudents = this.students?.length;
             });
     }
 
@@ -78,6 +80,7 @@ export class StudentsListComponent implements OnInit {
                 const parentName: string = data[i]["Parent Name"];
                 const parentPhone: string = data[i]["Parent Phone Number"];
                 const parentEmail: string = data[i]["Parent Email"];
+                const grade: string = data[i]["Grade"];
 
                 student.firstName = studentName.substring(0, studentName.indexOf(" "));
                 student.lastName = studentName.substring(studentName.indexOf(" ") + 1);
@@ -85,6 +88,7 @@ export class StudentsListComponent implements OnInit {
                 student.parentLastName = parentName.substring(parentName.indexOf(" ") + 1);
                 student.parentPhone = parentPhone;
                 student.parentEmail = parentEmail;
+                student.grade = grade;
                 student.teacherID = this.auth.userState.uid;
                 this.studentService.create(student);
             }
@@ -100,6 +104,7 @@ export class StudentsListComponent implements OnInit {
             student.parentLastName = element.parentLastName;
             student.parentPhone = element.parentPhone;
             student.parentEmail = element.parentEmail;
+            student.grade = element.grade;
         });
 
         if (!tableId) throw new Error("Element Id does not exists");
@@ -107,5 +112,10 @@ export class StudentsListComponent implements OnInit {
         const tbl = document.getElementById(tableId);
         const wb = XLSX.utils.table_to_book(tbl);
         XLSX.writeFile(wb, "students.xlsx");
+    }
+
+    deleteStudent(student: Student) {
+        this.studentService.delete(student.id);
+        this.router.navigate["students"];
     }
 }

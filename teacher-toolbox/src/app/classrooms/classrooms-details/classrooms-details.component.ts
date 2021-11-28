@@ -20,6 +20,7 @@ export class ClassroomsDetailsComponent implements OnInit {
     allStudents: Student[];
     tempStudentsList: string[];
     classId: string = "";
+    userData: any = null;
 
     viewDate: Date = new Date();
     currentDate: Date = new Date();
@@ -39,6 +40,7 @@ export class ClassroomsDetailsComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
+        this.userData = this.route.snapshot.data.userdata;
         this.route.paramMap.subscribe((params: ParamMap) => {
             this.classId = params.get("class_id");
 
@@ -74,7 +76,20 @@ export class ClassroomsDetailsComponent implements OnInit {
     }
 
     getViewMonth(): string {
-        var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var months = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ];
         return months[this.viewDate.getMonth()] + " - " + this.viewDate.getFullYear();
     }
 
@@ -84,12 +99,10 @@ export class ClassroomsDetailsComponent implements OnInit {
         if (newMonth >= 12) {
             this.viewDate.setMonth(0);
             this.viewDate.setFullYear(this.viewDate.getFullYear() + 1);
-        }
-        else if (newMonth < 0) {
+        } else if (newMonth < 0) {
             this.viewDate.setMonth(11);
             this.viewDate.setFullYear(this.viewDate.getFullYear() - 1);
-        }
-        else this.viewDate.setMonth(newMonth);
+        } else this.viewDate.setMonth(newMonth);
 
         this.refresh.emit(null);
     }
@@ -183,19 +196,17 @@ export class ClassroomsDetailsComponent implements OnInit {
             if (value == student.id) this.tempStudentsList.splice(index, 1);
         });
 
-        this.allStudents.find(s => s.id == student.id).classIDs.forEach((value, index) => {
-            if (value == this.classId) {
-                this.allStudents.find(s => s.id == student.id).classIDs.splice(index, 1);
-            }
-        });
+        this.allStudents
+            .find((s) => s.id == student.id)
+            .classIDs.forEach((value, index) => {
+                if (value == this.classId) {
+                    this.allStudents.find((s) => s.id == student.id).classIDs.splice(index, 1);
+                }
+            });
     }
 
     initTempStudentList(): void {
         this.tempStudentsList = this.currentClassroom.studentIDs.slice();
-    }
-
-    getStudentFromID(id: string): Student {
-        return this.allStudents.filter((s) => s.id == id)[0];
     }
 
     saveStudentsList(): void {

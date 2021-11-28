@@ -9,10 +9,14 @@
 
 <div class="row">
     <div class="col">
-        <div style="text-align: center;">
-            <button class="btn btn-primary" style="margin-left: 0%;" (click)="switchViewMonth(-1)"><i class="bi bi-arrow-left"></i></button>
+        <div style="text-align: center">
+            <button class="btn btn-primary" style="margin-left: 0%" (click)="switchViewMonth(-1)">
+                <i class="bi bi-arrow-left"></i>
+            </button>
             {{ getViewMonth() }}
-            <button class="btn btn-primary" style="margin-right: 0%;" (click)="switchViewMonth(1)"><i class="bi bi-arrow-right"></i></button>
+            <button class="btn btn-primary" style="margin-right: 0%" (click)="switchViewMonth(1)">
+                <i class="bi bi-arrow-right"></i>
+            </button>
         </div>
         <div class="calendarContainer">
             <mwl-calendar-month-view
@@ -54,11 +58,6 @@
                 class="btn btn-primary"
                 (click)="initTempStudentList(); triggerModal(modalAddStudent)"
                 >Edit Student(s)</a
-            >
-            <a
-                class="btn btn-primary"
-                (click)="triggerModal(modalStudentAttendance)"
-                >Attendance/Behaviour/Role</a
             >
             <a class="btn btn-primary" (click)="triggerModal(modalAddEvent)">Add Event</a>
         </div>
@@ -122,42 +121,6 @@
 
     <div class="modal-footer">
         <button type="button" class="btn btn-primary" (click)="saveStudentsList(); modal.close()">
-            Save
-        </button>
-    </div>
-</ng-template>
-
-<ng-template #modalStudentAttendance let-modal class="modal">
-    <div class="modal-header">
-        <h5 class="modal-title">Student Attendance:</h5>
-        <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-            (click)="modal.dismiss()"
-        ></button>
-    </div>
-
-    <div class="modal-body">
-        <div *ngFor="let id of currentClassroom.studentIDs">
-            {{ getStudentFromID(id).firstName }} {{ getStudentFromID(id).lastName }}
-            <input
-                type="checkbox"
-                checked
-                data-toggle="toggle"
-            />
-            <select id="behaviour" name="behaviour">
-                <option value="good">Good</option>
-                <option value="bad">Bad</option>
-                <option value="horrible">Horrible</option>
-            </select>
-            <input type="text">
-        </div>
-    </div>
-
-    <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="modal.close()">
             Save
         </button>
     </div>

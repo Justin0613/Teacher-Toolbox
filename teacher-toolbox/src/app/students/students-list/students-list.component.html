@@ -1,3 +1,20 @@
+<div class="excelFunctions">
+    <button
+        *ngIf="this.numStudents != 0"
+        (click)="exportData('exportStudents')"
+        class="btn btn-info shadow p-3 mb-5 rounded"
+    >
+        Export List of Students
+    </button>
+
+    <button class="btn btn-info shadow p-3 mb-5 rounded float-right">
+        <label>
+            <input hidden type="file" (change)="onFileChange($event)" multiple="false" />
+            <span class="pointer">Import List of Students</span>
+        </label>
+    </button>
+</div>
+
 <div class="container">
     <div class="input-group rounded mb-3 search">
         <input
@@ -8,18 +25,25 @@
             placeholder="Search"
         />
     </div>
+
     <div class="row justify-content-md-center">
         <div class="list row">
             <ul class="list-group" *ngFor="let student of students">
                 <a
                     routerLink="/students/{{ student.id }}"
-                    class="card list-group-item list-group-item-action"
+                    class="card list-group-item list-group-item-action studentDetail"
                     *ngIf="student.firstName.toLowerCase().includes(queryString.toLowerCase())"
                 >
                     <h5 class="card-title">
                         {{ student.firstName + " " + student.lastName }}
                     </h5>
-                    <p class="card-text">Enrolled in: (class 1, class 2, etc.)</p>
+
+                    <br />
+
+                    <p class="card-text">Grade: {{ student.grade }} Grade</p>
+                    <button (click)="deleteStudent(student)" class="btn btn-danger removeStudent">
+                        <i class="bi bi-x-lg"> Remove Student</i>
+                    </button>
                 </a>
             </ul>
         </div>
@@ -42,17 +66,4 @@
             <td>{{ student?.parentEmail }}</td>
         </tr>
     </table>
-</div>
-
-<div class="excelFunctions container">
-    <button (click)="exportData('exportStudents')" class="btn btn-info shadow p-3 mb-5 rounded">
-        Export Student Information
-    </button>
-
-    <button class="btn btn-info shadow p-3 mb-5 rounded float-right">
-        <label>
-            <input hidden type="file" (change)="onFileChange($event)" multiple="false" />
-            <span class="pointer">Import Student Information</span>
-        </label>
-    </button>
 </div>
