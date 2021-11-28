@@ -79,19 +79,19 @@ export class StudentsListComponent implements OnInit {
             for (let i = 0; i < data.length; i++) {
                 const student = new Student();
                 const studentName: string = data[i]["Student Name"];
+                const grade: string = data[i]["Student's Grade Level"];
                 const parentName: string = data[i]["Parent Name"];
                 const parentPhone: string = data[i]["Parent Phone Number"];
                 const parentEmail: string = data[i]["Parent Email"];
-                const grade: string = data[i]["Grade"];
 
                 student.firstName = studentName.substring(0, studentName.indexOf(" "));
                 student.lastName = studentName.substring(studentName.indexOf(" ") + 1);
+                student.grade = grade;
                 student.parentFirstName = parentName.substring(0, parentName.indexOf(" "));
                 student.parentLastName = parentName.substring(parentName.indexOf(" ") + 1);
                 student.parentPhone = parentPhone;
                 student.parentEmail = parentEmail;
-                student.grade = grade;
-                student.teacherID = this.auth.userState.uid;
+                student.teacherID = "";
                 this.studentService.create(student);
             }
         };
@@ -99,14 +99,15 @@ export class StudentsListComponent implements OnInit {
 
     exportData(tableId: string) {
         this.students.forEach((element: Student) => {
+            console.log(element);
             const student = new Student();
             student.firstName = element.firstName;
             student.lastName = element.lastName;
+            student.grade = element.grade;
             student.parentFirstName = element.parentFirstName;
             student.parentLastName = element.parentLastName;
             student.parentPhone = element.parentPhone;
             student.parentEmail = element.parentEmail;
-            student.grade = element.grade;
         });
 
         if (!tableId) throw new Error("Element Id does not exists");

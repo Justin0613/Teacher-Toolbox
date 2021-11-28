@@ -10,10 +10,19 @@
     margin: 1em 0 0.5em 0;
 }
 
-.bi-plus-lg {
+.bi-plus-lg, .bi-download {
     font-size: 1.2em;
 }
 
 .container {
     width: 50%;
+}
+
+.excelTemplate > button {
+    float: right;
+    margin-right: .5em;
+}
+
+#exportStudentsTemplate {
+    display: none;
 }

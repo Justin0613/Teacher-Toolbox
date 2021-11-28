@@ -1,11 +1,40 @@
 <app-navigation-bar></app-navigation-bar>
 
 <div class="container">
-    <h1 class="title col">All Students</h1>
-    <button class="btn btn-primary col" (click)="triggerModal(modalData)">
-        <i class="bi bi-plus-lg"><span> Add a New Student</span></i>
-    </button>
+    <div class="row">
+        <div class="col">
+            <h1 class="title">All Students</h1>
+            <button class="btn btn-primary" (click)="triggerModal(modalData)">
+                <i class="bi bi-plus-lg"><span> Add a New Student</span></i>
+            </button>
+        </div>
+        <div class="col excelTemplate align-self-end">
+            <button class="btn btn-success" (click)="exportData('exportStudentsTemplate')">
+                <i class="bi bi-download"><span> Download Template</span></i>
+            </button>
+        </div>
+    </div>
 </div>
+
+<table id="exportStudentsTemplate">
+    <tr class="thead">
+        <th>Student Name</th>
+        <th>Student's Grade Level</th>
+        <th>Parent Name</th>
+        <th>Parent Phone Number</th>
+        <th>Parent Email</th>
+    </tr>
+
+    <!-- <tr class="tbody" *ngFor="let student of students">
+        <td>{{ student?.firstName + " " + student?.lastName }}</td>
+        <td>{{ student?.grade }}</td>
+        <td>
+            {{ student?.parentFirstName + " " + student?.parentLastName }}
+        </td>
+        <td>{{ student?.parentPhone }}</td>
+        <td>{{ student?.parentEmail }}</td>
+    </tr> -->
+</table>
 
 <app-students-list></app-students-list>
 

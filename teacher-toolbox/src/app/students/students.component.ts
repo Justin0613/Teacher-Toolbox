@@ -1,4 +1,5 @@
 import { AuthService } from "src/app/services/auth.service";
+import * as XLSX from "xlsx";
 import { StudentsService } from "../services/students.service";
 import { Component, OnInit } from "@angular/core";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
@@ -67,5 +68,14 @@ export class StudentsComponent implements OnInit {
                 })
                 .catch(() => window.alert("Unable to add new student"));
         }
+    }
+
+    exportData(tableId: string) {
+        if (!tableId) throw new Error("Element Id does not exists");
+
+        const tbl = document.getElementById(tableId);
+        const wb = XLSX.utils.table_to_book(tbl);
+
+        XLSX.writeFile(wb, "students.xlsx", {});
     }
 }
