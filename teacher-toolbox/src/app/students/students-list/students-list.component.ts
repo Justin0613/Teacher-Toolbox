@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { StudentsService } from "src/app/services/students.service";
+import { ClassroomService } from "src/app/services/classroom.service";
 import { map } from "rxjs/operators";
 import * as XLSX from "xlsx";
 import { Student } from "src/models/student.model";
@@ -20,6 +21,7 @@ export class StudentsListComponent implements OnInit {
 
     constructor(
         private auth: AuthService,
+        private classroomService: ClassroomService,
         private studentService: StudentsService,
         private router: Router,
         private route: ActivatedRoute
@@ -115,6 +117,27 @@ export class StudentsListComponent implements OnInit {
     }
 
     deleteStudent(student: Student) {
+        this.classroomService
+            .getAll()
+            .snapshotChanges()
+            .pipe(
+                map((changes) =>
+                    changes.map((c) => ({
+                        id: c.payload.doc.id,
+                        ...c.payload.doc.data()
+                    }))
+                )
+            )
+            .subscribe((data) => {
+                data.forEach((c, i) => {
+                    if (c.studentIDs.includes(student.id)) {
+                        c.studentIDs.splice(i, 1);
+                        c.studentData.splice(i, 1);
+                        this.classroomService.update(c.id, c);
+                    }
+                });
+            });
+
         this.studentService.delete(student.id);
         this.router.navigate["students"];
     }

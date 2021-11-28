@@ -47,9 +47,11 @@
                     >
                         <ng-template ngbPanelContent>
                             Student ID: {{ student.id }}<br />
+                            Assigned Seat: {{ getStudentData(student).seat }}<br />
+                            Student Role: {{ getStudentData(student).role }}<br />
                             Parent Name: {{ student.parentFirstName }} {{ student.parentLastName
                             }}<br />
-                            Parent Phone: {{ student.parentPhone }}
+                            Parent Phone: {{ student.parentPhone }}<br/>
                         </ng-template>
                     </ngb-panel>
                 </ngb-accordion>
@@ -59,6 +61,7 @@
                 (click)="initTempStudentList(); triggerModal(modalAddStudent)"
                 >Edit Student(s)</a
             >
+            <a class="btn btn-primary" (click)="initTempStudentList(); triggerModal(modalEditStudent)">Edit Seat/Role</a>
             <a class="btn btn-primary" (click)="triggerModal(modalAddEvent)">Add Event</a>
         </div>
 
@@ -116,6 +119,33 @@
                 />
                 {{ student.firstName }} {{ student.lastName }}
             </ng-template>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="saveStudentsList(); modal.close()">
+            Save
+        </button>
+    </div>
+</ng-template>
+
+<ng-template #modalEditStudent let-modal class="modal">
+    <div class="modal-header">
+        <h5 class="modal-title">Edit Student Seat/Role:</h5>
+        <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            (click)="modal.dismiss()"
+        ></button>
+    </div>
+
+    <div class="modal-body">
+        <div *ngFor="let data of tempStudentDataList">
+            {{ data.name }}<br>
+            ____Assigned Seat: <input type="number" [(ngModel)]="data.seat"><br>
+            ____Student Role: <input type="text" [(ngModel)]="data.role"><br>
         </div>
     </div>
 

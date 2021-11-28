@@ -1,20 +1,3 @@
-<div class="excelFunctions">
-    <button
-        *ngIf="this.numStudents != 0"
-        (click)="exportData('exportStudents')"
-        class="btn btn-info shadow p-3 mb-5 rounded"
-    >
-        Export List of Students
-    </button>
-
-    <button class="btn btn-info shadow p-3 mb-5 rounded float-right">
-        <label>
-            <input hidden type="file" (change)="onFileChange($event)" multiple="false" />
-            <span class="pointer">Import List of Students</span>
-        </label>
-    </button>
-</div>
-
 <div class="container">
     <div class="input-group rounded mb-3 search">
         <input
@@ -41,7 +24,7 @@
                     <br />
 
                     <p class="card-text">Grade: {{ student.grade }} Grade</p>
-                    <button (click)="deleteStudent(student)" class="btn btn-danger removeStudent">
+                    <button (click)="deleteStudent(student); $event.stopImmediatePropagation(); $event.stopPropagation(); $event.preventDefault()" class="btn btn-danger removeStudent">
                         <i class="bi bi-x-lg"> Remove Student</i>
                     </button>
                 </a>
@@ -66,4 +49,21 @@
             <td>{{ student?.parentEmail }}</td>
         </tr>
     </table>
+</div>
+
+<div class="excelFunctions">
+    <button
+        *ngIf="this.numStudents != 0"
+        (click)="exportData('exportStudents')"
+        class="btn btn-info shadow p-3 mb-5 rounded"
+    >
+        Export List of Students
+    </button>
+
+    <button class="btn btn-info shadow p-3 mb-5 rounded float-right">
+        <label>
+            <input hidden type="file" (change)="onFileChange($event)" multiple="false" />
+            <span class="pointer">Import List of Students</span>
+        </label>
+    </button>
 </div>
