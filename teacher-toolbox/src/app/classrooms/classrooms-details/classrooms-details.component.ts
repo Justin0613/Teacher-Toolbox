@@ -221,13 +221,15 @@ export class ClassroomsDetailsComponent implements OnInit {
         });
     }
     newAttendanceList() {
-        this.allStudents.forEach((s) => {
-            this.tempAttendance = {
-                id: s.id,
-                status: ""
-            };
-            this.newAttendanceInput.push(this.tempAttendance);
-        });
+        if (this.newAttendanceInput.length == 0) {
+            this.allStudents.forEach((s) => {
+                this.tempAttendance = {
+                    id: s.id,
+                    status: ""
+                };
+                this.newAttendanceInput.push(this.tempAttendance);
+            });
+        }
         console.log(this.newAttendanceInput);
     }
     saveAttendance(): void {
