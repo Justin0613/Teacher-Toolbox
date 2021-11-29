@@ -60,6 +60,11 @@
                 >Edit Student(s)</a
             >
             <a class="btn btn-primary" (click)="triggerModal(modalAddEvent)">Add Event</a>
+            <a
+                class="btn btn-primary"
+                (click)="triggerModal(modalAddAttendance); newAttendanceList()"
+                >Add Attendance</a
+            >
         </div>
 
         <div class="">
@@ -117,9 +122,6 @@
                 {{ student.firstName }} {{ student.lastName }}
             </ng-template>
         </div>
-        <button type="button" class="btn btn-primary" (click)="addNewAttendance(); modal.close()">
-            Save
-        </button>
     </div>
 
     <div class="modal-footer">
@@ -223,5 +225,47 @@
         <button type="button" class="btn btn-danger" (click)="deleteSelectedEvent(); modal.close()">
             Delete
         </button>
+    </div>
+</ng-template>
+
+<ng-template #modalAddAttendance let-modal class="modal">
+    <div class="modal-header">
+        <h5>Add Attendace:</h5>
+        <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            (click)="modal.dismiss()"
+        ></button>
+    </div>
+
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="description">Students</label>
+            <div *ngFor="let student of allStudents; let i = index" class="row">
+                <h6 class="col">{{ student.firstName }} {{ student.lastName }}</h6>
+                <div class="col">
+                    <input
+                        class="form-check-input"
+                        type="radio"
+                        name="attendance{{ i }}"
+                        id="present{{ i }}"
+                    /><label class="form-check-label" for="present{{ i }}">Present</label>
+                </div>
+                <div class="col">
+                    <input
+                        class="form-check-input"
+                        type="radio"
+                        name="attendance{{ i }}"
+                        id="absent{{ i }}"
+                    /><label class="form-check-label" for="absent{{ i }}">Absent</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modal.close()">Save</button>
     </div>
 </ng-template>

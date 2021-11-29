@@ -7,6 +7,7 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import Classroom from "src/models/classroom.model";
 import { Student } from "src/models/student.model";
 import { CalendarEvent } from "angular-calendar";
+import { Attendance } from "src/models/attendance.model";
 
 @Component({
     selector: "app-classrooms-details",
@@ -31,6 +32,9 @@ export class ClassroomsDetailsComponent implements OnInit {
 
     @Output() refresh = new EventEmitter<any>();
     newEventInput: any = { title: "", date: "" };
+
+    tempAttendance: Attendance;
+    newAttendanceInput: Attendance[] = [];
 
     constructor(
         private classroomService: ClassroomService,
@@ -215,5 +219,16 @@ export class ClassroomsDetailsComponent implements OnInit {
         this.allStudents.forEach((s) => {
             this.studentService.update(s.id, s);
         });
+    }
+    newAttendanceList() {
+        this.allStudents.forEach((s) => {
+            this.tempAttendance = {
+                id: s.id,
+                present: false,
+                absent: false
+            };
+            this.newAttendanceInput.push(this.tempAttendance);
+        });
+        console.log(this.newAttendanceInput);
     }
 }
