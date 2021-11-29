@@ -64,6 +64,11 @@
                 >Edit Seat/Role</a
             >
             <a class="btn btn-primary" (click)="triggerModal(modalAddEvent)">Add Event</a>
+            <a
+                class="btn btn-primary"
+                (click)="triggerModal(modalAddAttendance); newAttendanceList()"
+                >Add Attendance</a
+            >
         </div>
 
         <div class="">
@@ -250,6 +255,57 @@
         </button>
         <button type="button" class="btn btn-danger" (click)="deleteSelectedEvent(); modal.close()">
             Delete
+        </button>
+    </div>
+</ng-template>
+
+<ng-template #modalAddAttendance let-modal class="modal">
+    <div class="modal-header">
+        <h5>Add Attendace:</h5>
+        <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            (click)="modal.dismiss()"
+        ></button>
+    </div>
+
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="description">Students</label>
+            <div *ngFor="let student of allStudents; let i = index" class="row">
+                <h6 class="col">{{ student.firstName }} {{ student.lastName }}</h6>
+                <div class="col">
+                    <input
+                        class="form-check-input"
+                        type="radio"
+                        name="attendance{{ i }}"
+                        id="present{{ i }}"
+                        value="present"
+                        [(ngModel)]="newAttendanceInput[i].status"
+                    /><label class="form-check-label" for="present{{ i }}">Present</label>
+                </div>
+                <div class="col">
+                    <input
+                        class="form-check-input"
+                        type="radio"
+                        name="attendance{{ i }}"
+                        id="absent{{ i }}"
+                        value="absent"
+                        [(ngModel)]="newAttendanceInput[i].status"
+                    /><label class="form-check-label" for="absent{{ i }}">Absent</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="allPresent()">
+            Mark All As Present
+        </button>
+        <button type="button" class="btn btn-primary" (click)="saveAttendance(); modal.close()">
+            Save
         </button>
     </div>
 </ng-template>

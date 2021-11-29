@@ -7,6 +7,7 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import Classroom from "src/models/classroom.model";
 import { Student } from "src/models/student.model";
 import { CalendarEvent } from "angular-calendar";
+import { Attendance } from "src/models/attendance.model";
 
 @Component({
     selector: "app-classrooms-details",
@@ -32,6 +33,9 @@ export class ClassroomsDetailsComponent implements OnInit {
 
     @Output() refresh = new EventEmitter<any>();
     newEventInput: any = { title: "", date: "" };
+
+    tempAttendance: Attendance;
+    newAttendanceInput: Attendance[] = [];
 
     constructor(
         private classroomService: ClassroomService,
@@ -229,9 +233,48 @@ export class ClassroomsDetailsComponent implements OnInit {
         });
     }
 
+    newAttendanceList() {
+        if (this.newAttendanceInput.length == 0) {
+            this.allStudents.forEach((s) => {
+                this.tempAttendance = {
+                    id: s.id,
+                    date: this.selectedDate,
+                    status: ""
+                };
+                this.newAttendanceInput.push(this.tempAttendance);
+            });
+        }
+        console.log(this.newAttendanceInput);
+    }
+    saveAttendance(): void {
+        console.log(this.newAttendanceInput);
+
+        let newEvent: any = new Object();
+        newEvent.start = this.selectedDate;
+        this.calendarEvents.push(newEvent);
+
+        this.currentClassroom.events.push({
+            start: newEvent.start.toDateString(),
+            title: "Attendance"
+        });
+        this.classroomService.update(this.classId, this.currentClassroom);
+
+        this.newAttendanceInput.forEach((student) => {
+            student.status = "";
+            student.date = null;
+        });
+        this.newEventInput = { title: "", date: "" };
+        this.refresh.emit(null);
+    }
+    allPresent(): void {
+        this.newAttendanceInput.forEach((student) => {
+            student.status = "present";
+        });
+
     getStudentData(student: Student): any {
         var index: number = this.currentClassroom.studentIDs.findIndex((s) => s == student.id);
         var data: any = this.currentClassroom.studentData[index];
         return data;
+
     }
 }
