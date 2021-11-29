@@ -225,6 +225,7 @@ export class ClassroomsDetailsComponent implements OnInit {
             this.allStudents.forEach((s) => {
                 this.tempAttendance = {
                     id: s.id,
+                    date: this.selectedDate,
                     status: ""
                 };
                 this.newAttendanceInput.push(this.tempAttendance);
@@ -234,6 +235,23 @@ export class ClassroomsDetailsComponent implements OnInit {
     }
     saveAttendance(): void {
         console.log(this.newAttendanceInput);
+
+        let newEvent: any = new Object();
+        newEvent.start = this.selectedDate;
+        this.calendarEvents.push(newEvent);
+
+        this.currentClassroom.events.push({
+            start: newEvent.start.toDateString(),
+            title: "Attendance"
+        });
+        this.classroomService.update(this.classId, this.currentClassroom);
+
+        this.newAttendanceInput.forEach((student) => {
+            student.status = "";
+            student.date = null;
+        });
+        this.newEventInput = { title: "", date: "" };
+        this.refresh.emit(null);
     }
     allPresent(): void {
         this.newAttendanceInput.forEach((student) => {
