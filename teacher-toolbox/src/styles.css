@@ -23,13 +23,17 @@ h6 {
     font-weight: 600;
 }
 
+.modal {
+    overflow-y:auto;
+}
+
 body:not(.dark-mode-preloading) {
     transition: all 0.3s linear;
 }
 
 body.dark-mode {
     background-color: #2d3436;
-    color: rgb(207, 207, 207);
+    color: white;
 }
 
 body {

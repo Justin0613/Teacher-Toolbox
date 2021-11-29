@@ -38,3 +38,18 @@
 .container {
     width: 50%;
 }
+.card-title{
+    color:black;
+}
+
+.card-text{
+    color:black;
+}
+
+.modal-title{
+    color:black;
+}
+
+.modal-body{
+    color:black;
+}

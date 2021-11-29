@@ -55,11 +55,11 @@
 
 <div class="excelFunctions">
     <button *ngIf="this.numStudents != 0" (click)="exportData('exportStudents')"
-        class="btn btn-info shadow p-3 mb-5 rounded">
+        class="btn btn-secondary shadow p-3 mb-5 rounded">
         Export List of Students
     </button>
 
-    <button class="btn btn-info shadow p-3 mb-5 rounded float-right">
+    <button class="btn btn-secondary shadow p-3 mb-5 rounded float-right">
         <label>
             <input hidden type="file" (change)="onFileChange($event)" multiple="false" />
             <span class="pointer">Import List of Students</span>

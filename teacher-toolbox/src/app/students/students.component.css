@@ -28,3 +28,16 @@
     display: none;
 }
 
+.modal-body{
+    color:black;
+    height: 500px;
+    overflow-y: scroll;
+}
+
+.modal-header{
+    color:black;
+}
+
+.modal{
+    overflow-y:auto;
+}
