@@ -251,6 +251,8 @@
                         type="radio"
                         name="attendance{{ i }}"
                         id="present{{ i }}"
+                        value="present"
+                        [(ngModel)]="newAttendanceInput[i].status"
                     /><label class="form-check-label" for="present{{ i }}">Present</label>
                 </div>
                 <div class="col">
@@ -259,6 +261,8 @@
                         type="radio"
                         name="attendance{{ i }}"
                         id="absent{{ i }}"
+                        value="absent"
+                        [(ngModel)]="newAttendanceInput[i].status"
                     /><label class="form-check-label" for="absent{{ i }}">Absent</label>
                 </div>
             </div>
@@ -266,6 +270,8 @@
     </div>
 
     <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="modal.close()">Save</button>
+        <button type="button" class="btn btn-primary" (click)="saveAttendance(); modal.close()">
+            Save
+        </button>
     </div>
 </ng-template>

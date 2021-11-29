@@ -224,11 +224,13 @@ export class ClassroomsDetailsComponent implements OnInit {
         this.allStudents.forEach((s) => {
             this.tempAttendance = {
                 id: s.id,
-                present: false,
-                absent: false
+                status: ""
             };
             this.newAttendanceInput.push(this.tempAttendance);
         });
+        console.log(this.newAttendanceInput);
+    }
+    saveAttendance(): void {
         console.log(this.newAttendanceInput);
     }
 }
