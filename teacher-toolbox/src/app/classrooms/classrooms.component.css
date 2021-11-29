@@ -17,3 +17,15 @@
 .container {
     width: 50%;
 }
+
+.modal-body{
+    color:black;
+}
+
+.modal-header{
+    color:black;
+}
+
+#exportStudentsTemplate{
+    color:green;
+}

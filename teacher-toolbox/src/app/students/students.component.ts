@@ -28,7 +28,7 @@ export class StudentsComponent implements OnInit {
     }
 
     triggerModal(content) {
-        this.modal.open(content).result;
+        this.modal.open(content, { scrollable: true });
     }
 
     saveStudent(

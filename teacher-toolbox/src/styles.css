@@ -31,6 +31,7 @@ h3 {
 
 .modal {
     margin-top: 15%;
+    overflow-y:auto;
 }
 
 body:not(.dark-mode-preloading) {
@@ -39,7 +40,7 @@ body:not(.dark-mode-preloading) {
 
 body.dark-mode {
     background-color: #2d3436;
-    color: rgb(207, 207, 207);
+    color: white;
 }
 
 body {
