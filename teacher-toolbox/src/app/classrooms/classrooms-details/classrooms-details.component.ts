@@ -235,4 +235,9 @@ export class ClassroomsDetailsComponent implements OnInit {
     saveAttendance(): void {
         console.log(this.newAttendanceInput);
     }
+    allPresent(): void {
+        this.newAttendanceInput.forEach((student) => {
+            student.status = "present";
+        });
+    }
 }
