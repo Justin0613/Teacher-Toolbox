@@ -1,20 +1,24 @@
 <app-navigation-bar></app-navigation-bar>
 
-<div class="row titleContainer">
-    <div>
-        <strong>{{ currentClassroom.name }}</strong> -
-        {{ currentClassroom.description }}
+<div class="container titleContainer">
+    <div class="row">
+        <div class="col">
+            <h1 class="title">{{ currentClassroom.name }}</h1>
+            <h3 class="title">{{ currentClassroom.description }}</h3>
+        </div>
     </div>
 </div>
 
 <div class="row">
     <div class="col">
         <div style="text-align: center">
-            <button class="btn btn-primary" style="margin-left: 0%" (click)="switchViewMonth(-1)">
+            <button class="btn btn-primary" (click)="switchViewMonth(-1)">
                 <i class="bi bi-arrow-left"></i>
             </button>
-            {{ getViewMonth() }}
-            <button class="btn btn-primary" style="margin-right: 0%" (click)="switchViewMonth(1)">
+            <div class="month-display">
+                {{ getViewMonth() }}
+            </div>
+            <button class="btn btn-primary" (click)="switchViewMonth(1)">
                 <i class="bi bi-arrow-right"></i>
             </button>
         </div>
@@ -32,7 +36,7 @@
 
     <div class="col" style="overflow: hidden">
         <div class="studentsContainer">
-            <div class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light" style="max-height: 80%">
+
                 <ngb-accordion
                     activeIds="static-0"
                     *ngFor="let student of allStudents; let index = index"
@@ -52,42 +56,43 @@
                         </ng-template>
                     </ngb-panel>
                 </ngb-accordion>
-            </div>
-            <a
-                class="btn btn-primary"
-                (click)="initTempStudentList(); triggerModal(modalAddStudent)"
-                >Edit Student(s)</a
-            >
-            <a
-                class="btn btn-primary"
-                (click)="initTempStudentList(); triggerModal(modalEditStudent)"
-                >Edit Seat/Role</a
-            >
-            <a class="btn btn-primary" (click)="triggerModal(modalAddEvent)">Add Event</a>
-            <a
-                class="btn btn-primary"
-                (click)="triggerModal(modalAddAttendance); newAttendanceList()"
-                >Add Attendance</a
-            >
+
+
         </div>
 
-        <div class="">
-            {{ selectedDate }}
-        </div>
 
-        <div class="col" style="overflow: hidden">
-            <div class="studentsContainer">
-                <div
-                    class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light"
-                    style="max-height: 80%"
-                >
-                    <div *ngFor="let event of getEventsByDay(selectedDate.getDate())">
-                        {{ event.title }} - {{ event.start }}
-                    </div>
-                </div>
+        <div class="event-section">
+            <h5>Classroom Events</h5>
+            <div class="col">
+
+
+                        <div *ngFor="let event of getEventsByDay(selectedDate.getDate())">
+                            {{ event.title }} - {{ event.start.toDateString() }}
+                        </div>
+
+
             </div>
         </div>
     </div>
+</div>
+
+<div class="button-grid">
+    <a
+        class="btn btn-primary button-grid-item"
+        (click)="initTempStudentList(); triggerModal(modalAddStudent)"
+        >Edit Student(s)</a
+    >
+    <a
+        class="btn btn-primary button-grid-item"
+        (click)="initTempStudentList(); triggerModal(modalEditStudent)"
+        >Edit Seat/Role</a
+    >
+    <a class="btn btn-primary button-grid-item" (click)="triggerModal(modalAddEvent)">Add Event</a>
+    <a
+        class="btn btn-primary button-grid-item"
+        (click)="triggerModal(modalAddAttendance); newAttendanceList()"
+        >Add Attendance</a
+    >
 </div>
 
 <ng-template #modalAddStudent let-modal class="modal">

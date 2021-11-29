@@ -24,16 +24,6 @@
         <th>Parent Phone Number</th>
         <th>Parent Email</th>
     </tr>
-
-    <!-- <tr class="tbody" *ngFor="let student of students">
-        <td>{{ student?.firstName + " " + student?.lastName }}</td>
-        <td>{{ student?.grade }}</td>
-        <td>
-            {{ student?.parentFirstName + " " + student?.parentLastName }}
-        </td>
-        <td>{{ student?.parentPhone }}</td>
-        <td>{{ student?.parentEmail }}</td>
-    </tr> -->
 </table>
 
 <app-students-list></app-students-list>
@@ -71,6 +61,18 @@
                 required
                 [(ngModel)]="student.lastName"
                 #studentLastName
+            />
+        </div>
+        
+        <div class="form-group">
+            <label for="description">Student's Grade Level</label>
+            <input
+                type="text"
+                class="form-control"
+                id="description"
+                required
+                [(ngModel)]="student.grade"
+                #grade
             />
         </div>
 
@@ -119,18 +121,6 @@
                 required
                 [(ngModel)]="student.parentEmail"
                 #parentEmail
-            />
-        </div>
-
-        <div class="form-group">
-            <label for="description">Grade</label>
-            <input
-                type="text"
-                class="form-control"
-                id="description"
-                required
-                [(ngModel)]="student.grade"
-                #grade
             />
         </div>
     </div>

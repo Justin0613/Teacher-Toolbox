@@ -13,3 +13,28 @@
     width: 98.5%;
     margin-top: 3em;
 }
+
+.card-text {
+    font-weight: 400;
+}
+
+.form-group {
+    margin: .7em;
+}
+
+.form-group label {
+    margin: 0.4em 0;
+    font-weight: 600;
+}
+
+.title {
+    margin: 1em 0 0.5em 0;
+}
+
+.bi-plus-lg {
+    font-size: 1.2em;
+}
+
+.container {
+    width: 50%;
+}

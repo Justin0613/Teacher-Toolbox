@@ -24,6 +24,8 @@ export class ClassroomsDetailsComponent implements OnInit {
     classId: string = "";
     userData: any = null;
 
+    numEvents: number = 0;
+
     viewDate: Date = new Date();
     currentDate: Date = new Date();
     currentDateString: string = this.currentDate.toISOString().split("T")[0];
@@ -42,7 +44,8 @@ export class ClassroomsDetailsComponent implements OnInit {
         private studentService: StudentsService,
         private modal: NgbModal,
         private route: ActivatedRoute
-    ) {}
+    ) {
+    }
 
     ngOnInit(): void {
         this.userData = this.route.snapshot.data.userdata;

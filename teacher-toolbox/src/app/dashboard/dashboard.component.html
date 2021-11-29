@@ -3,10 +3,13 @@
 <div class="jumbotron">
     <div class="container text-white">
         <h2 class="display-3">Notifications</h2>
-        <div *ngFor="let event of getLatestEvents(5)">
-            - {{ event.eventName }} - {{ event.className }} -
-            {{ event.eventDate.toISOString().split("T")[0] }}
-        </div>
+        <ul>
+            <li *ngFor="let event of getLatestEvents(5)">
+                <span *ngIf="event.eventName == 'Attendance'">{{ event.eventName }} Taken</span>
+                <span *ngIf="event.eventName != 'Attendance'">{{ event.eventName }}</span>
+                <span>, {{ event.eventDate.toISOString().split("T")[0] }}</span>
+            </li>
+        </ul>
     </div>
 </div>
 

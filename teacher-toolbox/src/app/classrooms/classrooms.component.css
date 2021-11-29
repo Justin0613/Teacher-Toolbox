@@ -1,5 +1,5 @@
 .form-group {
-    margin: 1em;
+    margin: .7em;
 }
 
 .form-group label {
@@ -16,4 +16,8 @@
 
 .container {
     width: 50%;
+}
+
+label {
+    font-weight: 600;
 }

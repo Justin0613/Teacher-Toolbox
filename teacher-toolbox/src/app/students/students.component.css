@@ -1,9 +1,10 @@
 .form-group {
-    margin: 1em;
+    margin: .7em;
 }
 
-.form-group label {
+.form-group > label {
     margin: 0.4em 0;
+    font-weight: 600;
 }
 
 .title {
@@ -26,3 +27,4 @@
 #exportStudentsTemplate {
     display: none;
 }
+
