@@ -31,6 +31,7 @@ export class StudentsService {
 
     create(student: Student): any {
         student.classIDs = [];
+        student.currentBehavior = "Good";
         return this.studentRef.add({ ...student });
     }
 

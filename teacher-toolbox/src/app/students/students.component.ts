@@ -1,4 +1,5 @@
 import { AuthService } from "src/app/services/auth.service";
+import * as XLSX from "xlsx";
 import { StudentsService } from "../services/students.service";
 import { Component, OnInit } from "@angular/core";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
@@ -36,7 +37,8 @@ export class StudentsComponent implements OnInit {
         parentFirstName: string,
         parentLastName: string,
         parentPhone: string,
-        parentEmail: string
+        parentEmail: string,
+        grade: string
     ): void {
         if (
             studentFirstName == "" ||
@@ -44,9 +46,10 @@ export class StudentsComponent implements OnInit {
             parentFirstName == "" ||
             parentLastName == "" ||
             parentPhone == "" ||
-            parentEmail == ""
+            parentEmail == "" ||
+            grade == ""
         ) {
-            window.alert("The name and description must not be blank.");
+            window.alert("All fields are required");
         } else {
             this.student.teacherID = this.auth.userState.uid;
             this.studentService
@@ -61,8 +64,18 @@ export class StudentsComponent implements OnInit {
                     this.student.parentLastName = "";
                     this.student.parentPhone = "";
                     this.student.parentEmail = "";
+                    this.student.grade = "";
                 })
                 .catch(() => window.alert("Unable to add new student"));
         }
+    }
+
+    exportData(tableId: string) {
+        if (!tableId) throw new Error("Element Id does not exists");
+
+        const tbl = document.getElementById(tableId);
+        const wb = XLSX.utils.table_to_book(tbl);
+
+        XLSX.writeFile(wb, "students.xlsx", {});
     }
 }

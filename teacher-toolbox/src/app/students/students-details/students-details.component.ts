@@ -63,12 +63,4 @@ export class StudentsDetailsComponent implements OnInit {
             .update(this.currentStudent.id, data)
             .catch((error) => window.alert(error));
     }
-
-    //  deleteStudent(): void {
-    //    this.studentService.delete(this.currentStudent.id)
-    //      .then(() => {
-    //        this.refreshList.emit();
-    //      })
-    //      .catch(error => window.alert(error));
-    //  }
 }

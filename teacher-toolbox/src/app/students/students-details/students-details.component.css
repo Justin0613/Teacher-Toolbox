@@ -36,3 +36,14 @@ h3 {
     margin: auto auto;
     display: block;
 }
+
+.container {
+    width: 50%;
+    margin-top: 2em;
+}
+
+.btn {
+    float: right;
+    width: 7.5em;
+    margin: 0 0.5em 1em 0;
+}

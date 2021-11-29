@@ -20,9 +20,9 @@ input[type="button"] {
 .authBlock {
     margin: 0 auto;
     max-width: 600px;
-    background: white;
     padding: 30px 40px 10px;
     overflow: hidden;
+    background: white;
     -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.04);
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.04);
 }

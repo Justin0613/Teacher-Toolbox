@@ -20,6 +20,7 @@ export class ClassroomsDetailsComponent implements OnInit {
     currentClassroom: Classroom = new Classroom();
     allStudents: Student[];
     tempStudentsList: string[];
+    tempStudentDataList: any[];
     classId: string = "";
     userData: any = null;
 
@@ -192,12 +193,21 @@ export class ClassroomsDetailsComponent implements OnInit {
 
     addStudent(student: Student): void {
         this.tempStudentsList.push(student.id);
+        var stu = this.allStudents.find((s) => s.id == student.id);
+        this.tempStudentDataList.push({
+            name: stu.firstName + " " + stu.lastName,
+            seat: -1,
+            role: "Unassigned"
+        });
         this.allStudents.find((s) => s.id == student.id).classIDs.push(this.classId);
     }
 
     removeStudent(student: Student): void {
         this.tempStudentsList.forEach((value, index) => {
-            if (value == student.id) this.tempStudentsList.splice(index, 1);
+            if (value == student.id) {
+                this.tempStudentsList.splice(index, 1);
+                this.tempStudentDataList.splice(index, 1);
+            }
         });
 
         this.allStudents
@@ -211,15 +221,18 @@ export class ClassroomsDetailsComponent implements OnInit {
 
     initTempStudentList(): void {
         this.tempStudentsList = this.currentClassroom.studentIDs.slice();
+        this.tempStudentDataList = this.currentClassroom.studentData.slice();
     }
 
     saveStudentsList(): void {
         this.currentClassroom.studentIDs = this.tempStudentsList.slice();
+        this.currentClassroom.studentData = this.tempStudentDataList.slice();
         this.classroomService.update(this.classId, this.currentClassroom);
         this.allStudents.forEach((s) => {
             this.studentService.update(s.id, s);
         });
     }
+
     newAttendanceList() {
         if (this.newAttendanceInput.length == 0) {
             this.allStudents.forEach((s) => {
@@ -257,5 +270,11 @@ export class ClassroomsDetailsComponent implements OnInit {
         this.newAttendanceInput.forEach((student) => {
             student.status = "present";
         });
+
+    getStudentData(student: Student): any {
+        var index: number = this.currentClassroom.studentIDs.findIndex((s) => s == student.id);
+        var data: any = this.currentClassroom.studentData[index];
+        return data;
+
     }
 }

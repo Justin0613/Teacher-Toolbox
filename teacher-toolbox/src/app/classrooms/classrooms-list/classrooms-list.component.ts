@@ -17,6 +17,7 @@ export class ClassroomsListComponent implements OnInit {
     currentClassroom = null;
     name = "";
     queryString: String;
+    numClassrooms: number = 0;
 
     constructor(
         private classroomService: ClassroomService,
@@ -25,8 +26,9 @@ export class ClassroomsListComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.queryString = "";
         this.retrieveClassrooms();
+
+        this.queryString = "";
     }
 
     refreshList(): void {
@@ -48,6 +50,7 @@ export class ClassroomsListComponent implements OnInit {
             )
             .subscribe((data) => {
                 this.classrooms = data;
+                this.numClassrooms = this.classrooms?.length;
             });
 
         this.studentService

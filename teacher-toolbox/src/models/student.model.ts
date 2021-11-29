@@ -8,4 +8,6 @@ export class Student {
     parentLastName: string;
     parentPhone: string;
     parentEmail: string;
+    grade: string;
+    currentBehavior: string;
 }

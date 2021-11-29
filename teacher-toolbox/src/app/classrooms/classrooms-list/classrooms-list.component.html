@@ -1,19 +1,34 @@
 <div class="container">
+    <div class="input-group rounded mb-3 search">
+        <input
+            *ngIf="numClassrooms != 0"
+            [(ngModel)]="queryString"
+            type="search"
+            class="form-control rounded"
+            name="search"
+            placeholder="Search"
+        />
+    </div>
+
     <div class="row justify-content-md-center">
         <div class="list row">
             <ul class="list-group">
                 <div class="card mb-3" *ngFor="let classroom of classrooms">
-                    <div class="card-header card-title">
-                        {{ classroom.name }}
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">{{ classroom.description }}</p>
-                        <a class="btn btn-primary" routerLink="/classrooms/{{ classroom.id }}"
-                            >Class Details</a
-                        >
-                        <a (click)="triggerModal(modalData, classroom)" class="btn btn-secondary"
-                            >Edit</a
-                        >
+                    <div *ngIf="classroom.name.toLowerCase().includes(queryString.toLowerCase())">
+                        <div class="card-header card-title">
+                            {{ classroom.name }}
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">{{ classroom.description }}</p>
+                            <a class="btn btn-primary" routerLink="/classrooms/{{ classroom.id }}"
+                                >Class Details</a
+                            >
+                            <a
+                                (click)="triggerModal(modalData, classroom)"
+                                class="btn btn-secondary"
+                                >Edit</a
+                            >
+                        </div>
                     </div>
                 </div>
             </ul>
