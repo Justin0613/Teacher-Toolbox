@@ -20,18 +20,17 @@ export class ClassroomsDetailsComponent implements OnInit {
     allStudents: Student[];
     tempStudentsList: string[];
     classId: string = "";
+    userData: any = null;
 
     viewDate: Date = new Date();
+    currentDate: Date = new Date();
+    currentDateString: string = this.currentDate.toISOString().split("T")[0];
     selectedDate: Date = this.viewDate;
     selectedEventIndex: number;
     calendarEvents: CalendarEvent[] = [];
 
     @Output() refresh = new EventEmitter<any>();
     newEventInput: any = { title: "", date: "" };
-
-    present: Student[] = [];
-    absent: Student[] = [];
-    unassigned: Student[] = [];
 
     constructor(
         private classroomService: ClassroomService,
@@ -41,6 +40,7 @@ export class ClassroomsDetailsComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
+        this.userData = this.route.snapshot.data.userdata;
         this.route.paramMap.subscribe((params: ParamMap) => {
             this.classId = params.get("class_id");
 
@@ -73,6 +73,38 @@ export class ClassroomsDetailsComponent implements OnInit {
 
     triggerModal(content) {
         this.modal.open(content).result;
+    }
+
+    getViewMonth(): string {
+        var months = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ];
+        return months[this.viewDate.getMonth()] + " - " + this.viewDate.getFullYear();
+    }
+
+    switchViewMonth(step: number): void {
+        var newMonth: number = this.viewDate.getMonth() + step;
+
+        if (newMonth >= 12) {
+            this.viewDate.setMonth(0);
+            this.viewDate.setFullYear(this.viewDate.getFullYear() + 1);
+        } else if (newMonth < 0) {
+            this.viewDate.setMonth(11);
+            this.viewDate.setFullYear(this.viewDate.getFullYear() - 1);
+        } else this.viewDate.setMonth(newMonth);
+
+        this.refresh.emit(null);
     }
 
     updateClassroom(): void {
@@ -183,29 +215,5 @@ export class ClassroomsDetailsComponent implements OnInit {
         this.allStudents.forEach((s) => {
             this.studentService.update(s.id, s);
         });
-    }
-    setPresent(student: Student) {
-        this.present.push(student);
-        this.unassigned.splice(this.unassigned.indexOf(student), 1);
-    }
-    setAbsent(student: Student) {
-        this.absent.push(student);
-        this.unassigned.splice(this.unassigned.indexOf(student), 1);
-    }
-    addNewAttendance(): void {
-        let newAttendance: any = new Object();
-        newAttendance.start = new Date(this.newEventInput.date);
-        newAttendance.start.setDate(newAttendance.start.getDate() + 1);
-        newAttendance.title = "Attendance";
-        this.calendarEvents.push(newAttendance);
-
-        this.currentClassroom.events.push({
-            start: newAttendance.start.toDateString(),
-            title: newAttendance.title
-        });
-        this.classroomService.update(this.classId, this.currentClassroom);
-
-        this.newEventInput = { title: "", date: "" };
-        this.refresh.emit(null);
     }
 }

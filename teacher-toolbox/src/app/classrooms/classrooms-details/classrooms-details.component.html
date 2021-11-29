@@ -9,6 +9,15 @@
 
 <div class="row">
     <div class="col">
+        <div style="text-align: center">
+            <button class="btn btn-primary" style="margin-left: 0%" (click)="switchViewMonth(-1)">
+                <i class="bi bi-arrow-left"></i>
+            </button>
+            {{ getViewMonth() }}
+            <button class="btn btn-primary" style="margin-right: 0%" (click)="switchViewMonth(1)">
+                <i class="bi bi-arrow-right"></i>
+            </button>
+        </div>
         <div class="calendarContainer">
             <mwl-calendar-month-view
                 [viewDate]="viewDate"
@@ -51,7 +60,6 @@
                 >Edit Student(s)</a
             >
             <a class="btn btn-primary" (click)="triggerModal(modalAddEvent)">Add Event</a>
-            <a class="btn btn-primary" (click)="triggerModal(modalAttendance)">View Attendance</a>
         </div>
 
         <div class="">
@@ -109,6 +117,9 @@
                 {{ student.firstName }} {{ student.lastName }}
             </ng-template>
         </div>
+        <button type="button" class="btn btn-primary" (click)="addNewAttendance(); modal.close()">
+            Save
+        </button>
     </div>
 
     <div class="modal-footer">
@@ -148,52 +159,7 @@
             <label for="description">Date</label>
             <input
                 type="date"
-                class="form-control"
-                id="description"
-                required
-                [(ngModel)]="newEventInput.date"
-                #eventDate
-            />
-        </div>
-    </div>
-
-    <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="addNewEvent(); modal.close()">
-            Save
-        </button>
-    </div>
-</ng-template>
-
-<ng-template #modalAddEvent let-modal class="modal">
-    <div class="modal-header">
-        <h5>Add Event:</h5>
-        <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-            (click)="modal.dismiss()"
-        ></button>
-    </div>
-
-    <div class="modal-body">
-        <div class="form-group">
-            <label for="name">Title</label>
-            <input
-                type="text"
-                class="form-control"
-                id="name"
-                required
-                [(ngModel)]="newEventInput.title"
-                name="name"
-                #eventTitle
-            />
-        </div>
-
-        <div class="form-group">
-            <label for="description">Date</label>
-            <input
-                type="date"
+                [min]="currentDateString"
                 class="form-control"
                 id="description"
                 required
@@ -240,6 +206,7 @@
             <label for="description">Date</label>
             <input
                 type="date"
+                [min]="currentDateString"
                 class="form-control"
                 id="description"
                 required
@@ -255,46 +222,6 @@
         </button>
         <button type="button" class="btn btn-danger" (click)="deleteSelectedEvent(); modal.close()">
             Delete
-        </button>
-    </div>
-</ng-template>
-
-<ng-template #modalAttendance let-modal class="modal">
-    <div class="modal-header">
-        <h5 class="modal-title">Attendance</h5>
-        <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-            (click)="modal.dismiss()"
-        ></button>
-    </div>
-    <div class="modal-body">
-        <div *ngFor="let student of allStudents">
-            <div class="w-100 d-flex justify-content-between align-items-center">
-                <h5>{{ student.firstName }}</h5>
-                <div>
-                    <button class="btn btn-primary" (click)="setPresent(student)">Present</button>
-                    <button class="btn btn-danger" (click)="setAbsent(student)">Absent</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal-footer">
-        <div class="form-group">
-            <label for="description">Date</label>
-            <input
-                type="date"
-                class="form-control"
-                id="description"
-                required
-                [(ngModel)]="newEventInput.date"
-                #eventDate
-            />
-        </div>
-        <button type="button" class="btn btn-primary" (click)="addNewAttendance(); modal.close()">
-            Save
         </button>
     </div>
 </ng-template>
