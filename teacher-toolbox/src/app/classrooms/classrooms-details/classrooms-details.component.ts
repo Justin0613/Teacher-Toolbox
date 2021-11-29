@@ -270,11 +270,10 @@ export class ClassroomsDetailsComponent implements OnInit {
         this.newAttendanceInput.forEach((student) => {
             student.status = "present";
         });
-
+    }
     getStudentData(student: Student): any {
         var index: number = this.currentClassroom.studentIDs.findIndex((s) => s == student.id);
         var data: any = this.currentClassroom.studentData[index];
         return data;
-
     }
 }
