@@ -1,15 +1,9 @@
 <app-navigation-bar></app-navigation-bar>
 
-<div class="container titleContainer">
-    <div class="row">
-        <div class="col">
-            <h1 class="title">{{ currentClassroom.name }}</h1>
-            <h3 class="title">{{ currentClassroom.description }}</h3>
-        </div>
-    </div>
-</div>
+<h1 class="title text-center">{{ currentClassroom.name }}</h1>
+<h3 class="title text-center">{{ currentClassroom.description }}</h3>
 
-<div class="row">
+<div class="row" style="overflow: hidden;">
     <div class="col">
         <div style="text-align: center">
             <button class="btn btn-primary" (click)="switchViewMonth(-1)">
@@ -32,6 +26,24 @@
             >
             </mwl-calendar-month-view>
         </div>
+        <div class="button-grid" style="overflow: hidden">
+            <a
+                class="btn btn-primary button-grid-item"
+                (click)="initTempStudentList(); triggerModal(modalAddStudent)"
+                >Edit Student(s)</a
+            >
+            <a
+                class="btn btn-primary button-grid-item"
+                (click)="initTempStudentList(); triggerModal(modalEditStudent)"
+                >Edit Seat/Role</a
+            >
+            <a class="btn btn-primary button-grid-item" (click)="triggerModal(modalAddEvent)">Add Event</a>
+            <a
+                class="btn btn-primary button-grid-item"
+                (click)="triggerModal(modalAddAttendance); newAttendanceList()"
+                >Add Attendance</a
+            >
+        </div>
     </div>
 
     <div class="col" style="overflow: hidden">
@@ -49,10 +61,13 @@
                         id="static-{{ index }}"
                         title="{{ student.firstName }} {{ student.lastName }}"
                     >
-                        <ng-template ngbPanelContent>
-                            Student ID: {{ student.id }}<br />
-                            Assigned Seat: {{ getStudentData(student).seat }}<br />
-                            Student Role: {{ getStudentData(student).role }}<br />
+                        <ng-template ngbPanelContent style="color:black;">
+                            <div class="eventcontainer">
+                                Student ID: {{ student.id }}<br />
+                                Assigned Seat: {{ getStudentData(student).seat }}<br />
+                                Student Role: {{ getStudentData(student).role }}<br />
+                            </div>
+
                         </ng-template>
                     </ngb-panel>
                 </ngb-accordion>
@@ -76,24 +91,7 @@
     </div>
 </div>
 
-<div class="button-grid">
-    <a
-        class="btn btn-primary button-grid-item"
-        (click)="initTempStudentList(); triggerModal(modalAddStudent)"
-        >Edit Student(s)</a
-    >
-    <a
-        class="btn btn-primary button-grid-item"
-        (click)="initTempStudentList(); triggerModal(modalEditStudent)"
-        >Edit Seat/Role</a
-    >
-    <a class="btn btn-primary button-grid-item" (click)="triggerModal(modalAddEvent)">Add Event</a>
-    <a
-        class="btn btn-primary button-grid-item"
-        (click)="triggerModal(modalAddAttendance); newAttendanceList()"
-        >Add Attendance</a
-    >
-</div>
+
 
 <ng-template #modalAddStudent let-modal class="modal">
     <div class="modal-header">
@@ -154,9 +152,9 @@
 
     <div class="modal-body">
         <div *ngFor="let data of tempStudentDataList">
-            {{ data.name }}<br />
-            ____Assigned Seat: <input type="number" [(ngModel)]="data.seat" /><br />
-            ____Student Role: <input type="text" [(ngModel)]="data.role" /><br />
+            <h5>{{ data.name }}<br /></h5>
+            <h6 class="tab">Assigned Seat: <input type="number" [(ngModel)]="data.seat" /></h6><br />
+            <h6 class="tab">Student Role: <input type="text" [(ngModel)]="data.role" /></h6><br />
         </div>
     </div>
 

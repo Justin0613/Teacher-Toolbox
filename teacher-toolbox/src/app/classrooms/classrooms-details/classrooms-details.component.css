@@ -3,6 +3,7 @@
 }
 
 .studentsContainer {
+    margin-top:3%;
     height: 50%;
     padding: 10 10 10 5;
     overflow: auto;
@@ -19,7 +20,6 @@
 }
 
 .button-grid {
-    margin-top: 2.5em;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -59,4 +59,25 @@
 
 .modal-header{
     color:black;
+}
+
+.eventcontainer{
+    color:black;
+}
+
+html{
+    overflow-y:hidden !important;
+}
+
+body{
+    overflow-y:hidden !important;
+}
+
+.tab{
+    text-indent: 40px;
+}
+
+.p{
+    margin: 1 1 1 1;
+    padding: 1 1 1 1;
 }
