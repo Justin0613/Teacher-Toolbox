@@ -62,3 +62,17 @@ p {
 .card-text {
     color: black;
 }
+
+@media screen and (max-width: 992px) {
+    .container {
+        width: 90%
+    }
+
+    .removeStudentText, .excelFunctions {
+        display: none;
+    }
+
+    .scroll {
+        height: 50vh;
+    }
+}

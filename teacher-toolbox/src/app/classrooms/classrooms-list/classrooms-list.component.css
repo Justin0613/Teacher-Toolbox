@@ -10,7 +10,7 @@
 }
 
 .search {
-    width: 98.5%;
+    width:98.5%;
     margin-top: 3em;
 }
 
@@ -52,4 +52,13 @@
 
 .modal-body {
     color: black;
+}
+
+@media screen and (max-width: 992px) {
+.container {
+    width: 90%
+}
+.search {
+    margin-left: -1em;
+}
 }

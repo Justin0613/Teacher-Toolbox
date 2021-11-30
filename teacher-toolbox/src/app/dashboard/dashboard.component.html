@@ -1,7 +1,7 @@
 <app-navigation-bar></app-navigation-bar>
 
-<div class="jumbotron">
-    <div class="container text-white">
+<div class="container jumbotron">
+    <div class="text-white">
         <h2 class="display-3">Notifications</h2>
         <ul>
             <li *ngFor="let event of getLatestEvents(5)">
@@ -13,7 +13,8 @@
     </div>
 </div>
 
-<div class="row dashboardstuff">
+<div class="container-main">
+<div class="row dashboardstuff container-main">
     <div class="col-md-2"></div>
     <div class="col-md-3">
         <h2>Attendance</h2>
@@ -56,4 +57,5 @@
         </p>
     </div>
     <div class="col-md-2"></div>
+</div>
 </div>

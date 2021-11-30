@@ -42,3 +42,13 @@
 .modal {
     overflow-y: auto;
 }
+
+@media screen and (max-width: 992px) {
+    .container {
+        width: 90%
+    }
+
+    .excelTemplate {
+        display: none;
+    }
+}
