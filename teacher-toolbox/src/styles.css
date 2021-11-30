@@ -24,7 +24,7 @@ h6 {
 }
 
 .modal {
-    overflow-y:auto;
+    overflow-y: auto;
 }
 
 body:not(.dark-mode-preloading) {

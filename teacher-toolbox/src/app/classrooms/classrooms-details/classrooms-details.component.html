@@ -1,9 +1,9 @@
 <app-navigation-bar></app-navigation-bar>
 
-<h1 class="title text-center">{{ currentClassroom.name }}</h1>
+<h1 class="title-first text-center">{{ currentClassroom.name }}</h1>
 <h3 class="title text-center">{{ currentClassroom.description }}</h3>
 
-<div class="row" style="overflow: hidden;">
+<div class="row" style="overflow: hidden">
     <div class="col">
         <div style="text-align: center">
             <button class="btn btn-primary" (click)="switchViewMonth(-1)">
@@ -37,7 +37,9 @@
                 (click)="initTempStudentList(); triggerModal(modalEditStudent)"
                 >Edit Seat/Role</a
             >
-            <a class="btn btn-primary button-grid-item" (click)="triggerModal(modalAddEvent)">Add Event</a>
+            <a class="btn btn-primary button-grid-item" (click)="triggerModal(modalAddEvent)"
+                >Add Event</a
+            >
             <a
                 class="btn btn-primary button-grid-item"
                 (click)="triggerModal(modalAddAttendance); newAttendanceList()"
@@ -48,50 +50,39 @@
 
     <div class="col" style="overflow: hidden">
         <div class="studentsContainer">
-
-                <ngb-accordion
-                    activeIds="static-0"
-                    *ngFor="let student of allStudents; let index = index"
+            <ngb-accordion
+                activeIds="static-0"
+                *ngFor="let student of allStudents; let index = index"
+            >
+                <ngb-panel
+                    *ngIf="
+                        currentClassroom.studentIDs != undefined &&
+                        currentClassroom.studentIDs.includes(student.id)
+                    "
+                    id="static-{{ index }}"
+                    title="{{ student.firstName }} {{ student.lastName }}"
                 >
-                    <ngb-panel
-                        *ngIf="
-                            currentClassroom.studentIDs != undefined &&
-                            currentClassroom.studentIDs.includes(student.id)
-                        "
-                        id="static-{{ index }}"
-                        title="{{ student.firstName }} {{ student.lastName }}"
-                    >
-                        <ng-template ngbPanelContent style="color:black;">
-                            <div class="eventcontainer">
-                                Student ID: {{ student.id }}<br />
-                                Assigned Seat: {{ getStudentData(student).seat }}<br />
-                                Student Role: {{ getStudentData(student).role }}<br />
-                            </div>
-
-                        </ng-template>
-                    </ngb-panel>
-                </ngb-accordion>
-
-
+                    <ng-template ngbPanelContent style="color: black">
+                        <div class="eventcontainer">
+                            Student ID: {{ student.id }}<br />
+                            Assigned Seat: {{ getStudentData(student).seat }}<br />
+                            Student Role: {{ getStudentData(student).role }}<br />
+                        </div>
+                    </ng-template>
+                </ngb-panel>
+            </ngb-accordion>
         </div>
 
-
         <div class="event-section">
-            <h5>Classroom Events</h5>
+            <h5>Classroom Events for {{ selectedDate.toDateString() }}</h5>
             <div class="col">
-
-
-                        <div *ngFor="let event of getEventsByDay(selectedDate.getDate())">
-                            {{ event.title }} - {{ event.start.toDateString() }}
-                        </div>
-
-
+                <div *ngFor="let event of getEventsByDay(selectedDate.getDate())">
+                    {{ event.title }} - {{ event.start.toDateString() }}
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-
 
 <ng-template #modalAddStudent let-modal class="modal">
     <div class="modal-header">
@@ -153,8 +144,10 @@
     <div class="modal-body">
         <div *ngFor="let data of tempStudentDataList">
             <h5>{{ data.name }}<br /></h5>
-            <h6 class="tab">Assigned Seat: <input type="number" [(ngModel)]="data.seat" /></h6><br />
-            <h6 class="tab">Student Role: <input type="text" [(ngModel)]="data.role" /></h6><br />
+            <h6 class="tab">Assigned Seat: <input type="number" [(ngModel)]="data.seat" /></h6>
+            <br />
+            <h6 class="tab">Student Role: <input type="text" [(ngModel)]="data.role" /></h6>
+            <br />
         </div>
     </div>
 

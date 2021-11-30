@@ -11,30 +11,32 @@
                 <h3>Parent Information</h3>
             </div>
             <div class="card-body">
-              <h5>{{ currentStudent.parentFirstName }} {{ currentStudent.parentLastName }}</h5>
-              <p class="card-text" style="margin-top: 1em;">{{ currentStudent.parentPhone }}</p>
-              <p class="card-text">{{ currentStudent.parentEmail }}</p>
+                <h5>{{ currentStudent.parentFirstName }} {{ currentStudent.parentLastName }}</h5>
+                <p class="card-text" style="margin-top: 1em">{{ currentStudent.parentPhone }}</p>
+                <p class="card-text">{{ currentStudent.parentEmail }}</p>
             </div>
         </div>
 
-        <div class="card" style="margin-top: 2em;">
+        <div class="card" style="margin-top: 2em">
             <div class="card-header">
                 <h3>Class Information</h3>
             </div>
             <div class="card-body">
-                <p class="card-text">Grade Level: {{ currentStudent.grade }} <span *ngIf="currentStudent.grade?.toLowerCase() != 'kindergarten'">Grade</span></p>
+                <p class="card-text">
+                    Grade Level: {{ currentStudent.grade }}
+                    <span *ngIf="currentStudent.grade?.toLowerCase() != 'kindergarten'">Grade</span>
+                </p>
                 <p class="card-text">Currently Enrolled In: ...</p>
                 <p class="card-text">Current Grade Average: ...</p>
             </div>
         </div>
         <div class="editstudent-button">
-        <button class="btn btn-primary editstudent-button" (click)="triggerModal(modalData)">
-            Edit student
-        </button>
-    </div>
+            <button class="btn btn-primary editstudent-button" (click)="triggerModal(modalData)">
+                Edit student
+            </button>
+        </div>
     </div>
 </div>
-
 
 <ng-template #modalData let-modal class="modal">
     <div class="modal-header">
@@ -142,14 +144,6 @@
         >
             Close
         </button>
-        <button
-            type="button"
-            class="btn btn-primary"
-            (click)="
-                updateStudent()
-            "
-        >
-            Save
-        </button>
+        <button type="button" class="btn btn-primary" (click)="updateStudent()">Save</button>
     </div>
 </ng-template>

@@ -1,29 +1,43 @@
 <div class="container">
     <div class="input-group rounded mb-3 search">
-        <input *ngIf="numStudents != 0" [(ngModel)]="queryString" type="search" class="form-control rounded"
-            name="search" placeholder="Search" />
+        <input
+            *ngIf="numStudents != 0"
+            [(ngModel)]="queryString"
+            type="search"
+            class="form-control rounded"
+            name="search"
+            placeholder="Search"
+        />
     </div>
 
     <div class="scroll">
         <div class="row justify-content-md-center">
             <div class="list row">
                 <ul class="list-group" *ngFor="let student of students">
-                    <a routerLink="/students/{{ student.id }}"
+                    <a
+                        routerLink="/students/{{ student.id }}"
                         class="card list-group-item list-group-item-action studentDetail"
-                        *ngIf="student.firstName.toLowerCase().includes(queryString.toLowerCase())">
+                        *ngIf="student.firstName.toLowerCase().includes(queryString.toLowerCase())"
+                    >
                         <h5 class="card-title">
                             {{ student.firstName + " " + student.lastName }}
                         </h5>
 
                         <br />
 
-                        <p class="card-text">Grade: {{ student.grade }} <span *ngIf="student.grade.toLowerCase() != 'kindergarten'">Grade</span></p>
-                        <button (click)="
-                            deleteStudent(student);
-                            $event.stopImmediatePropagation();
-                            $event.stopPropagation();
-                            $event.preventDefault()
-                        " class="btn btn-danger removeStudent">
+                        <p class="card-text">
+                            Grade: {{ student.grade }}
+                            <span *ngIf="student.grade.toLowerCase() != 'kindergarten'">Grade</span>
+                        </p>
+                        <button
+                            (click)="
+                                deleteStudent(student);
+                                $event.stopImmediatePropagation();
+                                $event.stopPropagation();
+                                $event.preventDefault()
+                            "
+                            class="btn btn-danger removeStudent"
+                        >
                             <i class="bi bi-x-lg"> Remove Student</i>
                         </button>
                     </a>
@@ -54,8 +68,11 @@
 </div>
 
 <div class="excelFunctions">
-    <button *ngIf="this.numStudents != 0" (click)="exportData('exportStudents')"
-        class="btn btn-secondary shadow p-3 mb-5 rounded">
+    <button
+        *ngIf="this.numStudents != 0"
+        (click)="exportData('exportStudents')"
+        class="btn btn-secondary shadow p-3 mb-5 rounded"
+    >
         Export List of Students
     </button>
 

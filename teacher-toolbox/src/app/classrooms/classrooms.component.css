@@ -1,5 +1,5 @@
 .form-group {
-    margin: .7em;
+    margin: 0.7em;
 }
 
 .form-group label {
@@ -21,12 +21,10 @@
 label {
     font-weight: 600;
 }
-.modal-body{
-    color:black;
+.modal-body {
+    color: black;
 }
 
-.modal-header{
-    color:black;
+.modal-header {
+    color: black;
 }
-
-

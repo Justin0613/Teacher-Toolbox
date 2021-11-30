@@ -19,7 +19,7 @@
 }
 
 .form-group {
-    margin: .7em;
+    margin: 0.7em;
 }
 
 .form-group label {
@@ -38,18 +38,18 @@
 .container {
     width: 50%;
 }
-.card-title{
-    color:black;
+.card-title {
+    color: black;
 }
 
-.card-text{
-    color:black;
+.card-text {
+    color: black;
 }
 
-.modal-title{
-    color:black;
+.modal-title {
+    color: black;
 }
 
-.modal-body{
-    color:black;
+.modal-body {
+    color: black;
 }

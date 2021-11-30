@@ -3,7 +3,7 @@
 }
 
 .studentsContainer {
-    margin-top:3%;
+    margin-top: 3%;
     height: 50%;
     padding: 10 10 10 5;
     overflow: auto;
@@ -15,8 +15,8 @@
     margin-right: 10;
 }
 
-.calendarContainer{
-    color:black;
+.calendarContainer {
+    color: black;
 }
 
 .button-grid {
@@ -41,43 +41,52 @@
     margin-top: 5em;
 }
 
-.card-title{
-    color:black;
+.card-title {
+    color: black;
 }
 
-.card-text{
-    color:black;
+.card-text {
+    color: black;
 }
 
-.modal-title{
-    color:black;
+.modal-title {
+    color: black;
 }
 
-.modal-body{
-    color:black;
+.modal-body {
+    color: black;
 }
 
-.modal-header{
-    color:black;
+.modal-header {
+    color: black;
 }
 
-.eventcontainer{
-    color:black;
+.eventcontainer {
+    color: black;
 }
 
-html{
-    overflow-y:hidden !important;
+html {
+    overflow-y: hidden !important;
 }
 
-body{
-    overflow-y:hidden !important;
+body {
+    overflow-y: hidden !important;
 }
 
-.tab{
+.tab {
     text-indent: 40px;
 }
 
-.p{
+.p {
     margin: 1 1 1 1;
     padding: 1 1 1 1;
+}
+
+.title-first {
+    margin-top: 1em;
+}
+
+.title {
+    font-style: italic;
+    margin-bottom: 1em;
 }

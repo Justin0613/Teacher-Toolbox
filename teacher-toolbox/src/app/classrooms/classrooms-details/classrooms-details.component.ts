@@ -44,8 +44,7 @@ export class ClassroomsDetailsComponent implements OnInit {
         private studentService: StudentsService,
         private modal: NgbModal,
         private route: ActivatedRoute
-    ) {
-    }
+    ) {}
 
     ngOnInit(): void {
         this.userData = this.route.snapshot.data.userdata;
