@@ -1,37 +1,44 @@
 <app-navigation-bar></app-navigation-bar>
 
-<div class="row-titleContainer">
-    <div>
-        <h1 class="student-name">{{ currentStudent.firstName }} {{ currentStudent.lastName }}</h1>
+<div>
+    <h1 class="student-name">{{ currentStudent.firstName }} {{ currentStudent.lastName }}</h1>
+</div>
+
+<div class="container">
+    <div class="center">
+        <div class="card">
+            <div class="card-header">
+                <h3>Parent Information</h3>
+            </div>
+            <div class="card-body">
+              <h5>{{ currentStudent.parentFirstName }} {{ currentStudent.parentLastName }}</h5>
+              <p class="card-text" style="margin-top: 1em;">{{ currentStudent.parentPhone }}</p>
+              <p class="card-text">{{ currentStudent.parentEmail }}</p>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 2em;">
+            <div class="card-header">
+                <h3>Class Information</h3>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Grade Level: {{ currentStudent.grade }} <span *ngIf="currentStudent.grade?.toLowerCase() != 'kindergarten'">Grade</span></p>
+                <p class="card-text">Currently Enrolled In: ...</p>
+                <p class="card-text">Current Grade Average: ...</p>
+            </div>
+        </div>
+        <div class="editstudent-button">
+        <button class="btn btn-primary editstudent-button" (click)="triggerModal(modalData)">
+            Edit student
+        </button>
+    </div>
     </div>
 </div>
 
-<section class="container">
-    <div class="row">
-        <figure class="col-sm-4">
-            <h3 class="detail-title">Parent Name</h3>
-            <p class="detail-text">
-                {{ currentStudent.parentFirstName }} {{ currentStudent.parentLastName }}
-            </p>
-        </figure>
-        <figure class="col-sm-4">
-            <h3 class="detail-title">Parent Email</h3>
-            <p class="detail-text">{{ currentStudent.parentEmail }}</p>
-        </figure>
-        <figure class="col-sm-4">
-            <h3 class="detail-title">Parent Phone</h3>
-            <p class="detail-text">{{ currentStudent.parentPhone }}</p>
-        </figure>
-    </div>
-
-    <button class="btn btn-primary col editstudent-button" (click)="triggerModal(modalData)">
-        Edit student
-    </button>
-</section>
 
 <ng-template #modalData let-modal class="modal">
     <div class="modal-header">
-        <h5 class="modal-title">Edit Student</h5>
+        <h5 class="modal-title">Add a New Student</h5>
         <button
             type="button"
             class="btn-close"
@@ -42,7 +49,7 @@
     </div>
     <div class="modal-body">
         <div class="form-group">
-            <label for="name">Student First Name</label>
+            <label for="name">Student First Name*</label>
             <input
                 type="text"
                 class="form-control"
@@ -54,7 +61,7 @@
         </div>
 
         <div class="form-group">
-            <label for="description">Student Last Name</label>
+            <label for="description">Student Last Name*</label>
             <input
                 type="text"
                 class="form-control"
@@ -66,7 +73,19 @@
         </div>
 
         <div class="form-group">
-            <label for="name">Parent First Name</label>
+            <label for="description">Student's Grade Level*</label>
+            <input
+                type="text"
+                class="form-control"
+                id="description"
+                required
+                [(ngModel)]="currentStudent.grade"
+                #grade
+            />
+        </div>
+
+        <div class="form-group">
+            <label for="name">Parent First Name*</label>
             <input
                 type="text"
                 class="form-control"
@@ -78,7 +97,7 @@
         </div>
 
         <div class="form-group">
-            <label for="description">Parent Last Name</label>
+            <label for="description">Parent Last Name*</label>
             <input
                 type="text"
                 class="form-control"
@@ -90,7 +109,7 @@
         </div>
 
         <div class="form-group">
-            <label for="description">Parent Phone Number</label>
+            <label for="description">Parent Phone Number*</label>
             <input
                 type="text"
                 class="form-control"
@@ -102,7 +121,7 @@
         </div>
 
         <div class="form-group">
-            <label for="description">Parent Email</label>
+            <label for="description">Parent Email*</label>
             <input
                 type="text"
                 class="form-control"
@@ -123,8 +142,14 @@
         >
             Close
         </button>
-        <button type="button" class="btn btn-primary" (click)="updateStudent(); modal.close()">
-            Save changes
+        <button
+            type="button"
+            class="btn btn-primary"
+            (click)="
+                updateStudent()
+            "
+        >
+            Save
         </button>
     </div>
 </ng-template>
