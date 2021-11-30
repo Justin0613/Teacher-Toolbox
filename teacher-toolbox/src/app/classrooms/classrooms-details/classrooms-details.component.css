@@ -5,16 +5,17 @@
 .studentsContainer {
     height: 50%;
     padding: 10 10 10 5;
-    margin-top: 1.8em;
-    overflow: auto;
+    overflow: hidden;
 }
 
 .titleContainer {
-    margin: 2em 0 1em 0;
+    padding: 10 10 10 10;
+    margin-left: 10;
+    margin-right: 10;
 }
 
-h3.title {
-    font-style: italic;
+.calendarContainer{
+    color:black;
 }
 
 .button-grid {
@@ -38,4 +39,24 @@ h3.title {
 
 .event-section {
     margin-top: 5em;
+}
+
+.card-title{
+    color:black;
+}
+
+.card-text{
+    color:black;
+}
+
+.modal-title{
+    color:black;
+}
+
+.modal-body{
+    color:black;
+}
+
+.modal-header{
+    color:black;
 }
