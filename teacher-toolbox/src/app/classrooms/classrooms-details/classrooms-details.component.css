@@ -72,3 +72,12 @@ html{
 body{
     overflow-y:hidden !important;
 }
+
+.tab{
+    text-indent: 40px;
+}
+
+.p{
+    margin: 1 1 1 1;
+    padding: 1 1 1 1;
+}
