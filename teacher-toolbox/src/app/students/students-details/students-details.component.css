@@ -103,3 +103,15 @@
 .modal {
     overflow-y: auto;
 }
+
+.card-header{
+    color:black;
+}
+
+.card-body{
+    color:black;
+}
+
+.card-text{
+    color:black;
+}
