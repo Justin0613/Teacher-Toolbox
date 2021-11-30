@@ -115,3 +115,9 @@
 .card-text{
     color:black;
 }
+
+@media screen and (max-width: 992px) {
+    .container {
+        width: 90%;
+    }
+}
