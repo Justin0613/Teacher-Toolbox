@@ -55,10 +55,13 @@
 }
 
 @media screen and (max-width: 992px) {
-.container {
-    width: 90%
-}
-.search {
-    margin-left: -1em;
-}
+    .container {
+        width: 90%
+    }
+    .search {
+        margin-left: .2em;
+    }
+    .list-group {
+        margin-left: 1em;
+    }
 }
